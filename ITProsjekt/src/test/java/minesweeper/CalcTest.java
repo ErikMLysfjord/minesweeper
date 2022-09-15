@@ -1,7 +1,9 @@
-package vebjorbl.calc;
+package minesweeper;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import minesweeper.Calc;
 
 
 public class CalcTest {
