@@ -10,11 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 
-public class MinesweeperConrtoller {
+public class MinesweeperController {
 
     private Minesweeper calc;
 
-    public MinesweeperConrtoller() {
+    public MinesweeperController() {
         calc = new Minesweeper(0.0, 0.0, 0.0);
     }
 

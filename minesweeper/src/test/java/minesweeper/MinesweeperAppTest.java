@@ -25,7 +25,7 @@ import org.testfx.matcher.control.LabeledMatchers;
  */
 public class MinesweeperAppTest extends ApplicationTest {
 
-    private MinesweeperConrtoller controller;
+    private MinesweeperController controller;
     private Parent root;
 
     @Override
