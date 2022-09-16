@@ -1,15 +1,15 @@
-package vebjorbl.calc;
+package minesweeper;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 
-public class Calc {
+public class Minesweeper {
     
     private final List<Double> operandStack;
 
-    public Calc(double... operands) {
+    public Minesweeper(double... operands) {
         operandStack = new ArrayList<>(operands.length + 2);
         for (var d : operands) {
             operandStack.add(d);

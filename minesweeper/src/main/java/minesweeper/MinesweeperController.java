@@ -1,4 +1,4 @@
-package vebjorbl.calc;
+package minesweeper;
 
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -10,19 +10,19 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
 
-public class CalcController {
+public class MinesweeperController {
 
-    private Calc calc;
+    private Minesweeper calc;
 
-    public CalcController() {
-        calc = new Calc(0.0, 0.0, 0.0);
+    public MinesweeperController() {
+        calc = new Minesweeper(0.0, 0.0, 0.0);
     }
 
-    public Calc getCalc() {
+    public Minesweeper getCalc() {
         return calc;
     }
 
-    public void setCalc(Calc calc) {
+    public void setCalc(Minesweeper calc) {
         this.calc = calc;
         updateOperandsView();
     }

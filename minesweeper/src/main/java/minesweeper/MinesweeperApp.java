@@ -1,4 +1,4 @@
-package vebjorbl.calc;
+package minesweeper;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +11,11 @@ import java.io.IOException;
 /**
  * JavaFX App
  */
-public class CalcApp extends Application {
+public class MinesweeperApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Calc.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Minesweeper.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setScene(new Scene(parent));
         stage.show();

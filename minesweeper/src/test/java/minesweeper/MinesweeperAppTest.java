@@ -1,4 +1,4 @@
-package vebjorbl.calc;
+package minesweeper;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -22,14 +23,14 @@ import org.testfx.matcher.control.LabeledMatchers;
 /**
  * TestFX App test
  */
-public class CalcAppTest extends ApplicationTest {
+public class MinesweeperAppTest extends ApplicationTest {
 
-    private CalcController controller;
+    private MinesweeperController controller;
     private Parent root;
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Calc.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Minesweeper.fxml"));
         root = fxmlLoader.load();
         controller = fxmlLoader.getController();
         stage.setScene(new Scene(root));
