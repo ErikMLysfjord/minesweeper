@@ -13,6 +13,17 @@
       <Label fx:id="highscore" layoutX="375.0" layoutY="50" text="Highscore" />
 
       <GridPane alignment="CENTER" gridLinesVisible="true" layoutX="287.5" layoutY="137.5" prefHeight="225.0" prefWidth="225.0">
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+         <Button prefWidth="25.0" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+
+         <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -21,8 +32,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
@@ -31,8 +42,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
@@ -41,8 +52,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
@@ -51,8 +62,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="4" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
@@ -61,8 +72,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="5" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
@@ -71,8 +82,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="6" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
@@ -81,8 +92,8 @@
          <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="7" GridPane.rowIndex="9" />
 
+         <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="0" />
          <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
          <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
          <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
@@ -91,17 +102,7 @@
          <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
          <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
          <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="8" GridPane.rowIndex="9" />
 
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="1" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="2" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="3" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="4" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="5" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="6" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="7" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="8" />
-         <Button prefWidth="25.0" GridPane.columnIndex="9" GridPane.rowIndex="9" />
       </GridPane>
    </children>
 </AnchorPane>
