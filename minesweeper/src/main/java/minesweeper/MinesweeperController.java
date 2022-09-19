@@ -1,17 +1,62 @@
 package minesweeper;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
 
-    private Minesweeper calc;
-
     public MinesweeperController() {
-        calc = new Minesweeper(0.0, 0.0, 0.0);
+
     }
 
     @FXML
-    void initialize() {
+    private GridPane minefield;
+
+    @FXML
+    private void initialize() {
+
+    }
+
+    @FXML
+    private void handleRestart() {
+        //Restart board
+    }
+
+    @FXML
+    private void handleClickedSquare(MouseEvent mouseEvent) {
+        if (mouseEvent.getSource() instanceof Button button) {
+            Integer x = GridPane.getColumnIndex(button);
+            Integer y = GridPane.getRowIndex(button);
+            if (mouseEvent.getButton() == MouseButton.PRIMARY) {
+                handleLeftClickedSquare(x, y);
+            }
+            else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                handleRightClickedSquare(x, y);
+            }
+        }
+    }
+
+    private void handleLeftClickedSquare(Integer x, Integer y) {
+        //Check square
+    }
+
+    private void handleRightClickedSquare(Integer x, Integer y) {
+        putFlagImage(x, y);
+    }
+
+    private void putFlagImage(Integer x, Integer y) {
+        Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
+        ImageView flagImageView = new ImageView(flagImage);
+        flagImageView.setFitHeight(25);
+        flagImageView.setFitWidth(25);
+        
+        minefield.add(flagImageView, x, y);
     }
 
 }

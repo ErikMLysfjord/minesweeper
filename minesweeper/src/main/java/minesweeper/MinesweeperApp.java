@@ -15,9 +15,11 @@ public class MinesweeperApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("Minesweeper.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Minesweeper.fxml"));
         Parent parent = fxmlLoader.load();
-        stage.setScene(new Scene(parent));
+        Scene scene = new Scene(parent);
+        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());       
+        stage.setScene(scene);
         stage.show();
     }
 
