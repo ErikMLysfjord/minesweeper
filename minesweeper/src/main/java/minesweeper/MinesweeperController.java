@@ -1,9 +1,7 @@
 package minesweeper;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -17,15 +15,15 @@ public class MinesweeperController {
     }
 
     @FXML
-    GridPane board;
+    private GridPane minefield;
 
     @FXML
-    void initialize() {
+    private void initialize() {
 
     }
 
     @FXML
-    void handleClickedSquare(MouseEvent mouseEvent) {
+    private void handleClickedSquare(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof Button button) {
             Integer x = GridPane.getColumnIndex(button);
             Integer y = GridPane.getRowIndex(button);
@@ -34,7 +32,6 @@ public class MinesweeperController {
             }
             else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 handleRightClickedSquare(x, y);
-                setFlagOnButton(button); //TEMP location
             }
         }
     }
@@ -44,15 +41,15 @@ public class MinesweeperController {
     }
 
     private void handleRightClickedSquare(Integer x, Integer y) {
-        //Put flag on square
+        putFlagImage(x, y);
     }
 
-    private void setFlagOnButton(Button button) {
-        Image image = new Image(getClass().getResourceAsStream("flag.png"));
-        ImageView imageView = new ImageView(image);
-        imageView.setFitHeight(25);
-        imageView.setFitWidth(25);
+    private void putFlagImage(Integer x, Integer y) {
+        Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
+        ImageView flagImageView = new ImageView(flagImage);
+        flagImageView.setFitHeight(25);
+        flagImageView.setFitWidth(25);
         
-        button.setGraphic(imageView);
+        minefield.add(flagImageView, x, y);
     }
 }

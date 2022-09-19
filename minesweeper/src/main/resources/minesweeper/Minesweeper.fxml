@@ -12,7 +12,7 @@
       <Button fx:id="restart" layoutX="375.0" layoutY="450.0" text="Restart" />
       <Label fx:id="highscore" layoutX="375.0" layoutY="50" text="Highscore" />
 
-      <GridPane fx:id="board" alignment="CENTER" gridLinesVisible="true" layoutX="287.5" layoutY="137.5">
+      <GridPane fx:id="minefield" alignment="CENTER" gridLinesVisible="true" layoutX="287.5" layoutY="137.5">
          <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
          <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
          <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
