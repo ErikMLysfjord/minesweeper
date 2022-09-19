@@ -1,5 +1,6 @@
 package minesweeper;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -20,6 +21,11 @@ public class MinesweeperController {
     @FXML
     private void initialize() {
 
+    }
+
+    @FXML
+    private void handleRestart() {
+        //Restart board
     }
 
     @FXML
@@ -52,4 +58,5 @@ public class MinesweeperController {
         
         minefield.add(flagImageView, x, y);
     }
+
 }
