@@ -1,5 +1,7 @@
 package minesweeper;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +21,14 @@ public class MinefieldTest {
     @BeforeEach
     public void setup() {
         minefield = new Minefield(4, 4);
+    }
+
+    @Test
+    public void testGetAndSetSquare() {
+        Square square = new Square();
+        minefield.setSquare(square, 0, 3);
+
+        Assertions.assertEquals(square, minefield.getSquare(0, 3));
     }
 
     @Test

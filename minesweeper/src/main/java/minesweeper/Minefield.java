@@ -13,18 +13,25 @@ public class Minefield {
             throw new IllegalStateException("Must have dimentions larger than 0.");
         }
 
+        //Fill minefield with null
         minefield = new ArrayList<>();
-        for (int i = 0; i < height ; i++) {
-            minefield.add(new ArrayList<>());
+        for (int i = 0; i < height; i++) {
+            List<Square> row = new ArrayList<>();
+            for (int j = 0; j < width; j++) {
+                row.add(null);
+            }
+            minefield.add(row);
         }
 
         this.width = width;
         this.height = height;
     }
 
-    //TODO
     public Square getSquare(int x, int y) {
-        return null;
+        if (isOutOfBounds(x, y)) {
+            throw new IllegalArgumentException("Coordinates are out of bounds");
+        }
+        return minefield.get(y).get(x);
     }
 
     public void setSquare(Square square, int x, int y) {
