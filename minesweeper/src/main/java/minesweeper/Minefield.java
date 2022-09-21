@@ -51,11 +51,11 @@ public class Minefield {
 
     //Flagging
     public void toggleFlag(int x, int y) {
-
+        getSquare(x, y).toggleFlag();
     }
 
     public boolean isFlagged(int x, int y) {
-        return false;
+        return getSquare(x, y).isFlagged();
     }
 
 }
