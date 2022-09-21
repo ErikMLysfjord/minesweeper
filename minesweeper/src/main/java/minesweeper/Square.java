@@ -8,7 +8,7 @@ public class Square {
     }
 
     public void toggleFlag() {
-
+        isFlagged = !isFlagged;
     }
 
     public boolean isFlagged() {
