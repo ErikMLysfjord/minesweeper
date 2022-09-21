@@ -2,6 +2,10 @@ package minesweeper;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.json.simple.JSONObject;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Minefield {
     private final List<List<Square>> minefield;    
@@ -47,6 +51,17 @@ public class Minefield {
             x >= width ||
             y < 0 ||
             y >= height;
+    }
+
+    public void writeToFile(String text, String num) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(text, num);
+        try (FileWriter file = new FileWriter(new File("src/main/resources/minesweeper/data.json"), false)) {
+            file.write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

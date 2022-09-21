@@ -67,7 +67,7 @@ public class MinesweeperController {
     private void writeToFile() {
         String str = text.getText();
         String number = num.getText();
-        Minesweeper temp = new Minesweeper();
+        Minefield temp = new Minefield(1, 1);
         temp.writeToFile(str, number);
     }
 
