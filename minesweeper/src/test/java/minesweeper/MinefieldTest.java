@@ -62,4 +62,13 @@ public class MinefieldTest {
         }
         
     }
+
+    @Test
+    public void testFlag() {
+        Assertions.assertFalse(minefield.isFlagged(2, 2));
+        minefield.toggleFlag(2, 2);
+        Assertions.assertTrue(minefield.isFlagged(2, 2));
+        minefield.toggleFlag(2, 2);
+        Assertions.assertFalse(minefield.isFlagged(2, 2));
+    }
 }

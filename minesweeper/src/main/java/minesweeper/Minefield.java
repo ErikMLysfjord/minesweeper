@@ -18,7 +18,7 @@ public class Minefield {
         for (int i = 0; i < height; i++) {
             List<Square> row = new ArrayList<>();
             for (int j = 0; j < width; j++) {
-                row.add(null);
+                row.add(new Square());
             }
             minefield.add(row);
         }
@@ -47,6 +47,15 @@ public class Minefield {
             x >= width ||
             y < 0 ||
             y >= height;
+    }
+
+    //Flagging
+    public void toggleFlag(int x, int y) {
+
+    }
+
+    public boolean isFlagged(int x, int y) {
+        return false;
     }
 
 }
