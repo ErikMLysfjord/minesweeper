@@ -3,6 +3,7 @@ package minesweeper;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -17,7 +18,11 @@ public class MinesweeperController {
 
     @FXML
     private GridPane minefield;
-
+    @FXML
+    private TextField text;
+    @FXML
+    private TextField num;
+    
     @FXML
     private void initialize() {
 
@@ -57,6 +62,14 @@ public class MinesweeperController {
         flagImageView.setFitWidth(25);
         
         minefield.add(flagImageView, x, y);
+    }
+
+    @FXML
+    private void writeToFile() {
+        String str = text.getText();
+        String number = num.getText();
+        Minesweeper temp = new Minesweeper();
+        temp.writeToFile(str, number);
     }
 
 }

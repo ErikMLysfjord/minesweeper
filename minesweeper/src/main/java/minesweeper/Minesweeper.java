@@ -1,9 +1,13 @@
 package minesweeper;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
+import org.json.simple.JSONObject;
 
 public class Minesweeper {
     
@@ -129,5 +133,16 @@ public class Minesweeper {
             throw new IllegalStateException("Stack is empty");
         }
         pushOperand(this.peekOperand());
+    }
+
+    public void writeToFile(String text, String num) {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put(text, num);
+        try (FileWriter file = new FileWriter(new File("src/main/resources/minesweeper/data.json"), false)) {
+            file.write(jsonObject.toJSONString());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
