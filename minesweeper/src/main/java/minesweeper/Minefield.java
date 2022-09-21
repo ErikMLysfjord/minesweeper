@@ -3,6 +3,8 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.layout.GridPane;
+
 public class Minefield {
     private final List<List<Square>> minefield;    
     private final int width;
@@ -10,14 +12,14 @@ public class Minefield {
 
     public Minefield(int width, int height) {
         if (width < 1 || height < 1) {
-            throw new IllegalStateException("Must have dimentions larger than 0.");
+            throw new IllegalStateException("Must have dimensions larger than 0.");
         }
 
-        //Fill minefield with null
+        //Fill minefield with empty squares. 
         minefield = new ArrayList<>();
-        for (int i = 0; i < height; i++) {
+        for (int y = 0; y < height; y++) {
             List<Square> row = new ArrayList<>();
-            for (int j = 0; j < width; j++) {
+            for (int x = 0; x < width; x++) {
                 row.add(new Square());
             }
             minefield.add(row);
@@ -25,6 +27,20 @@ public class Minefield {
 
         this.width = width;
         this.height = height;
+    }
+
+    //Also adds flag images from each Square to the GridPane.
+    public Minefield(int width, int height, GridPane minefieldGridPane) {
+        this(width, height);
+        
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                minefieldGridPane.add(
+                    getSquare(x, y).getFlagImage(),
+                    x, y
+                );
+            }
+        }
     }
 
     public Square getSquare(int x, int y) {
@@ -49,7 +65,6 @@ public class Minefield {
             y >= height;
     }
 
-    //Flagging
     public void toggleFlag(int x, int y) {
         getSquare(x, y).toggleFlag();
     }
