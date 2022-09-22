@@ -2,107 +2,136 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.MinesweeperController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.MinesweeperController">
    <children>
-      <Button fx:id="restart" layoutX="375.0" layoutY="450.0" text="Restart" onAction="#handleRestart"/>
+      <Button fx:id="restart" layoutX="375.0" layoutY="450.0" onAction="#handleRestart" text="Restart" />
       <Label fx:id="highscore" layoutX="375.0" layoutY="50" text="Highscore" />
 
       <GridPane fx:id="minefield" alignment="CENTER" gridLinesVisible="true" layoutX="287.5" layoutY="137.5">
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="0" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="1" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="2" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="3" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="4" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="5" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="6" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="7" GridPane.rowIndex="8" />
 
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="0" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="1" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="2" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="3" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="4" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="5" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="6" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="7" onMouseReleased="#handleClickedSquare"/>
-         <Button styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="8" onMouseReleased="#handleClickedSquare"/>
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="0" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+         <Button onMouseReleased="#handleClickedSquare" styleClass="square" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
       </GridPane>
+      <TextField fx:id="text" layoutX="44.0" layoutY="138.0" promptText="name" />
+      <TextField fx:id="score" layoutX="44.0" layoutY="209.0" promptText="score" />
+      <Text layoutX="44.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input name:" />
+      <Text layoutX="44.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Input score:" />
+      <Button layoutX="97.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleSubmit" text="Submit" />
    </children>
 </AnchorPane>
