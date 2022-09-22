@@ -102,6 +102,8 @@
 
             <!-- Configure jacoco code coverage -->
             <plugin>
+                <!-- Usage: mvn jacoco:report -->
+                <!-- Report is located in /gr2243/minesweeper/target/site/jacoco/ -->
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.7</version>
