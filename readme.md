@@ -1,22 +1,28 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2022/gr2243/gr2243) 
+
 # Group gr2243 repository 
- 
+
+## Mappe-hierarki:
 minesweeper/
 -
 -  src/
     - main/
         - java/
             - minesweeper/ (kodings prosjekt)
+                - FileTreater.java
+                    - utfører alle lagringsrelaterte oppgaver
                 - Minefield.java
-                    - puts square into a grid
+                    - logikk for selve minefeltet
                 - MinesweeperApp.java
-                    - initialize app
+                    - initialiser app
                 - MinesweeperController.java
-                    - controlls logic
+                    - kontrollerer logikk
                 - Square.java
-                    - place to put values in
+                    - et sted å lagre verdier
             - module-info.java
-        - resources/ (bilder pluss fxml)
+        - resources/ (bilder, fxml og lagring)
             - minefield/
+                - data.json
                 - flag.png
                 - Minesweeper.fxml
                 - style.css
@@ -24,6 +30,7 @@ minesweeper/
         - java/
             - minesweeper/ (teste kodingsprosjektet)
                 - MineFieldTest.java
+                - SquareTest.java
             - README.md
 
 
