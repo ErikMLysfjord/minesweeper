@@ -1,10 +1,10 @@
 # Minesweeper
 
-Description
+Beskrivelse
 - 
-Minesweeper is single-player logic-based computer game played on rectangular board whose object is to locate a predetermined number of randomly-placed "mines" in the shortest possible time by clicking on "safe" squares while avoiding the squares with mines. If the player clicks on a mine, the game ends. Otherwise, a number between 0 and 8 is displayed that identifies the total number of mines present in the eight neighboring squares. Therefore, finding a square containing "8" indicated that all eight adjacent squares contain mines, while if a zero (displayed as a blank) is uncovered, there are no mines in the surrounding squares. A square suspected of containing a mine may be marked with flag.
+Minesweeper er et single-player logikkbasert spill. Man spiller på et rutefelt. Målet er å ha trykket på alle rutene uten miner. Hvis man trykker på en mine, taper man. Når man åpner trygge ruter, står det hvor mange miner som ligger rundt den ruta. Hvis det står 8, betyr det at alle rutene rundt inneholder en mine. Hvis det er 0 (vist som en blank rute), er alle rutene rundt trygge. Hvis du mistenker at en rute inneholder en mine, kan du markere den med et flagg. Du får poengsum ut ifra hvor fort du løser brettet. 
 
-The game will store the scores of players and make you able to see highcores in the game.
+Poengsummen kan lagres på poengtavla.
 
 # Tests for Minesweeper
 
