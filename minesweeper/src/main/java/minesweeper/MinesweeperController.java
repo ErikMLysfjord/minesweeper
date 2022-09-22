@@ -3,28 +3,24 @@ package minesweeper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
 
-    public MinesweeperController() {
+    private Minefield minefield;
 
-    }
-
-    @FXML
-    private GridPane minefield;
     @FXML
     private TextField text;
     @FXML
     private TextField score;
+    @FXML
+    private GridPane minefieldGridPane;
 
     @FXML
     private void initialize() {
-
+        minefield = new Minefield(9, 9, minefieldGridPane);
     }
 
     @FXML
@@ -51,16 +47,7 @@ public class MinesweeperController {
     }
 
     private void handleRightClickedSquare(Integer x, Integer y) {
-        putFlagImage(x, y);
-    }
-
-    private void putFlagImage(Integer x, Integer y) {
-        Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
-        ImageView flagImageView = new ImageView(flagImage);
-        flagImageView.setFitHeight(25);
-        flagImageView.setFitWidth(25);
-        
-        minefield.add(flagImageView, x, y);
+        minefield.toggleFlag(x, y);
     }
 
     @FXML
