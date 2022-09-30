@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 public class MinesweeperController {
 
     private Minefield minefield;
+    private MinefieldView minefieldView;
 
     @FXML
     private TextField text;
@@ -20,12 +21,13 @@ public class MinesweeperController {
 
     @FXML
     private void initialize() {
-        int height = 9;
         int width = 9;
+        int height = 9;
 
-        MinefieldView minefieldView = new MinefieldView(width, height, minefieldGridPane);
-        minefieldView.addSquares((mouseEvent) -> handleClickedSquare(mouseEvent));
         minefield = new Minefield(width, height);
+        
+        minefieldView = new MinefieldView(width, height, minefieldGridPane);
+        minefieldView.addSquares((mouseEvent) -> handleClickedSquare(mouseEvent));
     }
 
     @FXML

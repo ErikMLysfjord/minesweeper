@@ -17,8 +17,8 @@ public class MinefieldView {
     }
 
     public void addSquares(EventHandler<MouseEvent> handleClickedSquare) {
-        for(int y = 0; y < height; y++) {
-            for(int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 Button button = new Button();
                 button.setOnMouseReleased(handleClickedSquare);
                 button.getStyleClass().add("square");
