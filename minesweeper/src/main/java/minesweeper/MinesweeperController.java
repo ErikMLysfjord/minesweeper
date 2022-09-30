@@ -20,7 +20,12 @@ public class MinesweeperController {
 
     @FXML
     private void initialize() {
-        minefield = new Minefield(9, 9, minefieldGridPane);
+        int height = 9;
+        int width = 9;
+
+        MinefieldView minefieldView = new MinefieldView(width, height, minefieldGridPane);
+        minefieldView.addSquares();
+        minefield = new Minefield(width, height);
     }
 
     @FXML
