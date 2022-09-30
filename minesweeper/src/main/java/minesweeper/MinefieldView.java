@@ -1,6 +1,8 @@
 package minesweeper;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MinefieldView {
@@ -14,11 +16,15 @@ public class MinefieldView {
         this.minefieldGridPane = minefieldGridPane;
     }
 
-    public void addSquares() {
+    public void addSquares(EventHandler<MouseEvent> handleClickedSquare) {
         for(int y = 0; y < height; y++) {
             for(int x = 0; x < width; x++) {
-                minefieldGridPane.add(new Button(), y, x);
+                Button button = new Button();
+                button.setOnMouseReleased(handleClickedSquare);
+                button.getStyleClass().add("square");
+                minefieldGridPane.add(button, y, x);
             }
         }
+        minefieldGridPane.setGridLinesVisible(true);
     }
 }

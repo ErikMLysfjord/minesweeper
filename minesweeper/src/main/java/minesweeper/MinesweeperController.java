@@ -24,7 +24,7 @@ public class MinesweeperController {
         int width = 9;
 
         MinefieldView minefieldView = new MinefieldView(width, height, minefieldGridPane);
-        minefieldView.addSquares();
+        minefieldView.addSquares((mouseEvent) -> handleClickedSquare(mouseEvent));
         minefield = new Minefield(width, height);
     }
 
