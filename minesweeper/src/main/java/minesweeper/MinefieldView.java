@@ -41,7 +41,7 @@ public class MinefieldView {
             for (int x = 0; x < width; x++) {
                 Button button = new Button();
                 button.getStyleClass().add("square");
-                minefieldGridPane.add(button, y, x);
+                minefieldGridPane.add(button, x, y);
                 row.add(button);
             }
             squareButtons.add(row);
