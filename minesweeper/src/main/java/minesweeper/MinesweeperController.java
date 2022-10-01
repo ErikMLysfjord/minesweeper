@@ -29,7 +29,7 @@ public class MinesweeperController {
         
         //Set up minefield ui
         minefieldView = new MinefieldView(width, height, minefieldGridPane);
-        minefieldView.addSquares((mouseEvent) -> handleClickedSquare(mouseEvent));
+        minefieldView.addButtons((mouseEvent) -> handleClickedSquare(mouseEvent));
     }
 
     @FXML
