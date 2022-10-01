@@ -29,7 +29,7 @@ public class MinesweeperController {
         
         //Set up minefield ui
         minefieldView = new MinefieldView(width, height, minefieldGridPane);
-        minefieldView.addButtons((mouseEvent) -> handleClickedSquare(mouseEvent));
+        minefieldView.setOnMouseRelease((mouseEvent) -> handleClickedSquare(mouseEvent));
     }
 
     @FXML
@@ -57,7 +57,15 @@ public class MinesweeperController {
 
     private void handleRightClickedSquare(Integer x, Integer y) {
         minefield.toggleFlag(x, y);
+
+        if (minefield.isFlagged(x, y)) {
+            minefieldView.setFlagImage(x, y);
+        }
+        else {
+            minefieldView.setBlankImage(x, y);
+        }
     }
+
 
 
     @FXML
