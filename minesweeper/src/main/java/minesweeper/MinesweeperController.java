@@ -24,8 +24,10 @@ public class MinesweeperController {
         int width = 9;
         int height = 9;
 
+        //Set up minefield model
         minefield = new Minefield(width, height);
         
+        //Set up minefield ui
         minefieldView = new MinefieldView(width, height, minefieldGridPane);
         minefieldView.addSquares((mouseEvent) -> handleClickedSquare(mouseEvent));
     }
@@ -35,7 +37,7 @@ public class MinesweeperController {
         //Restart board
     }
 
-    @FXML
+    //Called when squares are pressed
     private void handleClickedSquare(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof Button button) {
             Integer x = GridPane.getColumnIndex(button);
@@ -56,6 +58,7 @@ public class MinesweeperController {
     private void handleRightClickedSquare(Integer x, Integer y) {
         minefield.toggleFlag(x, y);
     }
+
 
     @FXML
     private void handleSubmit() {

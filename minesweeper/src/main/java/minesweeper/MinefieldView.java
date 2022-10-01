@@ -8,14 +8,17 @@ import javafx.scene.layout.GridPane;
 public class MinefieldView {
     private final int width;
     private final int height;
+
     private final GridPane minefieldGridPane;
     
     public MinefieldView(int width, int height, GridPane minefieldGridPane) {
         this.width = width;
         this.height = height;
+
         this.minefieldGridPane = minefieldGridPane;
     }
 
+    //Initializes the minefield
     public void addSquares(EventHandler<MouseEvent> handleClickedSquare) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
