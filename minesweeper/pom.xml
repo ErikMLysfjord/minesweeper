@@ -4,6 +4,7 @@
     <groupId>it1901</groupId>
     <artifactId>minesweeper</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -127,4 +128,8 @@
 
         </plugins>
     </build>
+    <modules>
+        <module>core</module>
+        <module>ui</module>
+    </modules>
 </project>
