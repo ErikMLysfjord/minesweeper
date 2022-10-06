@@ -3,8 +3,6 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.layout.GridPane;
-
 public class Minefield {
     private final List<List<Square>> minefield;    
     private final int width;
@@ -27,20 +25,6 @@ public class Minefield {
 
         this.width = width;
         this.height = height;
-    }
-
-    //Also adds flag images from each Square to the GridPane.
-    public Minefield(int width, int height, GridPane minefieldGridPane) {
-        this(width, height);
-        
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                minefieldGridPane.add(
-                    getSquare(x, y).getFlagImage(),
-                    x, y
-                );
-            }
-        }
     }
 
     public Square getSquare(int x, int y) {
