@@ -75,14 +75,17 @@ public class MinefieldTest {
         Assertions.assertFalse(minefield.isFlagged(2, 2));
     }
 
-
+    /**
+     * Test that the mines can be placed in a square,
+     * and test that they can be detected.
+     */
     @Test
     public void testMine() {
         minefield.placeMine(2,2);
         Assertions.assertTrue(minefield.hasMine(2,2));
         Assertions.assertFalse(minefield.hasMine(2,3));
     }
-
+    
     @Test
     public void testInitializeMines() {
         minefield.initializeMines(8);
