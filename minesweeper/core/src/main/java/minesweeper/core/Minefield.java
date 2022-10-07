@@ -56,5 +56,17 @@ public class Minefield {
     public boolean isFlagged(int x, int y) {
         return getSquare(x, y).isFlagged();
     }
+    
+    public void placeMine(int x, int y) {
+        //TODO 
+    }
+
+    public Boolean hasMine(int x, int y) {
+        //TODO
+        return false;
+    }
+    public void initializeMines(int mines) {
+        //TODO 
+    } 
 
 }
