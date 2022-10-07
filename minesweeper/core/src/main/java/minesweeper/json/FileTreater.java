@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.json;
 
 import java.io.File;
 import java.io.FileWriter;

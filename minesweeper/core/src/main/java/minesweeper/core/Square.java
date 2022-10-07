@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.core;
 
 public class Square {
     private boolean isFlagged = false;

@@ -1,5 +1,7 @@
-package minesweeper;
+package minesweeper.ui;
 
+import minesweeper.core.Minefield;
+import minesweeper.json.FileTreater;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
