@@ -2,6 +2,7 @@ package minesweeper.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Minefield {
     private final List<List<Square>> minefield;    
@@ -56,17 +57,25 @@ public class Minefield {
     public boolean isFlagged(int x, int y) {
         return getSquare(x, y).isFlagged();
     }
-    
+
     public void placeMine(int x, int y) {
-        //TODO 
+        getSquare(x, y).placeMine();
     }
 
     public Boolean hasMine(int x, int y) {
-        //TODO
-        return false;
+        return getSquare(x, y).hasMine();
     }
-    public void initializeMines(int mines) {
-        //TODO 
+    public void initializeMines(int mineCount) {
+        Random rand = new Random();
+        int i = 0;
+        while (i < mineCount){
+            int x = rand.nextInt(width);
+            int y = rand.nextInt(height);
+            if (!hasMine(x, y)){
+                placeMine(x, y);
+                i++;
+            }
+        }  
     } 
 
 }

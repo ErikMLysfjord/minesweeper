@@ -13,14 +13,14 @@ public class MinefieldTest {
         {3,-1}
     };
     private int width;
-    private int hight;
+    private int height;
     private Minefield minefield;
 
     @BeforeEach
     public void setup() {
         width = 4;
-        hight = 4;
-        minefield = new Minefield(width, hight);
+        height = 4;
+        minefield = new Minefield(width, height);
     }
 
     @Test
@@ -87,9 +87,9 @@ public class MinefieldTest {
     public void testInitializeMines() {
         minefield.initializeMines(8);
         int mineCounter = 0;
-        for (int y = 0; y < hight; y++) {
+        for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                if(minefield.hasMine(width,hight)) {
+                if(minefield.hasMine(x, y)) {
                     mineCounter++;
                 }
             }
