@@ -21,6 +21,9 @@ public class MinesweeperController {
     @FXML
     private GridPane minefieldGridPane;
 
+    /**
+     * Initializes the minefield view and model
+     */
     @FXML
     private void initialize() {
         int width = 9;
@@ -34,12 +37,18 @@ public class MinesweeperController {
         minefieldView.setOnMouseRelease((mouseEvent) -> handleClickedSquare(mouseEvent));
     }
 
+    /**
+     * Restarts the minefield
+     * Called from restart button
+     */
     @FXML
     private void handleRestart() {
-        //Restart board
     }
 
-    //Called when squares are pressed
+    /**
+     * Called when squares are pressed
+     * @param mouseEvent the mouse event that occurred
+     */
     private void handleClickedSquare(MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof Button button) {
             Integer x = GridPane.getColumnIndex(button);
@@ -53,10 +62,21 @@ public class MinesweeperController {
         }
     }
 
+    /**
+     * Handles left-clicked squares. Called when square is left-clicked
+     * @param x x-coordinates of clicked square
+     * @param y y-coordinates of clicked square
+     */
     private void handleLeftClickedSquare(Integer x, Integer y) {
         //Check square
     }
 
+    /**
+     * Toggles flag on or off in model and view.
+     * Called when square is right-clicked.
+     * @param x x-coordinates of clicked square
+     * @param y y-coordinates of clicked square
+     */
     private void handleRightClickedSquare(Integer x, Integer y) {
         minefield.toggleFlag(x, y);
 
@@ -69,7 +89,10 @@ public class MinesweeperController {
     }
 
 
-
+    /**
+     * Writes the user-input to data.json
+     * Called when submit-button is pressed
+     */
     @FXML
     private void handleSubmit() {
         String str = text.getText();

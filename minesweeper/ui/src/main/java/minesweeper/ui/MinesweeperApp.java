@@ -13,6 +13,9 @@ import java.io.IOException;
  */
 public class MinesweeperApp extends Application {
 
+    /**
+     * Starts the application
+     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Minesweeper.fxml"));

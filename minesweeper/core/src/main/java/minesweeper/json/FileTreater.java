@@ -7,6 +7,11 @@ import org.json.simple.JSONObject;
 
 public class FileTreater {
     
+    /**
+     * Writes the arguments to a file.
+     * @param text the text to be saved
+     * @param number the number to be saved
+     */
     public void writeToFile(String text, String number) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(text, number);
