@@ -3,5 +3,5 @@ module minesweeper.ui {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens ui to javafx.graphics, javafx.fxml;
+    opens minesweeper.ui to javafx.graphics, javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
