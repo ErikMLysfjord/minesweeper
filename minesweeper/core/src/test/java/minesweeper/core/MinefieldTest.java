@@ -12,12 +12,15 @@ public class MinefieldTest {
         {-1,3},
         {3,-1}
     };
-
+    private int width;
+    private int height;
     private Minefield minefield;
 
     @BeforeEach
     public void setup() {
-        minefield = new Minefield(4, 4);
+        width = 4;
+        height = 4;
+        minefield = new Minefield(width, height);
     }
 
     @Test
@@ -71,4 +74,30 @@ public class MinefieldTest {
         minefield.toggleFlag(2, 2);
         Assertions.assertFalse(minefield.isFlagged(2, 2));
     }
+
+    /**
+     * Test that the mines can be placed in a square,
+     * and test that they can be detected.
+     */
+    @Test
+    public void testMine() {
+        minefield.placeMine(2,2);
+        Assertions.assertTrue(minefield.hasMine(2,2));
+        Assertions.assertFalse(minefield.hasMine(2,3));
+    }
+    
+    @Test
+    public void testInitializeMines() {
+        minefield.initializeMines(8);
+        int mineCounter = 0;
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if(minefield.hasMine(x, y)) {
+                    mineCounter++;
+                }
+            }
+        }
+        Assertions.assertEquals(8,mineCounter);
+    }
+    
 }
