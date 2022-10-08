@@ -7,10 +7,17 @@ public class Square {
 
     }
 
+    /**
+     * Toggles flag.
+     */
     public void toggleFlag() {
         isFlagged = !isFlagged;
     }
 
+    /**
+     * Checks whether the square is toggled or not.
+     * @return whether the square is toggled or not
+     */
     public boolean isFlagged() {
         return isFlagged;
     }
