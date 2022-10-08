@@ -2,6 +2,7 @@ package minesweeper.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Minefield {
     private final List<List<Square>> minefield;    
@@ -94,5 +95,41 @@ public class Minefield {
     public boolean isFlagged(int x, int y) {
         return getSquare(x, y).isFlagged();
     }
+
+    /**
+     * Places the mine at the given coordinates.
+     * @param x the x coordinate where the mine is placed
+     * @param y the y coordinate where the mine is placed
+     */
+
+    public void placeMine(int x, int y) {
+        getSquare(x, y).placeMine();
+    }
+    /**
+     * Checks for mine at the given coordinates.
+     * @param x the x coordinate to check for mine
+     * @param y the y coordinate to check for mine
+     */
+    public Boolean hasMine(int x, int y) {
+        return getSquare(x, y).hasMine();
+    }
+
+    /**
+     * Puts mines into random positions in minefield.
+     * Stops when the number of mines in the grid equals mineCount.
+     * @param mineCount the number of mines to be placed in the grid
+     */
+    public void initializeMines(int mineCount) {
+        Random rand = new Random();
+        int i = 0;
+        while (i < mineCount){
+            int x = rand.nextInt(width);
+            int y = rand.nextInt(height);
+            if (!hasMine(x, y)){
+                placeMine(x, y);
+                i++;
+            }
+        }  
+    } 
 
 }
