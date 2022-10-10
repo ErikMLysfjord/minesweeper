@@ -11,6 +11,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MinefieldViewTest extends ApplicationTest {
@@ -48,6 +49,24 @@ public class MinefieldViewTest extends ApplicationTest {
         clickOn(button1Coordinates, MouseButton.SECONDARY);
 
         Assertions.assertTrue(buttonWasPressed);
+    }
+
+    @Test
+    public void testGridPane() {
+        GridPane minefieldGridPane = (GridPane) root
+            .lookup("#minefieldGridPane");
+        
+        Assertions.assertEquals(
+            MinesweeperController.MINEFIELD_WIDTH,
+            minefieldGridPane.getColumnCount()
+        );
+
+        Assertions.assertEquals(
+            MinesweeperController.MINEFIELD_HEIGHT,
+            minefieldGridPane.getRowCount()
+        );
+
+        Assertions.assertTrue(minefieldGridPane.isGridLinesVisible());
     }
 
 }
