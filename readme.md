@@ -15,6 +15,9 @@ I docs-mappen finner man dokumenter med informasjon om hver enkelt release.
 ## Mappe-hierarki:
 minesweeper/ (kodeprosjekt)
 -
+- docs
+    - release1.md
+    - release2.md
 - core/ (kjerne modul)
     - src/
         - main/
