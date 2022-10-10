@@ -5,10 +5,10 @@
 Kodeprosjektet er i minesweeper-mappen. Her finner man pom.xml-filen, men man finner også de to hovedmodulene core og ui. 
 
 ### Core
-Core inneholder kjerneklassene som styrer logikken og lagringen i prosjektet. i src finner man en main mappe som inneholder kjerneklassene og fillagringsklassen, i tillegg finner man resources som inneholder lagringsfilen data.json. og i test finner man tester for lagring og logikk.
+Core inneholder kjerneklassene som styrer logikken og lagringen i prosjektet. I src finner man en main mappe som inneholder kjerneklassene og fillagringsklassen, i tillegg finner man resources som inneholder lagringsfilen data.json, og i test finner man tester for lagring og logikk.
 
 ### Ui
-Ui inneholder frontendklassene som styrer fxml filen, og bruker kjerneklassene til å kjøre prosjektet. i src finner man main mappe som inneholder selve app klassen, kontrollerklassen, og view klasse som håndterer bildene som skal settes inn i appen. man finner også en testmappe med tester som tester om logikken og frontenden spiller sammen på måten de var laget for.
+Ui inneholder frontendklassene som styrer fxml filen, og bruker kjerneklassene til å kjøre prosjektet. I src finner man main mappe som inneholder selve app klassen, kontrollerklassen, og view klasse som håndterer bildene som skal settes inn i appen. Man finner også en testmappe med tester som tester om logikken og frontenden spiller sammen på måten de var laget for.
 
 I docs-mappen finner man dokumenter med informasjon om hver enkelt release. 
 
@@ -31,14 +31,14 @@ minesweeper/ (kodeprosjekt)
                     - FileTreater.java
                         - Utfører alle lagringsrelaterte oppgaver, og lagrer dataen i data.json.
                 - module-info.java
-            - resources/minesweeper/json (lagring)
+            - resources/minesweeper/json (Lagring)
                 - data.json (holder på data)
         - test/java/minesweeper/core (Teste kjenrneklassene)
             - MineFieldTest.java
                 - Tester MineField klassen
             - SquareTest.java
                 - Tester Square klassen
-        - test/java/minesweeper/json (teste lagringsklassene)
+        - test/java/minesweeper/json (Teste lagringsklassene)
             - FileTreaterTest.java
                 - Tester FileTreat klassen
     - pom.xml
@@ -52,7 +52,7 @@ minesweeper/ (kodeprosjekt)
                     - MinesweeperApp.java
                         - Initialiser app.
                     - MinesweeperController.java
-                        - kontrolerer appens funksjonalitet.
+                        - Kontrolerer appens funksjonalitet.
                 - module-info.java
             - resources/minesweeper/ui (fxml, stil og bilder)
                 - data.json
