@@ -99,4 +99,12 @@ public class MinesweeperController {
         String num = score.getText();
         new FileTreater().writeToFile(str, num);
     }
+
+    /**
+     * For UI testing
+     * @return MinefieldView
+     */
+    public MinefieldView getMinefieldView() {
+        return minefieldView;
+    }
 }
