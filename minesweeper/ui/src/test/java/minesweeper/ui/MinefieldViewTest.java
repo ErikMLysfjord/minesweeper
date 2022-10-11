@@ -28,8 +28,6 @@ public class MinefieldViewTest extends ApplicationTest {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());       
         stage.setScene(scene);
-        stage.setX(0);
-        stage.setY(0);
         stage.show();
     }
 
