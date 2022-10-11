@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
@@ -15,7 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MinefieldViewTest extends ApplicationTest {
-    private static final Point2D button1Coordinates = new Point2D(290, 140);
 
     private MinesweeperController controller;
     private Parent root;
@@ -38,6 +37,9 @@ public class MinefieldViewTest extends ApplicationTest {
         return root;
     }
 
+    private Node getElementById(String fxid) {
+        return root.lookup(fxid);
+    }
 
     private Boolean buttonWasPressed = false;
     @Test
@@ -46,16 +48,17 @@ public class MinefieldViewTest extends ApplicationTest {
         minefieldView.setOnMouseRelease((event) -> {
             buttonWasPressed = true;
         });
-        clickOn(button1Coordinates, MouseButton.SECONDARY);
+
+        Node button = getElementById("#button00");
+        clickOn(button, MouseButton.SECONDARY);
 
         Assertions.assertTrue(buttonWasPressed);
     }
 
     @Test
     public void testGridPane() {
-        GridPane minefieldGridPane = (GridPane) root
-            .lookup("#minefieldGridPane");
-        
+        GridPane minefieldGridPane = (GridPane) getElementById("#minefieldGridPane");
+
         Assertions.assertEquals(
             MinesweeperController.MINEFIELD_WIDTH,
             minefieldGridPane.getColumnCount()
