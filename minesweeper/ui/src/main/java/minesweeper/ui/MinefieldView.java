@@ -49,6 +49,10 @@ public class MinefieldView {
                 // Configuration of button elements
                 Button button = new Button();
                 button.getStyleClass().add("square");
+                // For testing
+                button.setId(String.format(
+                    "button%d%d", x, y
+                ));
                 minefieldGridPane.add(button, x, y);
                 row.add(button);
             }

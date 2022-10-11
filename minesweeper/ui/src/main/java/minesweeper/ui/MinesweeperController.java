@@ -12,6 +12,10 @@ import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
 
+    //Minefield dimensions
+    public static final int MINEFIELD_WIDTH = 9;
+    public static final int MINEFIELD_HEIGHT = 9;
+
     private Minefield minefield;
     private MinefieldView minefieldView;
 
@@ -27,14 +31,11 @@ public class MinesweeperController {
      */
     @FXML
     private void initialize() {
-        int width = 9;
-        int height = 9;
-
         //Set up minefield model
-        minefield = new Minefield(width, height);
+        minefield = new Minefield(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
         
         //Set up minefield ui
-        minefieldView = new MinefieldView(width, height, minefieldGridPane);
+        minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT, minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) -> handleClickedSquare(mouseEvent));
     }
 
@@ -101,5 +102,13 @@ public class MinesweeperController {
         String scoreTxt = score.getText();
 
         FileTreater.saveScore(new HighscoreEntry(name, Integer.parseInt(scoreTxt)));
+    }
+
+    /**
+     * For UI testing
+     * @return MinefieldView
+     */
+    public MinefieldView getMinefieldView() {
+        return minefieldView;
     }
 }
