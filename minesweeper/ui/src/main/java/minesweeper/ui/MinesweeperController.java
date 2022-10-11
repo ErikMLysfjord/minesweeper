@@ -1,5 +1,6 @@
 package minesweeper.ui;
 
+import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minefield;
 import minesweeper.json.FileTreater;
 import javafx.fxml.FXML;
@@ -43,6 +44,7 @@ public class MinesweeperController {
      */
     @FXML
     private void handleRestart() {
+
     }
 
     /**
@@ -95,8 +97,9 @@ public class MinesweeperController {
      */
     @FXML
     private void handleSubmit() {
-        String str = text.getText();
-        String num = score.getText();
-        new FileTreater().writeToFile(str, num);
+        String name = text.getText();
+        String scoreTxt = score.getText();
+
+        FileTreater.saveScore(new HighscoreEntry(name, Integer.parseInt(scoreTxt)));
     }
 }
