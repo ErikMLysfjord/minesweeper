@@ -5,7 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import minesweeper.core.HighscoreEntry;
 
 public class FileTreater {
-    
+
+    /**
+     * Saves serialized score object to data.json.
+     * @param score the score to be saved
+     */
     public static void saveScore(HighscoreEntry score) {
         File data = new File("../core/src/main/resources/minesweeper/json/data.json");
         ObjectMapper mapper = new ObjectMapper();
