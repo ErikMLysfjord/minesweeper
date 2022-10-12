@@ -15,40 +15,33 @@ public class MinefieldView {
     private final int width;
     private final int height;
 
-    private final GridPane minefieldGridPane;
-
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
     /**
      * The image of a flag.
      */
-    private final Image flagImage = new Image(getClass()
-        .getResourceAsStream("flag.png"));
+    private final Image flagImage =
+        new Image(getClass().getResourceAsStream("flag.png"));
 
     /**
      * Constructor for the minefield view.
      * @param width the width of the minefield
      * @param height the height of the minefield
-     * @param minefieldGridPane the javafx gridpane that
      * represents the minefield
      */
-    public MinefieldView(final int width, final int height,
-     final GridPane minefieldGridPane) {
+    public MinefieldView(final int width, final int height) {
         this.width = width;
         this.height = height;
-
-        this.minefieldGridPane = minefieldGridPane;
-
-        addButtons();
-        addImages();
+        createButtons();
+        createImages();
     }
 
     /**
-     * Initialize squareButtons while adding each button to the GridPane.
+     * Initialize squareButtons.
      * The buttons do nothing.
      */
-    private void addButtons() {
+    private void createButtons() {
         squareButtons = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<Button> row = new ArrayList<>();
@@ -60,28 +53,61 @@ public class MinefieldView {
                 button.setId(String.format(
                     "button%d%d", x, y
                 ));
-                minefieldGridPane.add(button, x, y);
                 row.add(button);
             }
             squareButtons.add(row);
         }
-        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**
-     * Initialize squareImages while adding each image to the GridPane.
+     * Initialize squareImages.
      * The images are blank.
      */
-    private void addImages() {
+    private void createImages() {
         squareImages = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<ImageView> row = new ArrayList<>();
             for (int x = 0; x < width; x++) {
                 ImageView blankImageView = new ImageView();
-                minefieldGridPane.add(blankImageView, x, y);
                 row.add(blankImageView);
             }
             squareImages.add(row);
+        }
+    }
+
+    /**
+     * Gets the image view.
+     * @param x x-coordinate of image view
+     * @param y y-coordinate of image view
+     * @return the image at the given coordinates
+     */
+    private ImageView getImageView(final int x, final int y) {
+        return squareImages.get(y).get(x);
+    }
+
+    /**
+     * Gets the button.
+     * @param x x-coordinate of button
+     * @param y y-coordinate of button
+     * @return the button at the given coordinates
+     */
+    private Button getButton(final int x, final int y) {
+        return squareButtons.get(y).get(x);
+    }
+
+    /**
+     * Adds images and buttons to GridPane.
+     * @param minefieldGridPane gets images and buttons added to it
+     */
+    public void addToGridPane(final GridPane minefieldGridPane) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                ImageView squareImage = getImageView(x, y);
+                minefieldGridPane.add(squareImage, x, y);
+
+                Button squareButton = getButton(x, y);
+                minefieldGridPane.add(squareButton, x, y);
+            }
         }
     }
 
@@ -95,16 +121,6 @@ public class MinefieldView {
                 button.setOnMouseReleased(event);
             }
         }
-    }
-
-    /**
-     * Gets the image view.
-     * @param x x-coordinate of image view
-     * @param y y-coordinate of image view
-     * @return the image at the given coordinates
-     */
-    private ImageView getImageView(final int x, final int y) {
-        return squareImages.get(y).get(x);
     }
 
     /**

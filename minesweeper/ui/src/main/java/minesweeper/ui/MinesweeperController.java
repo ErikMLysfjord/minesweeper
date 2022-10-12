@@ -35,11 +35,12 @@ public class MinesweeperController {
         minefield = new Minefield(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
 
         //Set up minefield ui
-        minefieldView = new MinefieldView(MINEFIELD_WIDTH,
-             MINEFIELD_HEIGHT, minefieldGridPane);
-
+        minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minefieldView.addToGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
-             handleClickedSquare(mouseEvent));
+            handleClickedSquare(mouseEvent)
+        );
+        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**
