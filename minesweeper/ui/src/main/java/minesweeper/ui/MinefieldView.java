@@ -15,8 +15,6 @@ public class MinefieldView {
     private final int width;
     private final int height;
 
-    private final GridPane minefieldGridPane;
-
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
@@ -33,22 +31,16 @@ public class MinefieldView {
      * @param minefieldGridPane the javafx gridpane that
      * represents the minefield
      */
-    public MinefieldView(final int width, final int height,
-     final GridPane minefieldGridPane) {
+    public MinefieldView(final int width, final int height) {
         this.width = width;
         this.height = height;
-
-        this.minefieldGridPane = minefieldGridPane;
-
-        addButtons();
-        addImages();
     }
 
     /**
      * Initialize squareButtons while adding each button to the GridPane.
      * The buttons do nothing.
      */
-    private void addButtons() {
+    private void addButtons(final GridPane minefieldGridPane) {
         squareButtons = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<Button> row = new ArrayList<>();
@@ -65,14 +57,13 @@ public class MinefieldView {
             }
             squareButtons.add(row);
         }
-        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**
      * Initialize squareImages while adding each image to the GridPane.
      * The images are blank.
      */
-    private void addImages() {
+    private void addImages(final GridPane minefieldGridPane) {
         squareImages = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<ImageView> row = new ArrayList<>();
@@ -83,6 +74,12 @@ public class MinefieldView {
             }
             squareImages.add(row);
         }
+    }
+
+    public void addToGridPane(final GridPane minefieldGridPane) {
+        addButtons(minefieldGridPane);
+        addImages(minefieldGridPane);
+        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**
