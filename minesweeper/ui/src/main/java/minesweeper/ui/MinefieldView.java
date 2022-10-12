@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MinefieldView {
+
     private final int width;
     private final int height;
 
@@ -19,15 +20,21 @@ public class MinefieldView {
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
-    private final Image flagImage = new Image(getClass().getResourceAsStream("flag.png"));
-    
+    /**
+     * The image of a flag.
+     */
+    private final Image flagImage = new Image(getClass()
+        .getResourceAsStream("flag.png"));
+
     /**
      * Constructor for the minefield view.
      * @param width the width of the minefield
      * @param height the height of the minefield
-     * @param minefieldGridPane the javafx gridpane that represents the minefield
+     * @param minefieldGridPane the javafx gridpane that
+     * represents the minefield
      */
-    public MinefieldView(int width, int height, GridPane minefieldGridPane) {
+    public MinefieldView(final int width, final int height,
+     final GridPane minefieldGridPane) {
         this.width = width;
         this.height = height;
 
@@ -82,7 +89,7 @@ public class MinefieldView {
      * Adds EventHandler to all buttons.
      * @param event the eventhandler to all squares
      */
-    public void setOnMouseRelease(EventHandler<MouseEvent> event) {
+    public void setOnMouseRelease(final EventHandler<MouseEvent> event) {
         for (List<Button> row : squareButtons) {
             for (Button button : row) {
                 button.setOnMouseReleased(event);
@@ -96,7 +103,7 @@ public class MinefieldView {
      * @param y y-coordinate of image view
      * @return the image at the given coordinates
      */
-    private ImageView getImageView(int x, int y) { 
+    private ImageView getImageView(final int x, final int y) {
         return squareImages.get(y).get(x);
     }
 
@@ -105,7 +112,7 @@ public class MinefieldView {
      * @param x x-coordinate of square
      * @param y y-coordinate of square
      */
-    public void setFlagImage(int x, int y) {
+    public void setFlagImage(final int x, final int y) {
         getImageView(x, y).setImage(flagImage);
     }
 
@@ -114,7 +121,7 @@ public class MinefieldView {
      * @param x x-coordinate of image view
      * @param y y-coordinate of image view
      */
-    public void setBlankImage(int x, int y) {
+    public void setBlankImage(final int x, final int y) {
         getImageView(x, y).setImage(null);
     }
 
