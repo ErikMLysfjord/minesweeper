@@ -91,7 +91,8 @@
     <module name="InvalidJavadocPosition"/>
     <module name="JavadocMethod"/>
     <module name="JavadocType"/>
-    <module name="JavadocVariable"/>
+    <!-- It's unnecessary to document every single variable -->
+    <!-- <module name="JavadocVariable"/> -->
     <module name="JavadocStyle"/>
     <module name="MissingJavadocMethod"/>
 
