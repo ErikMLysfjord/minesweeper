@@ -21,8 +21,8 @@ public class MinefieldView {
     /**
      * The image of a flag.
      */
-    private final Image flagImage = new Image(getClass()
-        .getResourceAsStream("flag.png"));
+    private final Image flagImage =
+        new Image(getClass().getResourceAsStream("flag.png"));
 
     /**
      * Constructor for the minefield view.
@@ -33,14 +33,15 @@ public class MinefieldView {
     public MinefieldView(final int width, final int height) {
         this.width = width;
         this.height = height;
+        createButtons();
+        createImages();
     }
 
     /**
-     * Initialize squareButtons while adding each button to the GridPane.
+     * Initialize squareButtons.
      * The buttons do nothing.
-     * @param minefieldGridPane gets the buttons added to it
      */
-    private void addButtons(final GridPane minefieldGridPane) {
+    private void createButtons() {
         squareButtons = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<Button> row = new ArrayList<>();
@@ -52,7 +53,6 @@ public class MinefieldView {
                 button.setId(String.format(
                     "button%d%d", x, y
                 ));
-                minefieldGridPane.add(button, x, y);
                 row.add(button);
             }
             squareButtons.add(row);
@@ -60,17 +60,15 @@ public class MinefieldView {
     }
 
     /**
-     * Initialize squareImages while adding each image to the GridPane.
+     * Initialize squareImages.
      * The images are blank.
-     * @param minefieldGridPane gets the images added to it
      */
-    private void addImages(final GridPane minefieldGridPane) {
+    private void createImages() {
         squareImages = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<ImageView> row = new ArrayList<>();
             for (int x = 0; x < width; x++) {
                 ImageView blankImageView = new ImageView();
-                minefieldGridPane.add(blankImageView, x, y);
                 row.add(blankImageView);
             }
             squareImages.add(row);
@@ -78,12 +76,39 @@ public class MinefieldView {
     }
 
     /**
-     * Initializes the JavaFX objects, and adds them to the GridPane.
-     * @param minefieldGridPane gets Buttons and Images added to it
+     * Gets the image view.
+     * @param x x-coordinate of image view
+     * @param y y-coordinate of image view
+     * @return the image at the given coordinates
+     */
+    private ImageView getImageView(final int x, final int y) {
+        return squareImages.get(y).get(x);
+    }
+
+    /**
+     * Gets the button.
+     * @param x x-coordinate of button
+     * @param y y-coordinate of button
+     * @return the button at the given coordinates
+     */
+    private Button getButton(final int x, final int y) {
+        return squareButtons.get(y).get(x);
+    }
+
+    /**
+     * Adds images and buttons to GridPane.
+     * @param minefieldGridPane gets images and buttons added to it
      */
     public void addToGridPane(final GridPane minefieldGridPane) {
-        addButtons(minefieldGridPane);
-        addImages(minefieldGridPane);
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                ImageView squareImage = getImageView(x, y);
+                minefieldGridPane.add(squareImage, x, y);
+
+                Button squareButton = getButton(x, y);
+                minefieldGridPane.add(squareButton, x, y);
+            }
+        }
     }
 
     /**
@@ -96,16 +121,6 @@ public class MinefieldView {
                 button.setOnMouseReleased(event);
             }
         }
-    }
-
-    /**
-     * Gets the image view.
-     * @param x x-coordinate of image view
-     * @param y y-coordinate of image view
-     * @return the image at the given coordinates
-     */
-    private ImageView getImageView(final int x, final int y) {
-        return squareImages.get(y).get(x);
     }
 
     /**
