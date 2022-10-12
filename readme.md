@@ -2,41 +2,66 @@
 
 # Group gr2243 repository 
 
-Kodeprosjektet er i minesweeper-mappen. Her finner man pom.xml-filen, men man finner også en src-mappe som inneholder selve prosjektet, i src-mappen, og en test-mappe som inneholder testene til prosjektet. 
+Kodeprosjektet er i minesweeper-mappen. Her finner man pom.xml-filen, men man finner også de to hovedmodulene core og ui. 
 
-I main-mappen finner du selve kodeprosjektet, og i resources-mappen finner du ressurser som JSON-filen som tar for seg lagring.
+### Core
+Core inneholder kjerneklassene som styrer logikken og lagringen i prosjektet. I src finner man en main mappe som inneholder kjerneklassene og fillagringsklassen, i tillegg finner man resources som inneholder lagringsfilen data.json, og i test finner man tester for lagring og logikk.
+
+### Ui
+Ui inneholder frontendklassene som styrer fxml filen, og bruker kjerneklassene til å kjøre prosjektet. I src finner man main mappe som inneholder selve app klassen, kontrollerklassen, og view klasse som håndterer bildene som skal settes inn i appen. Man finner også en testmappe med tester som tester om logikken og frontenden spiller sammen på måten de var laget for.
 
 I docs-mappen finner man dokumenter med informasjon om hver enkelt release. 
 
 ## Mappe-hierarki:
-minesweeper/
+minesweeper/ (kodeprosjekt)
 -
--  src/
-    - main/
-        - java/
-            - minesweeper/ (kodings prosjekt)
-                - FileTreater.java
-                    - utfører alle lagringsrelaterte oppgaver
-                - Minefield.java
-                    - logikk for selve minefeltet
-                - MinesweeperApp.java
-                    - initialiser app
-                - MinesweeperController.java
-                    - kontrollerer logikk
-                - Square.java
-                    - et sted å lagre verdier
-            - module-info.java
-        - resources/ (bilder, fxml og lagring)
-            - minefield/
+- [docs](/docs/)
+    - release1.md
+    - release2.md
+- [core/](/minesweeper/core/) (Kjernemodul)
+    - src/
+        - main/
+            - java/
+                - minesweeper/core
+                    - MineField.java
+                        - klasse som inneholder logikken til selve griddet
+                    - Square.java
+                        - Her lagres hvorvidt en rute inneholder en mine eller ikke
+                - minesweeper/json
+                    - FileTreater.java
+                        - Utfører alle lagringsrelaterte oppgaver, og lagrer dataen i data.json.
+                - module-info.java
+            - resources/minesweeper/json (Lagring)
+                - data.json (holder på data)
+        - test/java/minesweeper/core (Teste kjenrneklassene)
+            - MineFieldTest.java
+                - Tester MineField klassen
+            - SquareTest.java
+                - Tester Square klassen
+        - test/java/minesweeper/json (Teste lagringsklassene)
+            - FileTreaterTest.java
+                - Tester FileTreat klassen
+    - pom.xml
+- [ui/](/minesweeper/ui/) (Frontendmodul)
+    - src/
+        - main/
+            - java/
+                - minesweeper/ui
+                    - MineFieldView.java
+                        - Brukes til å vise frem bilder i appen.
+                    - MinesweeperApp.java
+                        - Initialiser app.
+                    - MinesweeperController.java
+                        - Kontrolerer appens funksjonalitet.
+                - module-info.java
+            - resources/minesweeper/ui (fxml, stil og bilder)
                 - data.json
                 - flag.png
                 - Minesweeper.fxml
                 - style.css
-    - test/
-        - java/
-            - minesweeper/ (teste kodingsprosjektet)
-                - MineFieldTest.java
-                - SquareTest.java
-            - README.md
-
-
+        - test/java/minesweeper/ui (Teste funksjonalitet til app)
+            - MinesweeperTest.java
+                - Tester ut funksjonaliteten til appen.
+    - pom.xml
+- pom.xml
+- README.md
