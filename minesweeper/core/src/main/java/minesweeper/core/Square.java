@@ -4,10 +4,6 @@ public class Square {
     private boolean isFlagged = false;
     private boolean hasMine = false;
 
-    public Square() {
-
-    }
-
     /**
      * Toggles flag.
      */
@@ -36,6 +32,4 @@ public class Square {
     public boolean hasMine() {
         return hasMine;
     }
-
-    
 }
