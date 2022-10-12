@@ -69,6 +69,10 @@ public class MinefieldView {
             List<ImageView> row = new ArrayList<>();
             for (int x = 0; x < width; x++) {
                 ImageView blankImageView = new ImageView();
+                // For testing
+                blankImageView.setId(String.format(
+                    "image%d%d", x, y
+                ));
                 row.add(blankImageView);
             }
             squareImages.add(row);
@@ -129,7 +133,11 @@ public class MinefieldView {
      * @param y y-coordinate of square
      */
     public void setFlagImage(final int x, final int y) {
-        getImageView(x, y).setImage(flagImage);
+        ImageView image = getImageView(x, y);
+        image.setImage(flagImage);
+        image.setId(String.format(
+            "image%d%dflag", x, y
+        ));
     }
 
     /**
@@ -138,7 +146,11 @@ public class MinefieldView {
      * @param y y-coordinate of image view
      */
     public void setBlankImage(final int x, final int y) {
-        getImageView(x, y).setImage(null);
+        ImageView image = getImageView(x, y);
+        image.setImage(null);
+        image.setId(String.format(
+            "image%d%d", x, y
+        ));
     }
 
 }
