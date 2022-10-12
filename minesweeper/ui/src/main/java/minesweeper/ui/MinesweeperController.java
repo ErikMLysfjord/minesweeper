@@ -40,6 +40,7 @@ public class MinesweeperController {
         minefieldView.setOnMouseRelease((mouseEvent) ->
             handleClickedSquare(mouseEvent)
         );
+        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**

@@ -28,7 +28,6 @@ public class MinefieldView {
      * Constructor for the minefield view.
      * @param width the width of the minefield
      * @param height the height of the minefield
-     * @param minefieldGridPane the javafx gridpane that
      * represents the minefield
      */
     public MinefieldView(final int width, final int height) {
@@ -39,6 +38,7 @@ public class MinefieldView {
     /**
      * Initialize squareButtons while adding each button to the GridPane.
      * The buttons do nothing.
+     * @param minefieldGridPane gets the buttons added to it
      */
     private void addButtons(final GridPane minefieldGridPane) {
         squareButtons = new ArrayList<>();
@@ -62,6 +62,7 @@ public class MinefieldView {
     /**
      * Initialize squareImages while adding each image to the GridPane.
      * The images are blank.
+     * @param minefieldGridPane gets the images added to it
      */
     private void addImages(final GridPane minefieldGridPane) {
         squareImages = new ArrayList<>();
@@ -76,10 +77,13 @@ public class MinefieldView {
         }
     }
 
+    /**
+     * Initializes the JavaFX objects, and adds them to the GridPane.
+     * @param minefieldGridPane gets Buttons and Images added to it
+     */
     public void addToGridPane(final GridPane minefieldGridPane) {
         addButtons(minefieldGridPane);
         addImages(minefieldGridPane);
-        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**
