@@ -16,14 +16,12 @@ import javafx.stage.Stage;
 
 public class MinefieldViewTest extends ApplicationTest {
 
-    private MinesweeperController controller;
     private Parent root;
 
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Minesweeper.fxml"));
         root = fxmlLoader.load();
-        controller = fxmlLoader.getController();
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());       
