@@ -15,10 +15,10 @@ I docs-mappen finner man dokumenter med informasjon om hver enkelt release.
 ## Mappe-hierarki:
 minesweeper/ (kodeprosjekt)
 -
-- docs
+- [docs](/docs/)
     - release1.md
     - release2.md
-- core/ (kjerne modul)
+- [core/](/minesweeper/core/) (Kjernemodul)
     - src/
         - main/
             - java/
@@ -42,7 +42,7 @@ minesweeper/ (kodeprosjekt)
             - FileTreaterTest.java
                 - Tester FileTreat klassen
     - pom.xml
-- ui (frontend modul)
+- [ui/](/minesweeper/ui/) (Frontendmodul)
     - src/
         - main/
             - java/
