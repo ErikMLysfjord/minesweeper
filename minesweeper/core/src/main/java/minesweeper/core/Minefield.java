@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Minefield {
-    private final List<List<Square>> minefield;    
+    private final List<List<Square>> minefield;
     private final int width;
     private final int height;
 
@@ -15,12 +15,15 @@ public class Minefield {
      * @param height the height of the minefield
      * @throws IllegalStateException if the dimensions are zero or less
      */
-    public Minefield(int width, int height) throws IllegalStateException {
+    public Minefield(final int width, final int height)
+        throws IllegalStateException {
+
         if (width < 1 || height < 1) {
-            throw new IllegalStateException("Must have dimensions larger than 0.");
+            throw new IllegalStateException(
+                "Must have dimensions larger than 0.");
         }
 
-        //Fill minefield with empty squares. 
+        //Fill minefield with empty squares.
         minefield = new ArrayList<>();
         for (int y = 0; y < height; y++) {
             List<Square> row = new ArrayList<>();
@@ -33,7 +36,7 @@ public class Minefield {
         this.width = width;
         this.height = height;
     }
-    
+
     /**
      * Gets the square at the given coordinates.
      * @param x x-coordinate of square
@@ -41,8 +44,10 @@ public class Minefield {
      * @return the square at the given coordinates
      * @throws IllegalArgumentException if the coordinates are out of bounds
      */
-    public Square getSquare(int x, int y) throws IllegalArgumentException {
-        if (isOutOfBounds(x, y)) {
+    public Square getSquare(final int x, final int y)
+        throws IllegalArgumentException {
+
+            if (isOutOfBounds(x, y)) {
             throw new IllegalArgumentException("Coordinates are out of bounds");
         }
         return minefield.get(y).get(x);
@@ -55,7 +60,8 @@ public class Minefield {
      * @param y y-coordinates for the square
      * @throws IllegalArgumentException if the coordinates are out of bounds
      */
-    public void setSquare(Square square, int x, int y) throws IllegalArgumentException {
+    public void setSquare(final Square square, final int x, final int y)
+         throws IllegalArgumentException {
         if (isOutOfBounds(x, y)) {
             throw new IllegalStateException("Coordinates are out of bounds");
         }
@@ -69,12 +75,12 @@ public class Minefield {
      * @param y y-coordinates
      * @return whether the coordinates are out of bounds or not
      */
-    private boolean isOutOfBounds(int x, int y) {
+    private boolean isOutOfBounds(final int x, final int y) {
         return
-            x < 0 ||
-            x >= width ||
-            y < 0 ||
-            y >= height;
+            x < 0
+            || x >= width
+            || y < 0
+            || y >= height;
     }
 
     /**
@@ -82,7 +88,7 @@ public class Minefield {
      * @param x x-coordinates of the square
      * @param y y-coordinates of the square
      */
-    public void toggleFlag(int x, int y) {
+    public void toggleFlag(final int x, final int y) {
         getSquare(x, y).toggleFlag();
     }
 
@@ -92,7 +98,7 @@ public class Minefield {
      * @param y y-coordinates of the square
      * @return whether the square is flagged or not
      */
-    public boolean isFlagged(int x, int y) {
+    public boolean isFlagged(final int x, final int y) {
         return getSquare(x, y).isFlagged();
     }
 
@@ -102,15 +108,16 @@ public class Minefield {
      * @param y the y coordinate where the mine is placed
      */
 
-    public void placeMine(int x, int y) {
+    public void placeMine(final int x, final int y) {
         getSquare(x, y).placeMine();
     }
     /**
      * Checks for mine at the given coordinates.
      * @param x the x coordinate to check for mine
      * @param y the y coordinate to check for mine
+     * @return whether or not the square has a mine
      */
-    public Boolean hasMine(int x, int y) {
+    public Boolean hasMine(final int x, final int y) {
         return getSquare(x, y).hasMine();
     }
 
@@ -119,17 +126,17 @@ public class Minefield {
      * Stops when the number of mines in the grid equals mineCount.
      * @param mineCount the number of mines to be placed in the grid
      */
-    public void initializeMines(int mineCount) {
+    public void initializeMines(final int mineCount) {
         Random rand = new Random();
         int i = 0;
-        while (i < mineCount){
+        while (i < mineCount) {
             int x = rand.nextInt(width);
             int y = rand.nextInt(height);
-            if (!hasMine(x, y)){
+            if (!hasMine(x, y)) {
                 placeMine(x, y);
                 i++;
             }
-        }  
-    } 
+        }
+    }
 
 }
