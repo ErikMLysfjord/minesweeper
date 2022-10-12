@@ -11,7 +11,7 @@ public class FileTreater {
      * @param score the score to be saved
      */
     public static void saveScore(HighscoreEntry score) {
-        File data = new File(path);
+        File data = new File(getPath());
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(data, score);
@@ -19,6 +19,10 @@ public class FileTreater {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getPath(){
+        return path;
     }
 
 }
