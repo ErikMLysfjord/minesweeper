@@ -107,11 +107,4 @@ public class MinesweeperController {
              Integer.parseInt(scoreTxt)));
     }
 
-    /**
-     * For UI testing.
-     * @return MinefieldView
-     */
-    public MinefieldView getMinefieldView() {
-        return minefieldView;
-    }
 }

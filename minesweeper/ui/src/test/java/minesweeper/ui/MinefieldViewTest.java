@@ -16,14 +16,12 @@ import javafx.stage.Stage;
 
 public class MinefieldViewTest extends ApplicationTest {
 
-    private MinesweeperController controller;
     private Parent root;
 
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Minesweeper.fxml"));
         root = fxmlLoader.load();
-        controller = fxmlLoader.getController();
 
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());       
@@ -35,22 +33,22 @@ public class MinefieldViewTest extends ApplicationTest {
         return root;
     }
 
-    private Node getElementById(String fxid) {
-        return root.lookup(fxid);
+    private Node getElementById(String id) {
+        return root.lookup(id);
     }
 
-    private Boolean buttonWasPressed = false;
+    private boolean nodeExists(String id) {
+        return getElementById(id) != null;
+    }
+
     @Test
-    public void testMinefieldButtons() {
-        MinefieldView minefieldView = controller.getMinefieldView();
-        minefieldView.setOnMouseRelease((event) -> {
-            buttonWasPressed = true;
-        });
-
+    public void testSetFlag() {
         Node button = getElementById("#button00");
+        Assertions.assertFalse(nodeExists("#image00flag"));
         clickOn(button, MouseButton.SECONDARY);
-
-        Assertions.assertTrue(buttonWasPressed);
+        Assertions.assertTrue(nodeExists("#image00flag"));
+        clickOn(button, MouseButton.SECONDARY);
+        Assertions.assertFalse(nodeExists("#image00flag"));
     }
 
     @Test
