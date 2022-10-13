@@ -16,6 +16,7 @@ public class MinesweeperController {
     public static final int MINEFIELD_WIDTH = 9;
     public static final int MINEFIELD_HEIGHT = 9;
 
+    private FileTreater fileTreater;
     private Minefield minefield;
     private MinefieldView minefieldView;
 
@@ -31,6 +32,8 @@ public class MinesweeperController {
      */
     @FXML
     private void initialize() {
+        fileTreater = new FileTreater(); 
+
         //Set up minefield model
         minefield = new Minefield(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
 
@@ -103,8 +106,10 @@ public class MinesweeperController {
         String name = text.getText();
         String scoreTxt = score.getText();
 
-        FileTreater.saveScore(new HighscoreEntry(name,
-             Integer.parseInt(scoreTxt)));
+        fileTreater.saveScore(
+            new HighscoreEntry(name,
+            Integer.parseInt(scoreTxt)
+        ));
     }
 
 }
