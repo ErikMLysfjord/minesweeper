@@ -44,16 +44,17 @@ minesweeper/ (kodeprosjekt)
                 - module-info.java
             - resources/minesweeper/json (Lagring)
                 - data.json (holder på data)
-        - test/java/minesweeper/core (Teste kjerneklassene)
-            - HighscoreListTest.java
-                - Tester HighscoreList.
-            - MinefieldTest.java
-                - Tester Minefield klassen
-            - SquareTest.java
-                - Tester Square klassen
-        - test/java/minesweeper/json (Teste lagringsklassene)
-            - FileTreaterTest.java
-                - Tester FileTreat klassen
+        - test/java/minesweeper/
+            - core/ (Teste kjerneklassene)
+                - HighscoreListTest.java
+                    - Tester HighscoreList klassen.
+                - MinefieldTest.java
+                    - Tester Minefield klassen.
+                - SquareTest.java
+                    - Tester Square klassen.
+            - json/ (Teste lagringsklassene)
+                - FileTreaterTest.java
+                    - Tester FileTreat klassen.
     - pom.xml
 - [ui/](/minesweeper/ui/) (Frontendmodul)
     - src/
