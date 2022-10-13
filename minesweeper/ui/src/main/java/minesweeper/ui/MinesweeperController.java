@@ -32,7 +32,7 @@ public class MinesweeperController {
      */
     @FXML
     private void initialize() {
-        fileTreater = new FileTreater(); 
+        fileTreater = new FileTreater();
 
         //Set up minefield model
         minefield = new Minefield(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
@@ -110,6 +110,8 @@ public class MinesweeperController {
             new HighscoreEntry(name,
             Integer.parseInt(scoreTxt)
         ));
+
+        System.out.println(fileTreater.readEntry());
     }
 
 }

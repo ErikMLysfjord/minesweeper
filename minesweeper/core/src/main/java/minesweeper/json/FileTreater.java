@@ -2,13 +2,28 @@ package minesweeper.json;
 
 import java.io.File;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import minesweeper.core.HighscoreEntry;
+import minesweeper.json.internal.HighscoreEntryDeserializer;
 
 public class FileTreater {
-    private ObjectMapper mapper;
+    private final ObjectMapper mapper;
+    private final File data = new File(
+        "../core/src/main/resources/minesweeper/json/data.json"
+    );
 
+    /**
+     * Constructer for FileTreater.
+     */
     public FileTreater() {
+        SimpleModule simpleModule = new SimpleModule();
+        simpleModule.addDeserializer(
+            HighscoreEntry.class,
+            new HighscoreEntryDeserializer()
+        );
         mapper = new ObjectMapper();
+        mapper.registerModule(simpleModule);
     }
 
     /**
@@ -16,15 +31,24 @@ public class FileTreater {
      * @param score the score to be saved
      */
     public void saveScore(final HighscoreEntry score) {
-        File data = new File(
-            "../core/src/main/resources/minesweeper/json/data.json"
-        );
-
         try {
             mapper.writeValue(data, score);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Reads the entry from data.json.
+     * @return HighscoreEntry
+     */
+    public HighscoreEntry readEntry() {
+        try {
+            return mapper.readValue(data, HighscoreEntry.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }
