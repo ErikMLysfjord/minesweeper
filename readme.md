@@ -15,9 +15,6 @@ I docs-mappen finner man dokumenter med informasjon om hver enkelt release.
 ## Mappe-hierarki:
 minesweeper/ (kodeprosjekt)
 -
-- [docs](/docs/)
-    - release1.md
-    - release2.md
 - [core/](/minesweeper/core/) (Kjernemodul)
     - src/
         - main/
@@ -65,3 +62,16 @@ minesweeper/ (kodeprosjekt)
     - pom.xml
 - pom.xml
 - README.md
+
+## Oppsett
+1. Clone prosjektet fra [her](https://gitlab.stud.idi.ntnu.no/it1901/groups-2022/gr2243/gr2243.git), eller åpne i gitpod.
+2. For å bygge kjør "`mvn install`" fra rot-prosjektet. Dette vil kjøre tester og installere pakker som trengs for prosjektet.
+3. Kjør "`mvn javafx:run -f ui/pom.xml`", eller "`cd ui`" -> "`mvn javafx:run`".
+4. For tester kjør "`mvn test`" fra rot-prosjektet
+
+## Verktøy for kodekvalitet
+Vi bruker tre verktøy knyttet til kodekvalitet. Alle tre kan bli kjørt ved å kjøre "`mvn verify`" fra rot-prosjektet.
+Ellers kan de bli kjørt for seg selv slik:
+- [Checkstyle](https://checkstyle.sourceforge.io) -> `mvn checkstyle:check`
+- [Spotbugs](https://spotbugs.github.io) -> `mvn spotbugs:check`
+- [Jacoco](https://www.jacoco.org) -> `mvn jacoco:report`
