@@ -102,11 +102,11 @@ public class MinefieldView {
     public void addToGridPane(final GridPane minefieldGridPane) {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                ImageView squareImage = getImageView(x, y);
-                minefieldGridPane.add(squareImage, x, y);
-
                 Button squareButton = getButton(x, y);
                 minefieldGridPane.add(squareButton, x, y);
+
+                ImageView squareImage = getImageView(x, y);
+                minefieldGridPane.add(squareImage, x, y);
             }
         }
     }
