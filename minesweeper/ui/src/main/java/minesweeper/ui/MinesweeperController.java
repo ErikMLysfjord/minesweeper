@@ -96,9 +96,8 @@ public class MinesweeperController {
         }
     }
 
-
     /**
-     * Writes the user-input to data.json.
+     * Writes the user-input highscore list in data.json.
      * Called when submit-button is pressed.
      */
     @FXML

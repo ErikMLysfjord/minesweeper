@@ -41,7 +41,6 @@ public class MinefieldViewTest extends ApplicationTest {
         return getElementById(id) != null;
     }
 
-    /*
     @Test
     public void testSetFlag() {
         Node button = getElementById("#button00");
@@ -51,7 +50,6 @@ public class MinefieldViewTest extends ApplicationTest {
         clickOn(button, MouseButton.SECONDARY);
         Assertions.assertFalse(nodeExists("#image00flag"));
     }
-    */
 
     @Test
     public void testGridPane() {

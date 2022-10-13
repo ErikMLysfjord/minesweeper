@@ -44,7 +44,7 @@ public class FileTreater {
     }
 
     /**
-     * Saves serialized score object to data.json.
+     * Saves serialized score object to highscore list in data.json.
      * @param score the score to be saved
      */
     public void saveScore(final HighscoreEntry score) {
@@ -58,21 +58,8 @@ public class FileTreater {
     }
 
     /**
-     * Reads the entry from data.json.
-     * @return HighscoreEntry
-     */
-    public HighscoreEntry readEntry() {
-        try {
-            return mapper.readValue(data, HighscoreEntry.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    /**
-     * h.
-     * @return h
+     * Reads highscore list from data.json.
+     * @return highscore list in data.json
      */
     public HighscoreList readHighscoreList() {
         try {
@@ -84,7 +71,7 @@ public class FileTreater {
     }
 
     /**
-     * h.
+     * Saves empty highscore list to file.
      */
     public void setEmptyList() {
         HighscoreList highscoreList = new HighscoreList(3);
