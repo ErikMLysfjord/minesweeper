@@ -10,7 +10,6 @@ import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
 public class HighscoreListSerializer extends JsonSerializer<HighscoreList> {
-
     /**
      * {@inheritDoc}
      */
