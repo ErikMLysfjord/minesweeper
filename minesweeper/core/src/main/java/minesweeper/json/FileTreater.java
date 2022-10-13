@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import minesweeper.core.HighscoreEntry;
 import minesweeper.json.internal.HighscoreEntryDeserializer;
+import minesweeper.json.internal.HighscoreEntrySerializer;
 
 public class FileTreater {
     private final ObjectMapper mapper;
@@ -22,6 +23,11 @@ public class FileTreater {
             HighscoreEntry.class,
             new HighscoreEntryDeserializer()
         );
+        simpleModule.addSerializer(
+            HighscoreEntry.class,
+            new HighscoreEntrySerializer()
+        );
+
         mapper = new ObjectMapper();
         mapper.registerModule(simpleModule);
     }
