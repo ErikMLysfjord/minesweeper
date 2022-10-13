@@ -51,7 +51,7 @@ Vi valgte å bruke javadocs som kommenterings standard.
 Vi valgte å bruke Jackson i stedet for simple JSON.
 
 ### Arbeidsdager
-Vi har valgt å kjøre intesive arbeidsdager i stedenfor å jobbe individuelt. Dette gjør at vi kan jobbe mer i par.
+Vi har valgt å kjøre intensive arbeidsdager i stedenfor å jobbe individuelt. Dette gjør at vi kan jobbe mer i par.
 
 Utenfor arbeidsdagene jobbet vi også individuelt.
 
@@ -60,7 +60,7 @@ For å forsikre kodekvalitet har vi valgt å bruke tre verktøy; spotbugs, check
 - Spotbugs
     - Spotbugs er konfigurert til å ignorere bugs som omhandler "DMI_RANDOM_USED_ONLY_ONCE". 
 - Checkstyle
-    - Vi valgte å ta utgangspunkt i "Sun Code"-konfigurasjonen, ettersom vi foretrakk den framfor Google sin konfigurasjon.
+    - Vi valgte å ta utgangspunkt i "Sun Code"-konfigurasjonen, ettersom vi foretrakk den framfor Google sin konfigurasjon fordi det lignet mest på stilen vi har pleid å ha.
     - Checkstyle er i tillegg konfigurert litt på egenhånd:
         - JavaDocs for variabler er skrudd av, ettersom vi synes det var unødvendig å dokumentere hver enkelt variabel.
         - Vi valgte å skru av å ha en package-info.java-fil for hver package. Fordi vi ikke vet hva package-info er.
@@ -76,7 +76,7 @@ Vi fortsatte å jobbe utifra SCRUM modellen med en konsistent konvensjon.
 - Når man ser over en merge request kan man legge til kommentarer etter behov. Disse må løses før merge.
 
 ### Parprogrammering
-Vi har parprogramert på alle arbeidsdager gjennom sprint 2. Vi har prøvd forskjellige kombinasjoner av par slik at alle får prøvd seg med alle.
+Vi har parprogrammert på alle arbeidsdager gjennom sprint 2. Vi har prøvd forskjellige kombinasjoner av par slik at alle får prøvd seg med alle.
 
 ### Testdrevet utvilking
 Vi prøver å følge testdrevet utvikling. Vi skriver tester for en klasse for så å gjøre de nødvendige endringene for at klassen skal kjøre gjennom testen. Dette har kun blitt gjort i core modulen til nå fordi vi ikke hadde kontroll på ui- og persistens-testing.
@@ -97,4 +97,4 @@ De kommer til å bli mer brukt i neste iterasjon.
 - Testing av persistens.
 
 ### Dårlig tid
-Vi fikk dårlig tid, så vi fikk ikke utvidet appen like mye som hadde håpet, men det legger vi i backloggen til neste iterasjon.
+Vi fikk dårlig tid, så vi fikk ikke utvidet appen like mye som vi hadde håpet, men det legger vi i backloggen til neste iterasjon.
