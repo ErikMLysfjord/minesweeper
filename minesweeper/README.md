@@ -6,9 +6,4 @@ Minesweeper er et single-player logikkbasert spill. Man spiller på et rutefelt,
 
 Poengsummen kan settes på poengtavlen med navnet ditt.
 
-![minesweeper bilde](/minesweeper/src/main/resources/minesweeper/minesweeper.png)
-
-Brukerhistorier
--
-
-> Kjell har kommet frem til at det må være en mine på en rute. Han ønsker å markere den sånn at han ikke glemmer at den er der.
+![minesweeper bilde](/minesweeper\ui\src\main\resources\minesweeper\ui\minesweeper.png)
