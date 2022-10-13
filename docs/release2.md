@@ -71,7 +71,7 @@ For å forsikre kodekvalitet har vi valgt å bruke tre verktøy; spotbugs, check
 Vi fortsatte å jobbe utifra SCRUM modellen med en konsistent konvensjon.
 - Hver issue har en branch.
 - Andre iterasjons issues har mer utfyllende beskrivelser.
-- Hver issue har en tillhørende branch der en person jobber. evt parprogramerer.
+- Hver issue har en tillhørende branch der en person jobber evt parprogramerer.
 - Vi ble etterhvert strengere på at en merge request måtte bli sett over av en som ikke jobbet med issuen.
 - Når man ser over en merge request kan man legge til kommentarer etter behov. Disse må løses før merge.
 
