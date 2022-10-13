@@ -1,6 +1,6 @@
 package minesweeper.core;
 
-public class HighscoreEntry {
+public class HighscoreEntry implements Comparable<HighscoreEntry> {
     private final String name;
     private final Integer score;
 
@@ -28,6 +28,26 @@ public class HighscoreEntry {
      */
     public Integer getScore() {
         return score;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int compareTo(final HighscoreEntry entry) {
+        return score - entry.score;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return String.format(
+            "[name=%s, score=%d]",
+            name,
+            score
+        );
     }
 
 }

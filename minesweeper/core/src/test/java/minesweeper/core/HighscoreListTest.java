@@ -27,16 +27,18 @@ public class HighscoreListTest {
 
         HighscoreEntry ole = new HighscoreEntry("Ole", 500);
         HighscoreEntry vebjorn = new HighscoreEntry("Vebjørn", 200);
+        highscoreList.addEntry(ole);
+        highscoreList.addEntry(vebjorn);
 
         Assertions.assertEquals(erik, highscoreList.getHighscoreEntry(0));
         Assertions.assertEquals(ole, highscoreList.getHighscoreEntry(1));
         Assertions.assertEquals(vebjorn, highscoreList.getHighscoreEntry(2));
 
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () ->
             highscoreList.getHighscoreEntry(3)
         );
 
-        Assertions.assertThrows(IllegalArgumentException.class, () ->
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () ->
             highscoreList.getHighscoreEntry(-1)
         );
 
