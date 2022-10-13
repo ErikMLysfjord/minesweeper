@@ -1,8 +1,8 @@
 @startuml minesweeper
 
 component core {
-  package minesweeper.core
-  package minesweeper.json
+	package minesweeper.core
+  	package minesweeper.json
 }
 
 minesweeper.core ..> minesweeper.json
@@ -11,8 +11,6 @@ component jackson {
 
 minesweeper.json ..> jackson
 
-component fxutil {
-}
 
 component ui {
 	package minesweeper.ui
