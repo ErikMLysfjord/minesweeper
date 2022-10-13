@@ -7,7 +7,7 @@ Kodeprosjektet er i minesweeper-mappen. Her finner man pom.xml-filen, men man fi
 ### Core
 Core inneholder kjerneklassene som styrer logikken og lagringen i prosjektet. I src finner man en main mappe som inneholder kjerneklassene og fillagringsklassen, i tillegg finner man resources som inneholder lagringsfilen data.json, og i test finner man tester for lagring og logikk.
 
-### Ui
+### UI
 Ui inneholder frontendklassene som styrer fxml filen, og bruker kjerneklassene til å kjøre prosjektet. I src finner man main mappe som inneholder selve app klassen, kontrollerklassen, og view klasse som håndterer bildene som skal settes inn i appen. Man finner også en testmappe med tester som tester om logikken og frontenden spiller sammen på måten de var laget for.
 
 I docs-mappen finner man dokumenter med informasjon om hver enkelt release. 
