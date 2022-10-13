@@ -106,12 +106,11 @@ public class MinesweeperController {
         String name = text.getText();
         String scoreTxt = score.getText();
 
-        fileTreater.saveScore(
-            new HighscoreEntry(name,
+        fileTreater.saveScore(new HighscoreEntry(
+            name,
             Integer.parseInt(scoreTxt)
         ));
 
-        System.out.println(fileTreater.readEntry());
     }
 
 }
