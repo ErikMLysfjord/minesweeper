@@ -1,10 +1,6 @@
 package minesweeper.json;
 
 import java.io.File;
-import java.nio.file.Paths;
-import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import minesweeper.core.HighscoreEntry;
 
@@ -27,13 +23,6 @@ public final class FileTreater {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void getScore(String name){
-    }
-
-    public static String getPath(){
-        return path;
     }
 
 }
