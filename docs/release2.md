@@ -97,4 +97,4 @@ De kommer til å bli mer brukt i neste iterasjon.
 - Testing av persistens.
 
 ### Dårlig tid
-Vi fikk dårlig tid, så vi fikk ikke utvidet appen like mye som hadde håpet, men det legger vi i backloggen til neste itterasjon.
+Vi fikk dårlig tid, så vi fikk ikke utvidet appen like mye som hadde håpet, men det legger vi i backloggen til neste iterasjon.
