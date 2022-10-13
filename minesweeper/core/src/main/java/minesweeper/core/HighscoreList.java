@@ -40,4 +40,19 @@ public class HighscoreList {
         return highscore.get(index);
     }
 
+    /**
+     * Getter for maxSize.
+     * @return maxSize
+     */
+    public int getMaxSize() {
+        return maxSize;
+    }
+
+    /**
+     * TEMP.
+     * @return list
+     */
+    public List<HighscoreEntry> getHighscores() {
+        return new ArrayList<>(highscore);
+    }
 }
