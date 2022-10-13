@@ -19,6 +19,7 @@ public class FileTreaterTest {
     private Integer scoreRoof;
     private List<Integer> scores;
     
+    /*
     @BeforeEach
     public void setUp() {
         scoreRoof = 1000;
@@ -33,6 +34,7 @@ public class FileTreaterTest {
         }
         
     }
+    */
 
     @Test
     public void testSaveScore(){   
