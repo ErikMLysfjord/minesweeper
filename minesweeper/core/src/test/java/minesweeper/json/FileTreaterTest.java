@@ -36,9 +36,7 @@ public class FileTreaterTest {
 
     @Test
     public void testSaveScore(){
-        Assertions.assertEquals(rPath, FileTreater.getPath());
-
-        Assertions.assertEquals(FileTreater.getScore(entries.get(0).getName()), scores.get(0));
+        Assertions.assertEquals(rPath, FileTreater.getPath());   
     }
 
 
