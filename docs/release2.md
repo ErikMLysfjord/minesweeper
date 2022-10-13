@@ -10,6 +10,9 @@ Vi startet med å dele opp prosjektet i to moduler, core og ui. Deretter delte v
 - Laget en HighscoreList klasse.
 - Endret fra json simple til jackson.
 - Nå lagrere vi til en highscore liste, istedenfor å skrive over en highscore entry.
+- Det var naturlig for oss å velge en lagringsløsning som var basert på implisitt lagring. 
+    - Det virker ikke naturlig å lage et dokument når det kommer til minesweeper. 
+    - Informasjon skal heller skrives/lagres når en runde er over. Dette skal være på plass i sluttproduktet.
 
 ### Testing av GUI
 - Vi fant en måte å teste knapper og bilder på selv om de ikke har noe tekst ved gi de en id.
