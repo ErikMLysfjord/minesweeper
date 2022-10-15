@@ -5,9 +5,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class HighscoreList {
+    private static final int DEFAULT_MAX_SIZE = 5;
 
     private final List<HighscoreEntry> highscore;
     private final int maxSize;
+
+
+    /**
+     * Constructor for HighscoreList.
+     * Sets max size to a default value.
+     */
+    public HighscoreList() {
+        maxSize = DEFAULT_MAX_SIZE;
+        highscore = new ArrayList<>();
+    }
 
     /**
      * Contructor for HighscoreList.

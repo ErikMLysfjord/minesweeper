@@ -77,7 +77,7 @@ public class FileHandler {
      * Saves empty highscore list to file.
      */
     public void setEmptyList() {
-        HighscoreList highscoreList = new HighscoreList(3);
+        HighscoreList highscoreList = new HighscoreList();
         try {
             mapper.writeValue(highscoreListFile, highscoreList);
         } catch (Exception e) {

@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import minesweeper.core.HighscoreEntry;
 
-public class FileTreaterTest {
+public class FileHandlerTest {
 
     private List<HighscoreEntry> entries = new ArrayList<HighscoreEntry>();
     /* private String[] names;
