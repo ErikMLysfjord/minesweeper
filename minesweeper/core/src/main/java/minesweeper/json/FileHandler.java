@@ -11,16 +11,16 @@ import minesweeper.json.internal.HighscoreEntrySerializer;
 import minesweeper.json.internal.HighscoreListDeserializer;
 import minesweeper.json.internal.HighscoreListSerializer;
 
-public class FileTreater {
+public class FileHandler {
     private final ObjectMapper mapper;
-    private final File data = new File(
-        "../core/src/main/resources/minesweeper/json/data.json"
+    private final File highscoreListFile = new File(
+        "../core/src/main/resources/minesweeper/json/highscoreList.json"
     );
 
     /**
      * Constructer for FileTreater.
      */
-    public FileTreater() {
+    public FileHandler() {
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.addDeserializer(
             HighscoreEntry.class,
@@ -51,7 +51,7 @@ public class FileTreater {
         HighscoreList highscoreList = readHighscoreList();
         highscoreList.addEntry(score);
         try {
-            mapper.writeValue(data, highscoreList);
+            mapper.writeValue(highscoreListFile, highscoreList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,7 +63,10 @@ public class FileTreater {
      */
     public HighscoreList readHighscoreList() {
         try {
-            return mapper.readValue(data, HighscoreList.class);
+            return mapper.readValue(
+                highscoreListFile,
+                HighscoreList.class
+            );
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,7 +79,7 @@ public class FileTreater {
     public void setEmptyList() {
         HighscoreList highscoreList = new HighscoreList(3);
         try {
-            mapper.writeValue(data, highscoreList);
+            mapper.writeValue(highscoreListFile, highscoreList);
         } catch (Exception e) {
             e.printStackTrace();
         }
