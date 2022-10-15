@@ -24,7 +24,7 @@ public class HighscoreListSerializer extends JsonSerializer<HighscoreList> {
         gen.writeNumberField("maxSize", highscoreList.getMaxSize());
 
         gen.writeArrayFieldStart("entries");
-        for (HighscoreEntry entry : highscoreList.getHighscores()) {
+        for (HighscoreEntry entry : highscoreList) {
             gen.writeObject(entry);
         }
         gen.writeEndArray();
