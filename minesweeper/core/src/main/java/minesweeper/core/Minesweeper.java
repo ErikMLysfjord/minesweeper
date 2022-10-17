@@ -2,6 +2,7 @@ package minesweeper.core;
 
 public class Minesweeper {
     private final Minefield minefield;
+    private boolean isLost;
 
     /**
      * Constructor for Minesweeper.
@@ -10,6 +11,15 @@ public class Minesweeper {
      */
     public Minesweeper(final int width, final int height) {
         minefield = new Minefield(width, height);
+        isLost = false;
+    }
+
+    /**
+     * Checks whether the game is lost or not.
+     * @return whether the game is lost or not
+     */
+    public boolean isLost() {
+        return isLost;
     }
 
     /**
