@@ -1,5 +1,6 @@
 package minesweeper.ui;
 
+import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minefield;
 import minesweeper.json.FileTreater;
 import javafx.fxml.FXML;
@@ -11,6 +12,11 @@ import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
 
+    //Minefield dimensions
+    public static final int MINEFIELD_WIDTH = 9;
+    public static final int MINEFIELD_HEIGHT = 9;
+
+    private FileTreater fileTreater;
     private Minefield minefield;
     private MinefieldView minefieldView;
 
@@ -22,52 +28,55 @@ public class MinesweeperController {
     private GridPane minefieldGridPane;
 
     /**
-     * Initializes the minefield view and model
+     * Initializes the minefield view and model.
      */
     @FXML
     private void initialize() {
-        int width = 9;
-        int height = 9;
+        fileTreater = new FileTreater();
 
         //Set up minefield model
-        minefield = new Minefield(width, height);
-        
+        minefield = new Minefield(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+
         //Set up minefield ui
-        minefieldView = new MinefieldView(width, height, minefieldGridPane);
-        minefieldView.setOnMouseRelease((mouseEvent) -> handleClickedSquare(mouseEvent));
+        minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minefieldView.addToGridPane(minefieldGridPane);
+        minefieldView.setOnMouseRelease((mouseEvent) ->
+            handleClickedSquare(mouseEvent)
+        );
+        minefieldGridPane.setGridLinesVisible(true);
     }
 
     /**
-     * Restarts the minefield
-     * Called from restart button
+     * Restarts the minefield.
+     * Called from restart button.
      */
     @FXML
     private void handleRestart() {
+
     }
 
     /**
-     * Called when squares are pressed
+     * Called when squares are pressed.
      * @param mouseEvent the mouse event that occurred
      */
-    private void handleClickedSquare(MouseEvent mouseEvent) {
+    private void handleClickedSquare(final MouseEvent mouseEvent) {
         if (mouseEvent.getSource() instanceof Button button) {
             Integer x = GridPane.getColumnIndex(button);
             Integer y = GridPane.getRowIndex(button);
             if (mouseEvent.getButton() == MouseButton.PRIMARY) {
                 handleLeftClickedSquare(x, y);
-            }
-            else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+            } else if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 handleRightClickedSquare(x, y);
             }
         }
     }
 
     /**
-     * Handles left-clicked squares. Called when square is left-clicked
+     * Handles left-clicked squares. Called when square is left-clicked.
      * @param x x-coordinates of clicked square
      * @param y y-coordinates of clicked square
      */
-    private void handleLeftClickedSquare(Integer x, Integer y) {
+    private void handleLeftClickedSquare(final Integer x, final Integer y) {
         //Check square
     }
 
@@ -77,26 +86,30 @@ public class MinesweeperController {
      * @param x x-coordinates of clicked square
      * @param y y-coordinates of clicked square
      */
-    private void handleRightClickedSquare(Integer x, Integer y) {
+    private void handleRightClickedSquare(final Integer x, final Integer y) {
         minefield.toggleFlag(x, y);
 
         if (minefield.isFlagged(x, y)) {
             minefieldView.setFlagImage(x, y);
-        }
-        else {
+        } else {
             minefieldView.setBlankImage(x, y);
         }
     }
 
-
     /**
-     * Writes the user-input to data.json
-     * Called when submit-button is pressed
+     * Writes the user-input highscore list in data.json.
+     * Called when submit-button is pressed.
      */
     @FXML
     private void handleSubmit() {
-        String str = text.getText();
-        String num = score.getText();
-        new FileTreater().writeToFile(str, num);
+        String name = text.getText();
+        String scoreTxt = score.getText();
+
+        fileTreater.saveScore(new HighscoreEntry(
+            name,
+            Integer.parseInt(scoreTxt)
+        ));
+
     }
+
 }

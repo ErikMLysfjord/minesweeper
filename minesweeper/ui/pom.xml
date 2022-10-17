@@ -81,7 +81,8 @@
         		<artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <argLine>
-                    --add-opens minesweeper.ui/ui=ALL-UNNAMED --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                    @{jaCoCoArgLine}
+                    --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
                 </configuration>
 	        </plugin>
@@ -95,6 +96,13 @@
                 <configuration>
                     <!-- syntax: module-name/full-app-class-name -->
                     <mainClass>minesweeper.ui/minesweeper.ui.MinesweeperApp</mainClass>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <configuration>
+                    <propertyName>jaCoCoArgLine</propertyName>
                 </configuration>
             </plugin>
         </plugins>

@@ -1,0 +1,29 @@
+@startuml minesweeper
+
+component core {
+	package minesweeper.core
+  	package minesweeper.json
+}
+
+minesweeper.core ..> minesweeper.json
+component jackson {
+}
+
+minesweeper.json ..> jackson
+
+
+component ui {
+	package minesweeper.ui
+}
+
+minesweeper.ui ..> minesweeper.core
+
+component javafx {
+	component fxml {
+	}
+}
+
+ui ..> javafx
+ui ..> fxml
+
+@enduml
