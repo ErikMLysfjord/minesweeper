@@ -18,7 +18,7 @@ public class FileHandler {
     );
 
     /**
-     * Constructer for FileTreater.
+     * Constructor for FileHandler.
      */
     public FileHandler() {
         SimpleModule simpleModule = new SimpleModule();
