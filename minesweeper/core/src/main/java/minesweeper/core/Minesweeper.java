@@ -70,4 +70,12 @@ public class Minesweeper {
     public boolean isSquareOpened(final int x, final int y) {
         return minefield.isSquareOpened(x, y);
     }
+
+    public void addOnWin(Action action) {
+
+    }
+
+    public void addOnLoss(Action action) {
+
+    }
 }
