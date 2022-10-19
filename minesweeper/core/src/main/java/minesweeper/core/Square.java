@@ -9,7 +9,9 @@ public class Square {
      * Toggles flag.
      */
     public void toggleFlag() {
-        isFlagged = !isFlagged;
+        if (!isClicked) {
+            isFlagged = !isFlagged;
+        }
     }
 
     /**
