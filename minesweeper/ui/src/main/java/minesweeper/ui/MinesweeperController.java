@@ -1,7 +1,7 @@
 package minesweeper.ui;
 
 import minesweeper.core.HighscoreEntry;
-import minesweeper.core.Minefield;
+import minesweeper.core.Minesweeper;
 import minesweeper.json.FileTreater;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +17,7 @@ public class MinesweeperController {
     public static final int MINEFIELD_HEIGHT = 9;
 
     private FileTreater fileTreater;
-    private Minefield minefield;
+    private Minesweeper minesweeper;
     private MinefieldView minefieldView;
 
     @FXML
@@ -28,16 +28,16 @@ public class MinesweeperController {
     private GridPane minefieldGridPane;
 
     /**
-     * Initializes the minefield view and model.
+     * Initializes the minesweeper model and minefield view.
      */
     @FXML
     private void initialize() {
         fileTreater = new FileTreater();
 
-        //Set up minefield model
-        minefield = new Minefield(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        //Set up minesweeper model
+        minesweeper = new Minesweeper(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
 
-        //Set up minefield ui
+        //Set up minesweeper ui
         minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
         minefieldView.addToGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
@@ -47,12 +47,12 @@ public class MinesweeperController {
     }
 
     /**
-     * Restarts the minefield.
+     * Restarts the minesweeper game.
      * Called from restart button.
      */
     @FXML
     private void handleRestart() {
-
+        //TODO
     }
 
     /**
@@ -87,9 +87,9 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleRightClickedSquare(final Integer x, final Integer y) {
-        minefield.toggleFlag(x, y);
+        minesweeper.toggleFlag(x, y);
 
-        if (minefield.isFlagged(x, y)) {
+        if (minesweeper.isFlagged(x, y)) {
             minefieldView.setFlagImage(x, y);
         } else {
             minefieldView.setBlankImage(x, y);

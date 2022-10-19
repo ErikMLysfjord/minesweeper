@@ -46,8 +46,7 @@ public class Minefield {
      */
     public Square getSquare(final int x, final int y)
         throws IllegalArgumentException {
-
-            if (isOutOfBounds(x, y)) {
+        if (isOutOfBounds(x, y)) {
             throw new IllegalArgumentException("Coordinates are out of bounds");
         }
         return minefield.get(y).get(x);
