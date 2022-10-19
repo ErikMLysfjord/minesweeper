@@ -3,6 +3,7 @@ package minesweeper.core;
 public class Square {
     private boolean isFlagged = false;
     private boolean hasMine = false;
+    private boolean isClicked = false;
 
     /**
      * Toggles flag.
@@ -31,5 +32,22 @@ public class Square {
      */
     public boolean hasMine() {
         return hasMine;
+    }
+
+    /**
+     * Make isClicked true.
+     */
+    public void click() {
+        if (!isFlagged) {
+            this.isClicked = true;
+        }
+    }
+
+    /**
+     * Checks whether the square is clicked or not.
+     * @return the isClicked-value
+     */
+    public boolean isClicked() {
+        return isClicked;
     }
 }
