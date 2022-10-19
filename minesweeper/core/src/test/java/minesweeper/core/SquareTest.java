@@ -22,7 +22,7 @@ public class SquareTest {
         square.toggleFlag();
         Assertions.assertFalse(square.isFlagged());
 
-        square.click();
+        square.open();
         square.toggleFlag();
         Assertions.assertFalse(square.isFlagged());
     }
@@ -35,17 +35,17 @@ public class SquareTest {
     }
 
     @Test
-    public void testClicked() {
-        Assertions.assertFalse(square.isClicked());
+    public void testOpen() {
+        Assertions.assertFalse(square.isOpened());
         square.toggleFlag();
-        square.click();
-        Assertions.assertFalse(square.isClicked());
+        square.open();
+        Assertions.assertFalse(square.isOpened());
         
         square.toggleFlag();
-        square.click();
-        Assertions.assertTrue(square.isClicked());
-        square.click();
-        Assertions.assertTrue(square.isClicked());
+        square.open();
+        Assertions.assertTrue(square.isOpened());
+        square.open();
+        Assertions.assertTrue(square.isOpened());
     }
 
 }

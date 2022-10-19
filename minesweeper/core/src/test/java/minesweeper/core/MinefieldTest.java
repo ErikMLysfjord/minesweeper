@@ -74,7 +74,7 @@ public class MinefieldTest {
         minefield.toggleFlag(2, 2);
         Assertions.assertFalse(minefield.isFlagged(2, 2));
         
-        minefield.clickSquare(2, 2);
+        minefield.openSquare(2, 2);
         minefield.toggleFlag(2, 2);
         Assertions.assertFalse(minefield.isFlagged(2, 2));
     }
@@ -105,17 +105,17 @@ public class MinefieldTest {
     }
 
     @Test
-    public void testClick() {
-        Assertions.assertFalse(minefield.isSquareClicked(0, 0));
+    public void testOpen() {
+        Assertions.assertFalse(minefield.isSquareOpened(0, 0));
         minefield.toggleFlag(0, 0);
-        minefield.clickSquare(0, 0);
-        Assertions.assertFalse(minefield.isSquareClicked(0, 0));
+        minefield.openSquare(0, 0);
+        Assertions.assertFalse(minefield.isSquareOpened(0, 0));
 
         minefield.toggleFlag(0, 0);
-        minefield.clickSquare(0, 0);
-        Assertions.assertTrue(minefield.isSquareClicked(0, 0));
-        minefield.clickSquare(0, 0);
-        Assertions.assertTrue(minefield.isSquareClicked(0, 0));
+        minefield.openSquare(0, 0);
+        Assertions.assertTrue(minefield.isSquareOpened(0, 0));
+        minefield.openSquare(0, 0);
+        Assertions.assertTrue(minefield.isSquareOpened(0, 0));
     }
     
 }

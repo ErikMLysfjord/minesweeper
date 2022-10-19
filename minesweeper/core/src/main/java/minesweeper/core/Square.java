@@ -3,13 +3,13 @@ package minesweeper.core;
 public class Square {
     private boolean isFlagged = false;
     private boolean hasMine = false;
-    private boolean isClicked = false;
+    private boolean isOpened = false;
 
     /**
      * Toggles flag if the square isn't opened.
      */
     public void toggleFlag() {
-        if (!isClicked) {
+        if (!isOpened) {
             isFlagged = !isFlagged;
         }
     }
@@ -39,9 +39,9 @@ public class Square {
     /**
      * Set isOpened true if square is not flagged.
      */
-    public void click() {
+    public void open() {
         if (!isFlagged) {
-            this.isClicked = true;
+            this.isOpened = true;
         }
     }
 
@@ -49,7 +49,7 @@ public class Square {
      * Checks whether the square is opened or not.
      * @return the isOpened-value
      */
-    public boolean isClicked() {
-        return isClicked;
+    public boolean isOpened() {
+        return isOpened;
     }
 }

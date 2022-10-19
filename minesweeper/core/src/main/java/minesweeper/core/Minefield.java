@@ -143,8 +143,8 @@ public class Minefield {
      * @param x the x-coordinate of the square clicked
      * @param y the y-coordinate of the square clicked
      */
-    public void clickSquare(final int x, final int y) {
-        getSquare(x, y).click();
+    public void openSquare(final int x, final int y) {
+        getSquare(x, y).open();
     }
 
     /**
@@ -153,8 +153,8 @@ public class Minefield {
      * @param y the y-coordinate of the square
      * @return whether the mine is opened or not
      */
-    public boolean isSquareClicked(final int x, final int y) {
-        return getSquare(x, y).isClicked();
+    public boolean isSquareOpened(final int x, final int y) {
+        return getSquare(x, y).isOpened();
     }
 
 }
