@@ -40,11 +40,15 @@ public class Minesweeper {
 
     /**
      * Opens the square in the minefield.
+     * Loses the game if it had a mine.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
      */
     public void openSquare(final int x, final int y) {
         minefield.openSquare(x, y);
+        if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
+            lose();
+        }
     }
 
     /**
