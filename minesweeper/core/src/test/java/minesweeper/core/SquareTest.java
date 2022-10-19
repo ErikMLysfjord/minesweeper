@@ -21,6 +21,10 @@ public class SquareTest {
         Assertions.assertTrue(square.isFlagged());
         square.toggleFlag();
         Assertions.assertFalse(square.isFlagged());
+
+        square.click();
+        square.toggleFlag();
+        Assertions.assertFalse(square.isFlagged());
     }
 
     @Test

@@ -73,6 +73,10 @@ public class MinefieldTest {
         Assertions.assertTrue(minefield.isFlagged(2, 2));
         minefield.toggleFlag(2, 2);
         Assertions.assertFalse(minefield.isFlagged(2, 2));
+        
+        minefield.clickSquare(2, 2);
+        minefield.toggleFlag(2, 2);
+        Assertions.assertFalse(minefield.isFlagged(2, 2));
     }
 
     /**
