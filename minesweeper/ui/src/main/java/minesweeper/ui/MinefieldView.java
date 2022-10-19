@@ -23,7 +23,7 @@ public class MinefieldView {
     
     //Index corresponds to the number of adjacent mines.
     private final Image[] openedSquareImages = {
-        new Image(getClass().getResourceAsStream("flag.png"))
+        new Image(getClass().getResourceAsStream("opened0.png")) // blank
     };
 
     /**
