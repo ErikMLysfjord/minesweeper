@@ -99,5 +99,19 @@ public class MinefieldTest {
         }
         Assertions.assertEquals(8,mineCounter);
     }
+
+    @Test
+    public void testClick() {
+        Assertions.assertFalse(minefield.isSquareClicked(0, 0));
+        minefield.toggleFlag(0, 0);
+        minefield.clickSquare(0, 0);
+        Assertions.assertFalse(minefield.isSquareClicked(0, 0));
+
+        minefield.toggleFlag(0, 0);
+        minefield.clickSquare(0, 0);
+        Assertions.assertTrue(minefield.isSquareClicked(0, 0));
+        minefield.clickSquare(0, 0);
+        Assertions.assertTrue(minefield.isSquareClicked(0, 0));
+    }
     
 }

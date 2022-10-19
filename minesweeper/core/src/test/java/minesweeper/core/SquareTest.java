@@ -30,4 +30,18 @@ public class SquareTest {
         Assertions.assertTrue(square.hasMine());
     }
 
+    @Test
+    public void testClicked() {
+        Assertions.assertFalse(square.isClicked());
+        square.toggleFlag();
+        square.click();
+        Assertions.assertFalse(square.isClicked());
+        
+        square.toggleFlag();
+        square.click();
+        Assertions.assertTrue(square.isClicked());
+        square.click();
+        Assertions.assertTrue(square.isClicked());
+    }
+
 }
