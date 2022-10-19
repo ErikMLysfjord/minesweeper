@@ -68,4 +68,13 @@ public class MinefieldViewTest extends ApplicationTest {
         Assertions.assertTrue(minefieldGridPane.isGridLinesVisible());
     }
 
+    @Test
+    public void testCheckSquare() {
+        Node button = getElementById("#button00");
+        // The first square pressed is supposed to have 0 adjacent mines.
+        Assertions.assertFalse(nodeExists("#image00opened0"));
+        clickOn(button, MouseButton.PRIMARY);
+        Assertions.assertTrue(nodeExists("#image00opened0"));
+    }
+
 }
