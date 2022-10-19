@@ -10,6 +10,9 @@ import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
 public class HighscoreListSerializer extends JsonSerializer<HighscoreList> {
+    private HighscoreEntrySerializer highscoreEntrySerializer =
+        new HighscoreEntrySerializer();
+
     /**
      * {@inheritDoc}
      */
@@ -24,8 +27,8 @@ public class HighscoreListSerializer extends JsonSerializer<HighscoreList> {
         gen.writeNumberField("maxSize", highscoreList.getMaxSize());
 
         gen.writeArrayFieldStart("entries");
-        for (HighscoreEntry entry : highscoreList.getHighscores()) {
-            gen.writeObject(entry);
+        for (HighscoreEntry entry : highscoreList) {
+            highscoreEntrySerializer.serialize(entry, gen, serializers);
         }
         gen.writeEndArray();
 

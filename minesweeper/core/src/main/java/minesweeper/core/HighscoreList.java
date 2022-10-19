@@ -2,20 +2,30 @@ package minesweeper.core;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
-public class HighscoreList {
+public class HighscoreList implements Iterable<HighscoreEntry> {
+    private static final int DEFAULT_MAX_SIZE = 5;
 
-    private final List<HighscoreEntry> highscore;
+    private final List<HighscoreEntry> highscoreList;
     private final int maxSize;
 
     /**
+     * Constructor for HighscoreList.
+     * Sets max size to a default value.
+     */
+    public HighscoreList() {
+        this(DEFAULT_MAX_SIZE);
+    }
+
+    /**
      * Contructor for HighscoreList.
-     * @param maxSize the amount of entries in highscore list
+     * @param maxSize the amount of entries allowed in highscore list
      */
     public HighscoreList(final int maxSize) {
         this.maxSize = maxSize;
-        this.highscore = new ArrayList<>();
+        highscoreList = new ArrayList<>();
     }
 
     /**
@@ -24,10 +34,10 @@ public class HighscoreList {
      * @param entry the entry to try to add to the highscore list
      */
     public void addEntry(final HighscoreEntry entry) {
-        highscore.add(entry);
-        Collections.sort(highscore, Collections.reverseOrder());
-        if (highscore.size() > maxSize) {
-            highscore.remove(maxSize);
+        highscoreList.add(entry);
+        Collections.sort(highscoreList, Collections.reverseOrder());
+        if (highscoreList.size() > maxSize) {
+            highscoreList.remove(maxSize);
         }
     }
 
@@ -37,7 +47,7 @@ public class HighscoreList {
      * @return HighscoreEntry at index
      */
     public HighscoreEntry getHighscoreEntry(final int index) {
-        return highscore.get(index);
+        return highscoreList.get(index);
     }
 
     /**
@@ -49,10 +59,11 @@ public class HighscoreList {
     }
 
     /**
-     * TEMP.
-     * @return list
+     * {@inheritDoc}
      */
-    public List<HighscoreEntry> getHighscores() {
-        return new ArrayList<>(highscore);
+    @Override
+    public Iterator<HighscoreEntry> iterator() {
+        return highscoreList.iterator();
     }
+
 }
