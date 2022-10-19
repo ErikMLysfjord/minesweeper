@@ -21,6 +21,10 @@ public class SquareTest {
         Assertions.assertTrue(square.isFlagged());
         square.toggleFlag();
         Assertions.assertFalse(square.isFlagged());
+
+        square.open();
+        square.toggleFlag();
+        Assertions.assertFalse(square.isFlagged());
     }
 
     @Test
@@ -28,6 +32,20 @@ public class SquareTest {
         Assertions.assertFalse(square.hasMine());
         square.placeMine();
         Assertions.assertTrue(square.hasMine());
+    }
+
+    @Test
+    public void testOpen() {
+        Assertions.assertFalse(square.isOpened());
+        square.toggleFlag();
+        square.open();
+        Assertions.assertFalse(square.isOpened());
+        
+        square.toggleFlag();
+        square.open();
+        Assertions.assertTrue(square.isOpened());
+        square.open();
+        Assertions.assertTrue(square.isOpened());
     }
 
 }

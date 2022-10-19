@@ -73,6 +73,10 @@ public class MinefieldTest {
         Assertions.assertTrue(minefield.isFlagged(2, 2));
         minefield.toggleFlag(2, 2);
         Assertions.assertFalse(minefield.isFlagged(2, 2));
+        
+        minefield.openSquare(2, 2);
+        minefield.toggleFlag(2, 2);
+        Assertions.assertFalse(minefield.isFlagged(2, 2));
     }
 
     /**
@@ -98,6 +102,20 @@ public class MinefieldTest {
             }
         }
         Assertions.assertEquals(8,mineCounter);
+    }
+
+    @Test
+    public void testOpen() {
+        Assertions.assertFalse(minefield.isSquareOpened(0, 0));
+        minefield.toggleFlag(0, 0);
+        minefield.openSquare(0, 0);
+        Assertions.assertFalse(minefield.isSquareOpened(0, 0));
+
+        minefield.toggleFlag(0, 0);
+        minefield.openSquare(0, 0);
+        Assertions.assertTrue(minefield.isSquareOpened(0, 0));
+        minefield.openSquare(0, 0);
+        Assertions.assertTrue(minefield.isSquareOpened(0, 0));
     }
     
 }

@@ -51,4 +51,23 @@ public class Minesweeper {
     public boolean isFlagged(final int x, final int y) {
         return minefield.isFlagged(x, y);
     }
+
+    /**
+     * Opens the square in the minefield.
+     * @param x x-coordinate of the square
+     * @param y y-coordinate of the square
+     */
+    public void openSquare(final int x, final int y) {
+        minefield.openSquare(x, y);
+    }
+
+    /**
+     * Checks whether the square is opened or not.
+     * @param x x-coordinate of the square
+     * @param y y-coordinate of the square
+     * @return whether the square is opened or not
+     */
+    public boolean isSquareOpened(final int x, final int y) {
+        return minefield.isSquareOpened(x, y);
+    }
 }
