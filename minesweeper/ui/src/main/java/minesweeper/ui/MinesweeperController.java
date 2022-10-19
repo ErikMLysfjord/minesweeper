@@ -78,7 +78,10 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
-        minefieldView.setOpenedSquareImage(x, y, 0);
+        minesweeper.openSquare(x, y);
+        if (minesweeper.isSquareOpened(x, y)) {
+            minefieldView.setOpenedSquareImage(x, y, 0);
+        }
     }
 
     /**
