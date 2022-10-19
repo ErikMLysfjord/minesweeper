@@ -55,7 +55,7 @@ public class Timer extends AnimationTimer {
     }
 
     /**
-     * Get-method for amount of seconds passed.
+     * Gets the amount of seconds passed.
      * @return seconds passed
      */
     public int getSeconds() {
