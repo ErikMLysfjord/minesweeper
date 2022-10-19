@@ -139,7 +139,7 @@ public class Minefield {
     }
 
     /**
-     * Clicks the selected square.
+     * Opens the selected square.
      * @param x the x-coordinate of the square clicked
      * @param y the y-coordinate of the square clicked
      */
@@ -148,10 +148,10 @@ public class Minefield {
     }
 
     /**
-     * Checks whether the selected square is clicked.
-     * @param x the x-coordinate of the square clicked
-     * @param y the y-coordinate of the square clicked
-     * @return whether the mine is clicked or not
+     * Checks whether the selected square is opened.
+     * @param x the x-coordinate of the square
+     * @param y the y-coordinate of the square
+     * @return whether the mine is opened or not
      */
     public boolean isSquareClicked(final int x, final int y) {
         return getSquare(x, y).isClicked();

@@ -6,7 +6,7 @@ public class Square {
     private boolean isClicked = false;
 
     /**
-     * Toggles flag.
+     * Toggles flag if the square isn't opened.
      */
     public void toggleFlag() {
         if (!isClicked) {
@@ -37,7 +37,7 @@ public class Square {
     }
 
     /**
-     * Make isClicked true.
+     * Set isOpened true if square is not flagged.
      */
     public void click() {
         if (!isFlagged) {
@@ -46,8 +46,8 @@ public class Square {
     }
 
     /**
-     * Checks whether the square is clicked or not.
-     * @return the isClicked-value
+     * Checks whether the square is opened or not.
+     * @return the isOpened-value
      */
     public boolean isClicked() {
         return isClicked;
