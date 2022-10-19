@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class TimerTest extends ApplicationTest {
+    private Timer timer;
+
     private Parent root;
 
     @Override
@@ -30,16 +32,17 @@ public class TimerTest extends ApplicationTest {
     }
 
     private int seconds;
-    private Timer timer;
     @Test
     public void testOnSecond() {
         seconds = 0;
         timer = new Timer();
+        timer.addOnSecond(() -> updateSeconds());
         timer.start();
-        timer.setOnSecond(() -> updateSeconds());
-        sleep(1001);
-        timer.stop();
+        Assertions.assertEquals(0, timer.getSeconds());
+        sleep(1337);
+        Assertions.assertEquals(1, timer.getSeconds());
         Assertions.assertEquals(1, seconds);
+        timer.stop();
     }
 
     public void updateSeconds() {

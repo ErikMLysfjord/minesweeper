@@ -5,5 +5,5 @@ public interface Action {
     /**
      * Used for passing actions to be taken when events occcur.
      */
-    public void run();
+    void run();
 }
