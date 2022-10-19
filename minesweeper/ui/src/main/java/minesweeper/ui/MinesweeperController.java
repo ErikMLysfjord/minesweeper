@@ -37,6 +37,8 @@ public class MinesweeperController {
 
         //Set up minesweeper model
         minesweeper = new Minesweeper(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minesweeper.addOnLoss(() -> handleLoss());
+        minesweeper.addOnWin(() -> handleWin());
 
         //Set up minesweeper ui
         minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
@@ -113,4 +115,17 @@ public class MinesweeperController {
 
     }
 
+    /**
+     * Called from minesweeper when the game is won.
+     */
+    private void handleWin() {
+
+    }
+
+    /**
+     * Called from minesweeper when the game is lost.
+     */
+    private void handleLoss() {
+
+    }
 }
