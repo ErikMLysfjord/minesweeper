@@ -3,12 +3,20 @@ package minesweeper.ui;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
 import minesweeper.json.FileHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public class MinesweeperController {
 
@@ -111,6 +119,25 @@ public class MinesweeperController {
             Integer.parseInt(scoreTxt)
         ));
 
+    }
+
+    @FXML
+    private void showHighscores(final ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().
+                getWindow();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
+            "Highscores.fxml")
+            );
+            fxmlLoader.setController(new HighscoresController());
+            stage.setScene(new Scene(fxmlLoader.load()));
+            stage.show();
+        } catch (Exception e) {
+            Alert alert = new Alert(AlertType.ERROR, e.getMessage(),
+                ButtonType.OK
+            );
+            alert.show();
+        }
     }
 
 }
