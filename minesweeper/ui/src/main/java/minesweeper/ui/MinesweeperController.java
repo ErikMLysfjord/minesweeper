@@ -131,7 +131,7 @@ public class MinesweeperController {
     private void handleLoss() {
         for (int y = 0; y < MINEFIELD_HEIGHT; y++) {
             for (int x = 0; x < MINEFIELD_WIDTH; x++) {
-                if (minesweeper.hasMine(x, y)){
+                if (minesweeper.hasMine(x, y)) {
                     minefieldView.setBombImage(x, y);
                 }
             }

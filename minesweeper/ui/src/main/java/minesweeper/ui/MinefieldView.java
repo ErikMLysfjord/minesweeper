@@ -18,7 +18,8 @@ public class MinefieldView {
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
-    private final Image bombImage = new Image(getClass().getResourceAsStream("bomb.png"));
+    private final Image bombImage = 
+        new Image(getClass().getResourceAsStream("bomb.png"));
 
     private final Image flagImage =
         new Image(getClass().getResourceAsStream("flag.png"));
