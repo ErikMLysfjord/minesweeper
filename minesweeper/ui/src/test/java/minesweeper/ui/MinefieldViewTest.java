@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 public class MinefieldViewTest extends ApplicationTest {
 
     private Parent root;
+    private Stage stage;
+    private Scene initialScene;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,6 +28,8 @@ public class MinefieldViewTest extends ApplicationTest {
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());       
         stage.setScene(scene);
+        this.stage = stage;
+        this.initialScene = scene;
         stage.show();
     }
 
@@ -66,6 +70,15 @@ public class MinefieldViewTest extends ApplicationTest {
         );
 
         Assertions.assertTrue(minefieldGridPane.isGridLinesVisible());
+    }
+
+    @Test
+    public void testCheckHighscores() {
+        Node button = getElementById("#checkHighscoresButton");
+        clickOn(button, MouseButton.PRIMARY);
+
+        Scene currentScene = stage.getScene();
+        Assertions.assertNotEquals(initialScene, currentScene);
     }
 
 }
