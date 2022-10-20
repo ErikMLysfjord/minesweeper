@@ -18,11 +18,13 @@ public class MinefieldView {
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
-    /**
-     * The image of a flag.
-     */
     private final Image flagImage =
         new Image(getClass().getResourceAsStream("flag.png"));
+
+    //Index corresponds to the number of adjacent mines.
+    private final Image[] openedSquareImages = {
+        new Image(getClass().getResourceAsStream("opened0.png")) // blank
+    };
 
     /**
      * Constructor for the minefield view.
@@ -150,6 +152,24 @@ public class MinefieldView {
         image.setImage(null);
         image.setId(String.format(
             "image%d%d", x, y
+        ));
+    }
+
+    /**
+     * Sets image of opened square based on how many adjactent mines there are.
+     * @param x x-coordinate of image view
+     * @param y y-coordinate of image view
+     * @param adjacentMines amount of mines next to square
+     */
+    public void setOpenedSquareImage(
+        final int x,
+        final int y,
+        final int adjacentMines
+    ) {
+        ImageView image = getImageView(x, y);
+        image.setImage(openedSquareImages[adjacentMines]);
+        image.setId(String.format(
+            "image%d%dopened%d", x, y, adjacentMines
         ));
     }
 
