@@ -14,6 +14,7 @@ public class DifficultyTest {
 
     @Test
     public void testEasy() {
+        Assertions.assertEquals(0, difficulty.getWidth());
         difficulty.easy();
         Assertions.assertEquals(9, difficulty.getWidth());
         Assertions.assertEquals(9, difficulty.getHeight());
@@ -22,6 +23,7 @@ public class DifficultyTest {
 
     @Test
     public void testMedium() {
+        Assertions.assertEquals(0, difficulty.getHeight());
         difficulty.medium();
         Assertions.assertEquals(16, difficulty.getWidth());
         Assertions.assertEquals(16, difficulty.getHeight());
@@ -30,7 +32,8 @@ public class DifficultyTest {
 
     @Test
     public void testHard() {
-        difficulty.easy();
+        Assertions.assertEquals(0, difficulty.getMinesAmount());
+        difficulty.hard();
         Assertions.assertEquals(30, difficulty.getWidth());
         Assertions.assertEquals(16, difficulty.getHeight());
         Assertions.assertEquals(99, difficulty.getMinesAmount());

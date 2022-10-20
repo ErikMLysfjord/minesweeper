@@ -12,15 +12,21 @@ public class Difficulty {
     }
 
     public void easy() {
-        //TODO
+        this.width = 9;
+        this.height = 9;
+        this.minesAmount = 10;
     }
 
     public void medium() {
-        //TODO
+        this.width = 16;
+        this.height = 16;
+        this.minesAmount = 40;
     }
 
     public void hard() {
-        //TODO
+        this.width = 30;
+        this.height = 16;
+        this.minesAmount = 99;
     }
 
     public int getWidth() {
