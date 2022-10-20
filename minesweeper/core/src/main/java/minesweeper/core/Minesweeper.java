@@ -17,7 +17,6 @@ public class Minesweeper {
         minefield = new Minefield(width, height);
         onWinActions = new ArrayList<>();
         onLossActions = new ArrayList<>();
-        minefield.initializeMines(78);
     }
 
     /**
