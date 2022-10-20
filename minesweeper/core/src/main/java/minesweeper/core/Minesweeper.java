@@ -1,10 +1,12 @@
 package minesweeper.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Minesweeper {
     private final Minefield minefield;
-    private boolean isLost;
-    private boolean isWon;
-
+    private List<Action> onWinActions;
+    private List<Action> onLossActions;
 
     /**
      * Constructor for Minesweeper.
@@ -13,24 +15,8 @@ public class Minesweeper {
      */
     public Minesweeper(final int width, final int height) {
         minefield = new Minefield(width, height);
-        isLost = false;
-        isWon = false;
-    }
-
-    /**
-     * Checks whether the game is lost or not.
-     * @return whether the game is lost or not
-     */
-    public boolean isLost() {
-        return isLost;
-    }
-
-    /**
-     * Checks whether the game is won or not.
-     * @return whether the game is won or not
-     */
-    public boolean isWon() {
-        return isWon;
+        onWinActions = new ArrayList<>();
+        onLossActions = new ArrayList<>();
     }
 
     /**
@@ -54,11 +40,15 @@ public class Minesweeper {
 
     /**
      * Opens the square in the minefield.
+     * Loses the game if it had a mine.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
      */
     public void openSquare(final int x, final int y) {
         minefield.openSquare(x, y);
+        if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
+            lose();
+        }
     }
 
     /**
@@ -70,4 +60,44 @@ public class Minesweeper {
     public boolean isSquareOpened(final int x, final int y) {
         return minefield.isSquareOpened(x, y);
     }
+
+    /**
+     * Add an action to the list of actions to take
+     * when minesweeper game is won.
+     * @param action to be taken on win
+     */
+    public void addOnWin(final Action action) {
+        onWinActions.add(action);
+    }
+
+    /**
+     * Add an action to the list of actions to take
+     * when minesweeper game is lost.
+     * The game is lost when a mine is opened by the openSquare method.
+     * @param action to be taken on loss
+     */
+    public void addOnLoss(final Action action) {
+        onLossActions.add(action);
+    }
+
+    /**
+     * Takes all actions that have been registered
+     * to be taken when the game is lost.
+     */
+    private void lose() {
+        for (Action action : onLossActions) {
+            action.run();
+        }
+    }
+
+    /**
+     * Takes all action that have been registered
+     * to be take when the game is won.
+     */
+    private void win() {
+        for (Action action : onWinActions) {
+            action.run();
+        }
+    }
+
 }
