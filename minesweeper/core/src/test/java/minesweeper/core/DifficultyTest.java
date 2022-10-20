@@ -11,7 +11,7 @@ public class DifficultyTest {
         difficulty = new Difficulty("easy");
         Assertions.assertEquals(9, difficulty.getWidth());
         Assertions.assertEquals(9, difficulty.getHeight());
-        Assertions.assertEquals(10, difficulty.getMinesAmount());
+        Assertions.assertEquals(10, difficulty.getMineCount());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class DifficultyTest {
         difficulty = new Difficulty("medium");
         Assertions.assertEquals(16, difficulty.getWidth());
         Assertions.assertEquals(16, difficulty.getHeight());
-        Assertions.assertEquals(40, difficulty.getMinesAmount());
+        Assertions.assertEquals(40, difficulty.getMineCount());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class DifficultyTest {
         difficulty = new Difficulty("hard");
         Assertions.assertEquals(30, difficulty.getWidth());
         Assertions.assertEquals(16, difficulty.getHeight());
-        Assertions.assertEquals(99, difficulty.getMinesAmount());
+        Assertions.assertEquals(99, difficulty.getMineCount());
     }
 
     @Test
