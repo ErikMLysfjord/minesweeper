@@ -17,6 +17,17 @@ public class Minesweeper {
         minefield = new Minefield(width, height);
         onWinActions = new ArrayList<>();
         onLossActions = new ArrayList<>();
+        minefield.initializeMines(78);
+    }
+
+    /**
+     * Checks whether the square has a mine or not.
+     * @param x x-coordinate of the square
+     * @param y y-coordinate of the square
+     * @return wether or not the square has a mine
+     */
+    public Boolean hasMine(final int x, final int y) {
+        return minefield.hasMine(x, y);
     }
 
     /**
