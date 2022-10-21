@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import minesweeper.core.Difficulty;
 
 public class MinefieldViewTest extends ApplicationTest {
 
@@ -56,12 +57,12 @@ public class MinefieldViewTest extends ApplicationTest {
         GridPane minefieldGridPane = (GridPane) getElementById("#minefieldGridPane");
 
         Assertions.assertEquals(
-            MinesweeperController.MINEFIELD_WIDTH,
+            Difficulty.EASY.getWidth(),
             minefieldGridPane.getColumnCount()
         );
 
         Assertions.assertEquals(
-            MinesweeperController.MINEFIELD_HEIGHT,
+            Difficulty.EASY.getHeight(),
             minefieldGridPane.getRowCount()
         );
 

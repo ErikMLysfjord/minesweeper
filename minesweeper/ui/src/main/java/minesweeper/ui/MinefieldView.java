@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import minesweeper.core.Difficulty;
 
 public class MinefieldView {
 
@@ -33,6 +34,17 @@ public class MinefieldView {
     public MinefieldView(final int width, final int height) {
         this.width = width;
         this.height = height;
+        createButtons();
+        createImages();
+    }
+
+    /**
+     * Constructor for the minefield view.
+     * @param difficulty the difficukty of the minefield
+     */
+    public MinefieldView(final Difficulty difficulty) {
+        this.width = difficulty.getWidth();
+        this.height = difficulty.getHeight();
         createButtons();
         createImages();
     }

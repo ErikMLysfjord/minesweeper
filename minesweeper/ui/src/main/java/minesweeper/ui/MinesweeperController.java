@@ -1,5 +1,6 @@
 package minesweeper.ui;
 
+import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
 import minesweeper.json.FileHandler;
@@ -11,11 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
-
-    //Minefield dimensions
-    public static final int MINEFIELD_WIDTH = 9;
-    public static final int MINEFIELD_HEIGHT = 9;
-
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
 
@@ -36,10 +32,10 @@ public class MinesweeperController {
         fileHandler = new FileHandler();
 
         //Set up minesweeper model
-        minesweeper = new Minesweeper(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minesweeper = new Minesweeper(Difficulty.EASY);
 
         //Set up minesweeper ui
-        minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minefieldView = new MinefieldView(Difficulty.EASY);
         minefieldView.addToGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
             handleClickedSquare(mouseEvent)
