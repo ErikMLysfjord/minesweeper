@@ -27,7 +27,11 @@ public class MinesweeperTest {
         minesweeper.addOnLoss(() -> {
             isLost = true;
         });
-        //Needs mines in minefield
+        minesweeper.openSquare(1, 1);
+        //Guaranteed mine
+        minesweeper.openSquare(3, 3);
+
+        Assertions.assertTrue(isLost);
     }
 
     @Test
@@ -35,7 +39,7 @@ public class MinesweeperTest {
         minesweeper.addOnWin(() -> {
             isWon = true;
         });
-        //Needs mines in minefield
+        //Open all safeCoords
     }
 
     @Test
