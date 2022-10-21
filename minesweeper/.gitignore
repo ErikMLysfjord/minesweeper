@@ -8,6 +8,6 @@ org.eclipse.*.prefs
 
 # data files
 *.json
-core/src/main/resources/minesweeper/json
+# core/src/main/resources/minesweeper/json
 
 docs/
