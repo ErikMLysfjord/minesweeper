@@ -20,6 +20,16 @@ public class Minesweeper {
     }
 
     /**
+     * Checks whether the square has a mine or not.
+     * @param x x-coordinate of the square
+     * @param y y-coordinate of the square
+     * @return wether or not the square has a mine
+     */
+    public Boolean hasMine(final int x, final int y) {
+        return minefield.hasMine(x, y);
+    }
+
+    /**
      * Toggles flag at given square in minefield.
      * @param x x-coordinates of the square
      * @param y y-coordinates of the square

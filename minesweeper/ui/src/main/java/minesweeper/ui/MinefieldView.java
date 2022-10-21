@@ -18,8 +18,12 @@ public class MinefieldView {
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
+    private final Image bombImage =
+        new Image(getClass().getResourceAsStream("bomb.png"));
+
     private final Image flagImage =
         new Image(getClass().getResourceAsStream("flag.png"));
+
 
     //Index corresponds to the number of adjacent mines.
     private final Image[] openedSquareImages = {
@@ -127,6 +131,18 @@ public class MinefieldView {
                 button.setOnMouseReleased(event);
             }
         }
+    }
+    /**
+     * Sets bomb image.
+     * @param x x-coordinate of square
+     * @param y y-coordinate of square
+     */
+    public void setBombImage(final int x, final int y) {
+        ImageView image = getImageView(x, y);
+        image.setImage(bombImage);
+        image.setId(String.format(
+            "image%d%dbomb", x, y
+        ));
     }
 
     /**

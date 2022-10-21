@@ -81,7 +81,7 @@ public class MinesweeperController {
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
-        if (minesweeper.isSquareOpened(x, y)) {
+        if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
             minefieldView.setOpenedSquareImage(x, y, 0);
         }
     }
@@ -129,6 +129,13 @@ public class MinesweeperController {
      * Called from minesweeper when the game is lost.
      */
     private void handleLoss() {
+        for (int y = 0; y < MINEFIELD_HEIGHT; y++) {
+            for (int x = 0; x < MINEFIELD_WIDTH; x++) {
+                if (minesweeper.hasMine(x, y)) {
+                    minefieldView.setBombImage(x, y);
+                }
+            }
+        }
 
     }
 }
