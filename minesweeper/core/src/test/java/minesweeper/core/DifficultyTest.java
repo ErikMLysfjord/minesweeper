@@ -4,35 +4,25 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class DifficultyTest {
-    private Difficulty difficulty;
 
     @Test
-    public void testSetEasy() {
-        difficulty = new Difficulty("easy");
-        Assertions.assertEquals(9, difficulty.getWidth());
-        Assertions.assertEquals(9, difficulty.getHeight());
-        Assertions.assertEquals(10, difficulty.getMineCount());
+    public void testEasy() {
+        Assertions.assertEquals(9, Difficulty.EASY.getWidth());
+        Assertions.assertEquals(9, Difficulty.EASY.getHeight());
+        Assertions.assertEquals(10, Difficulty.EASY.getMineCount());
     }
 
     @Test
-    public void testSetMedium() {
-        difficulty = new Difficulty("medium");
-        Assertions.assertEquals(16, difficulty.getWidth());
-        Assertions.assertEquals(16, difficulty.getHeight());
-        Assertions.assertEquals(40, difficulty.getMineCount());
+    public void testMedium() {
+        Assertions.assertEquals(16, Difficulty.MEDIUM.getWidth());
+        Assertions.assertEquals(16, Difficulty.MEDIUM.getHeight());
+        Assertions.assertEquals(40, Difficulty.MEDIUM.getMineCount());
     }
 
     @Test
-    public void testSetHard() {
-        difficulty = new Difficulty("hard");
-        Assertions.assertEquals(30, difficulty.getWidth());
-        Assertions.assertEquals(16, difficulty.getHeight());
-        Assertions.assertEquals(99, difficulty.getMineCount());
+    public void testHard() {
+        Assertions.assertEquals(30, Difficulty.HARD.getWidth());
+        Assertions.assertEquals(16, Difficulty.HARD.getHeight());
+        Assertions.assertEquals(99, Difficulty.HARD.getMineCount());
     }
-
-    @Test
-    public void testIllegalDifficulty() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Difficulty("expert"));
-    }
-
 }
