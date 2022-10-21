@@ -38,7 +38,6 @@ public class HighscoresController {
     public HighscoresController() {
         fileHandler = new FileHandler();
         highscoreList = fileHandler.readHighscoreList();
-        highscoresView = new HighscoresView();
     }
 
     /**
@@ -54,8 +53,6 @@ public class HighscoresController {
         for (HighscoreEntry entry : highscoreList) {
             this.highscoreList.addEntry(entry);
         }
-
-        highscoresView = new HighscoresView();
     }
 
     /**
@@ -63,6 +60,7 @@ public class HighscoresController {
      */
     @FXML
     private void initialize() {
+        highscoresView = new HighscoresView();
         highscoresView.setCells(highscoresList, name, score, getHighScores());
     }
 

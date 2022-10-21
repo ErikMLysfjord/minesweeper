@@ -101,7 +101,7 @@ public class HighscoresViewTest extends ApplicationTest {
      * Tests switching scenes, by pressing the "Back"-button.
      */
     @Test
-    public void testGoBack() throws IOException {
+    public void testGoBack() {
         Node button = getElementById("#backButton");
         clickOn(button, MouseButton.PRIMARY);
         Scene currentScene = stage.getScene();
