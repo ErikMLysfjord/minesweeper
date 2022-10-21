@@ -6,4 +6,8 @@ target/
 .classpath
 org.eclipse.*.prefs
 
+# data files
+*.json
+core/src/main/resources/minesweeper/json
+
 docs/
