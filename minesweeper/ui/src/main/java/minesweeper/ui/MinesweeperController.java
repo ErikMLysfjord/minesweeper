@@ -137,8 +137,8 @@ public class MinesweeperController {
             stage.setScene(new Scene(fxmlLoader.load()));
             stage.show();
         } catch (Exception e) {
-            Alert alert = new Alert(AlertType.ERROR, e.getMessage(),
-                ButtonType.OK
+            Alert alert = new Alert(
+                AlertType.ERROR, e.getMessage(), ButtonType.OK
             );
             alert.show();
         }

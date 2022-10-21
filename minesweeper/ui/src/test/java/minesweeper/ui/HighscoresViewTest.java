@@ -63,7 +63,7 @@ public class HighscoresViewTest extends ApplicationTest {
         TableView<HighscoreEntry> list = (TableView<HighscoreEntry>) 
             getElementById("#highscoresList");
 
-        return (TableColumn<HighscoreEntry, String>)list.getColumns().get(0);
+        return (TableColumn<HighscoreEntry, String>) list.getColumns().get(0);
     }
 
     /**
