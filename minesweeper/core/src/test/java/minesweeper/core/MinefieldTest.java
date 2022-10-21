@@ -86,22 +86,40 @@ public class MinefieldTest {
     @Test
     public void testMine() {
         minefield.placeMine(2,2);
-        Assertions.assertTrue(minefield.hasMine(2,2));
-        Assertions.assertFalse(minefield.hasMine(2,3));
+        Assertions.assertTrue(minefield.hasMine(2, 2));
+        Assertions.assertFalse(minefield.hasMine(2, 3));
     }
     
     @Test
     public void testInitializeMines() {
-        minefield.initializeMines(8);
+        Assertions.assertThrows(
+            IllegalArgumentException.class,
+            () -> minefield.initializeMines(-1, 0, 0)
+        );
+
+        Assertions.assertThrows(
+            IllegalStateException.class,
+            () -> minefield.initializeMines(width * height - 4 + 1, 0, 0)
+        );
+
+        for (Integer[] coord : illegalCoords) {
+            Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> minefield.initializeMines(0, coord[0], coord[1])
+            );
+        }
+
+        int mineCount = (width * height) - (3 * 3);
+        minefield.initializeMines(mineCount, 1, 1);
         int mineCounter = 0;
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                if(minefield.hasMine(x, y)) {
+                if (minefield.hasMine(x, y)) {
                     mineCounter++;
                 }
             }
         }
-        Assertions.assertEquals(8,mineCounter);
+        Assertions.assertEquals(mineCount, mineCounter);
     }
 
     @Test

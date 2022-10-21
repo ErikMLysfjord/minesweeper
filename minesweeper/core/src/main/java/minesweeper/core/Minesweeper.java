@@ -7,16 +7,25 @@ public class Minesweeper {
     private final Minefield minefield;
     private List<Action> onWinActions;
     private List<Action> onLossActions;
+    private boolean gameIsStarted;
+    private final int mineCount;
 
     /**
      * Constructor for Minesweeper.
      * @param width the width of minefield
      * @param height the height of minefield
+     * @param mineCount the amount of mines to be added to the minefield
      */
-    public Minesweeper(final int width, final int height) {
+    public Minesweeper(
+        final int width,
+        final int height,
+        final int mineCount
+    ) {
         minefield = new Minefield(width, height);
         onWinActions = new ArrayList<>();
         onLossActions = new ArrayList<>();
+        gameIsStarted = false;
+        this.mineCount = mineCount;
     }
 
     /**
@@ -50,11 +59,17 @@ public class Minesweeper {
 
     /**
      * Opens the square in the minefield.
+     * Starts the game on first open.
      * Loses the game if it had a mine.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
      */
     public void openSquare(final int x, final int y) {
+        if (!gameIsStarted) {
+            gameIsStarted = true;
+            minefield.initializeMines(mineCount, x, y);
+        }
+
         minefield.openSquare(x, y);
         if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
             lose();
