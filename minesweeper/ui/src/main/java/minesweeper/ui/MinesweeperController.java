@@ -121,6 +121,10 @@ public class MinesweeperController {
 
     }
 
+    /**
+     * Changes the scene from the minesweeper-game to the highscore-list-page.
+     * @param event mouse-click that initializes the function
+     */
     @FXML
     private void showHighscores(final ActionEvent event) {
         try {

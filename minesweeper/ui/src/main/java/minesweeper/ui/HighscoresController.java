@@ -43,6 +43,8 @@ public class HighscoresController {
 
     /**
      * Constructs a highscore-controller that won't read highscores from file.
+     * Copies elements from a pre-made highscorelist into a new Highscore-list,
+     * to make it immutable.
      * @param highscoreList a pre-made highscorelist
      */
     public HighscoresController(final HighscoreList highscoreList) {
@@ -56,6 +58,9 @@ public class HighscoresController {
         highscoresView = new HighscoresView();
     }
 
+    /**
+     * Initializes the highscoresview and updates the highscore-list.
+     */
     @FXML
     private void initialize() {
         highscoresView.setCells(highscoresList, name, score, getHighScores());

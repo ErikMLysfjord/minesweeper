@@ -72,6 +72,9 @@ public class MinefieldViewTest extends ApplicationTest {
         Assertions.assertTrue(minefieldGridPane.isGridLinesVisible());
     }
 
+    /**
+     * Test switching scenes, by pressing the "See highscores"-button.
+     */
     @Test
     public void testCheckHighscores() {
         Node button = getElementById("#checkHighscoresButton");

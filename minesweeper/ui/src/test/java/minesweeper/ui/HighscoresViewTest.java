@@ -54,7 +54,9 @@ public class HighscoresViewTest extends ApplicationTest {
 
     /**
      * Method for getting the column containing names.
-     * @return a column of the names
+     * Surpresses warnings as we know the value of the tableview, and that
+     * it won't create problems.
+     * @return the column containing names
      */
     @SuppressWarnings (value = "unchecked")
     private TableColumn<HighscoreEntry, String> getNames() {
@@ -66,6 +68,8 @@ public class HighscoresViewTest extends ApplicationTest {
 
     /**
      * A method for returning the column containing scores.
+     * Surpresses warnings as we know the value of the tableview, and that
+     * it won't create problems.
      * @return the column containing scores
      */
     @SuppressWarnings (value = "unchecked")
@@ -93,6 +97,9 @@ public class HighscoresViewTest extends ApplicationTest {
         }
     }
 
+    /**
+     * Tests switching scenes, by pressing the "Back"-button.
+     */
     @Test
     public void testGoBack() throws IOException {
         Node button = getElementById("#backButton");
