@@ -21,9 +21,7 @@ public class Minesweeper {
      * @param difficulty the difficulty of minesweeper
      */
     public Minesweeper(final Difficulty difficulty) {
-        minefield = new Minefield(difficulty.getWidth(), difficulty.getWidth());
-        isLost = false;
-        isWon = false;
+        this(difficulty.getWidth(), difficulty.getHeight());
     }
 
     /**

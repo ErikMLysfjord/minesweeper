@@ -10,7 +10,7 @@ public enum Difficulty {
     private final int mineCount;
 
     /**
-     * A helping constructor for difficulty.
+     * A constructor for difficulty.
      * @param width the width for difficulty
      * @param height the height for difficulty
      * @param mineCount the amount of mines for difficulty

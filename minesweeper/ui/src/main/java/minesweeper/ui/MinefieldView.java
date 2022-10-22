@@ -40,13 +40,10 @@ public class MinefieldView {
 
     /**
      * Constructor for the minefield view.
-     * @param difficulty the difficukty of the minefield
+     * @param difficulty the difficulty of the minefield
      */
     public MinefieldView(final Difficulty difficulty) {
-        this.width = difficulty.getWidth();
-        this.height = difficulty.getHeight();
-        createButtons();
-        createImages();
+        this(difficulty.getWidth(), difficulty.getHeight());
     }
 
     /**
