@@ -27,6 +27,17 @@ public class Minesweeper {
         gameIsStarted = false;
         this.mineCount = mineCount;
     }
+    /**
+     * Constructor for Minesweeper.
+     * @param difficulty the difficulty of minesweeper
+     */
+    public Minesweeper(final Difficulty difficulty) {
+        this(
+            difficulty.getWidth(),
+            difficulty.getHeight(),
+            difficulty.getMineCount()
+        );
+    }
 
     /**
      * Checks whether the square has a mine or not.
@@ -123,6 +134,22 @@ public class Minesweeper {
         for (Action action : onWinActions) {
             action.run();
         }
+    }
+
+    /**
+     * Gets width of minefield.
+     * @return width of minefield
+     */
+    public int getWidth() {
+        return minefield.getWidth();
+    }
+
+    /**
+     * Gets height of minefield.
+     * @return height of minefield
+     */
+    public int getHeight() {
+        return minefield.getHeight();
     }
 
 }

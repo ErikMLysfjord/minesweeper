@@ -1,5 +1,6 @@
 package minesweeper.ui;
 
+import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
 import minesweeper.json.FileHandler;
@@ -11,12 +12,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
-
-    //Minefield dimensions
-    public static final int MINEFIELD_WIDTH = 9;
-    public static final int MINEFIELD_HEIGHT = 9;
-    public static final int MINEFIELD_MINE_COUNT = 10;
-
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
 
@@ -37,16 +32,12 @@ public class MinesweeperController {
         fileHandler = new FileHandler();
 
         //Set up minesweeper model
-        minesweeper = new Minesweeper(
-            MINEFIELD_WIDTH,
-            MINEFIELD_HEIGHT,
-            MINEFIELD_MINE_COUNT
-        );
+        minesweeper = new Minesweeper(Difficulty.EASY);
         minesweeper.addOnLoss(() -> handleLoss());
         minesweeper.addOnWin(() -> handleWin());
 
         //Set up minesweeper ui
-        minefieldView = new MinefieldView(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minefieldView = new MinefieldView(Difficulty.EASY);
         minefieldView.addToGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
             handleClickedSquare(mouseEvent)
@@ -134,8 +125,8 @@ public class MinesweeperController {
      * Called from minesweeper when the game is lost.
      */
     private void handleLoss() {
-        for (int y = 0; y < MINEFIELD_HEIGHT; y++) {
-            for (int x = 0; x < MINEFIELD_WIDTH; x++) {
+        for (int y = 0; y < minesweeper.getHeight(); y++) {
+            for (int x = 0; x < minesweeper.getWidth(); x++) {
                 if (minesweeper.hasMine(x, y)) {
                     minefieldView.setBombImage(x, y);
                 }

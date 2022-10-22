@@ -216,4 +216,20 @@ public class Minefield {
         return getSquare(x, y).isOpened();
     }
 
+    /**
+     * Gets width of Minefield.
+     * @return width of Minefield
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * Gets height of Minefield.
+     * @return height of Minefield
+     */
+    public int getHeight() {
+        return height;
+    }
+
 }
