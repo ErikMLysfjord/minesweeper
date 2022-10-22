@@ -31,19 +31,31 @@ public class MinesweeperController {
     private void initialize() {
         fileHandler = new FileHandler();
 
-        //Set up minesweeper model
+        setupMinesweeper();
+        setupMinefieldView();
+    }
+
+    /**
+     * Set up minesweeper model.
+     */
+    private void setupMinesweeper() {
         minesweeper = new Minesweeper(Difficulty.EASY);
         minesweeper.addOnLoss(() -> handleLoss());
         minesweeper.addOnWin(() -> handleWin());
+    }
 
-        //Set up minesweeper ui
+    /**
+     * Set up MinefieldView.
+     */
+    private void setupMinefieldView() {
         minefieldView = new MinefieldView(Difficulty.EASY);
-        minefieldView.addToGridPane(minefieldGridPane);
+        minefieldView.bindGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
             handleClickedSquare(mouseEvent)
         );
+        minefieldGridPane.setGridLinesVisible(false); //necessary
         minefieldGridPane.setGridLinesVisible(true);
-    }
+    };
 
     /**
      * Restarts the minesweeper game.
@@ -51,7 +63,8 @@ public class MinesweeperController {
      */
     @FXML
     private void handleRestart() {
-        //TODO
+        setupMinesweeper();
+        setupMinefieldView();
     }
 
     /**

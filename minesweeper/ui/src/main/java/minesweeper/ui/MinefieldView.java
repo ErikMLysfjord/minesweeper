@@ -25,7 +25,6 @@ public class MinefieldView {
     private final Image flagImage =
         new Image(getClass().getResourceAsStream("flag.png"));
 
-
     //Index corresponds to the number of adjacent mines.
     private final Image[] openedSquareImages = {
         new Image(getClass().getResourceAsStream("opened0.png")) // blank
@@ -115,10 +114,13 @@ public class MinefieldView {
     }
 
     /**
-     * Adds images and buttons to GridPane.
-     * @param minefieldGridPane gets images and buttons added to it
+     * Sets the the images and buttons of MinefieldView in GridPane.
+     * GridPane gets its previous children removed.
+     * @param minefieldGridPane gets images and buttons set to it
      */
-    public void addToGridPane(final GridPane minefieldGridPane) {
+    public void bindGridPane(final GridPane minefieldGridPane) {
+        //Reset GridPane
+        minefieldGridPane.getChildren().clear();
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 Button squareButton = getButton(x, y);
