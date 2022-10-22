@@ -152,4 +152,16 @@ public class Minesweeper {
         return minefield.getHeight();
     }
 
+    /**
+     * Gets the amount of mines adjacent
+     * to the square on the coordinate.
+     * Including diagonal squares.
+     * @param x x-coordinate of square
+     * @param y y-coordinate of square
+     * @return amount of adjacent mines
+     */
+    public int getAdjacentMines(final int x, final int y) {
+        return 0;
+    }
+
 }

@@ -54,4 +54,22 @@ public class MinesweeperTest {
         }
         Assertions.assertFalse(isLost);
     }
+
+    @Test
+    public void testAdjacentMines() {
+        /*
+            [0,0,2,m]
+            [0,0,3,m]
+            [2,3,5,m]
+            [m,m,m,m]
+         */
+        minesweeper.openSquare(1, 1);
+        Assertions.assertEquals(0, minesweeper.getAdjacentMines(1, 1));
+        minesweeper.openSquare(0, 2);
+        Assertions.assertEquals(2, minesweeper.getAdjacentMines(0, 2));
+        minesweeper.openSquare(1, 2);
+        Assertions.assertEquals(3, minesweeper.getAdjacentMines(1, 2));
+        minesweeper.openSquare(2, 2);
+        Assertions.assertEquals(5, minesweeper.getAdjacentMines(2, 2));
+    }
 }
