@@ -15,6 +15,7 @@ public class MinesweeperController {
     //Minefield dimensions
     public static final int MINEFIELD_WIDTH = 9;
     public static final int MINEFIELD_HEIGHT = 9;
+    public static final int MINEFIELD_MINE_COUNT = 10;
 
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
@@ -36,7 +37,11 @@ public class MinesweeperController {
         fileHandler = new FileHandler();
 
         //Set up minesweeper model
-        minesweeper = new Minesweeper(MINEFIELD_WIDTH, MINEFIELD_HEIGHT);
+        minesweeper = new Minesweeper(
+            MINEFIELD_WIDTH,
+            MINEFIELD_HEIGHT,
+            MINEFIELD_MINE_COUNT
+        );
         minesweeper.addOnLoss(() -> handleLoss());
         minesweeper.addOnWin(() -> handleWin());
 

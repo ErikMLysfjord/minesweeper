@@ -124,18 +124,77 @@ public class Minefield {
      * Puts mines into random positions in minefield.
      * Stops when the number of mines in the grid equals mineCount.
      * @param mineCount the number of mines to be placed in the grid
+     * @param safeX x-coordinate of the first square opened
+     * @param safeY y-coordinate of the first square opened
      */
-    public void initializeMines(final int mineCount) {
+    public void initializeMines(
+        final int mineCount,
+        final int safeX,
+        final int safeY
+    ) {
+        if (mineCount < 0) {
+            throw new IllegalArgumentException("mineCount can't be negative.");
+        }
+        if (isOutOfBounds(safeX, safeY)) {
+            throw new IllegalArgumentException(
+                "Coordinates are out of bounds."
+            );
+        }
+        int availableSquares = width * height - safeSquareCount(safeX, safeY);
+        if (mineCount > availableSquares) {
+            throw new IllegalStateException(
+                "Not enough available squares for the mines."
+            );
+        }
+
         Random rand = new Random();
         int i = 0;
         while (i < mineCount) {
             int x = rand.nextInt(width);
             int y = rand.nextInt(height);
-            if (!hasMine(x, y)) {
+            if (!hasMine(x, y) && !isSafeSquare(x, y, safeX, safeY)) {
                 placeMine(x, y);
                 i++;
             }
         }
+    }
+
+    /**
+     * The amount of safe squares from coordinate.
+     * This isn't always 9, since coordinates might
+     * touch the edges of the board.
+     * @param safeX center x-coordinate of the safe squares
+     * @param safeY center y-coordinate of the safe squares
+     * @return the amount of safe squares
+     */
+    private int safeSquareCount(final int safeX, final int safeY) {
+        int x1 = Math.max(safeX - 1, 0);
+        int y1 = Math.max(safeY - 1, 0);
+        int x2 = Math.min(safeX + 1, width - 1);
+        int y2 = Math.min(safeY + 1, height - 1);
+        return (x2 - x1 + 1) * (y2 - y1 + 1);
+    }
+
+    /**
+     * Checks if a coordinate is in the safe zone, determined
+     * by the center coordinate of the safe squares.
+     * @param x x-coordinate of the square that is checked
+     * @param y y-coordinate of the square that is checked
+     * @param safeX center x-coordinate of the safe squares
+     * @param safeY center y-coordinate of the safe squares
+     * @return whether or not the square is safe
+     */
+    private boolean isSafeSquare(
+        final int x,
+        final int y,
+        final int safeX,
+        final int safeY
+    ) {
+        return
+            x >= safeX - 1
+            && x <= safeX + 1
+            && y >= safeY - 1
+            && y <= safeY + 1;
     }
 
     /**
