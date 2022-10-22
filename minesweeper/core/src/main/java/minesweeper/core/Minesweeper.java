@@ -161,7 +161,23 @@ public class Minesweeper {
      * @return amount of adjacent mines
      */
     public int getAdjacentMines(final int x, final int y) {
-        return 0;
+        int adjacentMines = 0;
+        int[] offsets = {-1, 0, 1};
+        for (int offsetY : offsets) {
+            for (int offsetX : offsets) {
+                if (offsetX == 0 && offsetY == 0) {
+                    continue;
+                }
+                int adjX = x + offsetX;
+                int adjY = y + offsetY;
+                if (!minefield.isOutOfBounds(adjX, adjY)
+                    && minefield.hasMine(adjX, adjY)
+                ) {
+                    adjacentMines++;
+                }
+            }
+        }
+        return adjacentMines;
     }
 
 }

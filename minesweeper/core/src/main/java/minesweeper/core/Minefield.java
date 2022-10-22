@@ -74,7 +74,7 @@ public class Minefield {
      * @param y y-coordinates
      * @return whether the coordinates are out of bounds or not
      */
-    private boolean isOutOfBounds(final int x, final int y) {
+    public boolean isOutOfBounds(final int x, final int y) {
         return
             x < 0
             || x >= width
