@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import minesweeper.core.Difficulty;
 
-public class MinefieldViewTest extends ApplicationTest {
+public class MinesweeperSceneTest extends ApplicationTest {
 
     private Parent root;
 
@@ -76,6 +76,14 @@ public class MinefieldViewTest extends ApplicationTest {
         Assertions.assertFalse(nodeExists("#image00opened0"));
         clickOn(button, MouseButton.PRIMARY);
         Assertions.assertTrue(nodeExists("#image00opened0"));
+    }
+
+    @Test
+    public void testRestart() {
+        clickOn("#button00");
+        Assertions.assertTrue(nodeExists("#image00opened0"));
+        clickOn("#restart");
+        Assertions.assertFalse(nodeExists("#image00opened0"));
     }
 
 }
