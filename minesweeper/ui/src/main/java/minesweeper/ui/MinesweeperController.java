@@ -49,6 +49,7 @@ public class MinesweeperController {
     private void setupMinesweeper() {
         minesweeper = new Minesweeper(Difficulty.EASY);
         minesweeper.addOnLoss(() -> handleLoss());
+        minesweeper.addOnLoss(() -> showLoss());
         minesweeper.addOnWin(() -> handleWin());
     }
 
@@ -153,8 +154,15 @@ public class MinesweeperController {
                 }
             }
         }
-
     }
+
+    /**
+     * Displays an alert saying the game is lost.
+     */
+    private void showLoss() {
+        minefieldView.showLoss();
+    }
+
     /**
      * Changes the scene from the minesweeper-game to the highscore-list-page.
      * @param event mouse-click that initializes the function
@@ -177,5 +185,4 @@ public class MinesweeperController {
             alert.show();
         }
     }
-
 }
