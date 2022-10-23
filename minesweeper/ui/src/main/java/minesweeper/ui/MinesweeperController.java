@@ -78,7 +78,10 @@ public class MinesweeperController {
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
         if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
-            minefieldView.setOpenedSquareImage(x, y, 0);
+            minefieldView.setOpenedSquareImage(
+                x, y,
+                minesweeper.getAdjacentMines(x, y)
+            );
         }
     }
 
