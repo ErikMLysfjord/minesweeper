@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import minesweeper.core.Difficulty;
 
-public class MinefieldViewTest extends ApplicationTest {
+public class MinesweeperSceneTest extends ApplicationTest {
 
     private Parent root;
     private Stage stage;
@@ -91,6 +91,14 @@ public class MinefieldViewTest extends ApplicationTest {
 
         Scene currentScene = stage.getScene();
         Assertions.assertNotEquals(initialScene, currentScene);
+    }
+
+    @Test
+    public void testRestart() {
+        clickOn("#button00");
+        Assertions.assertTrue(nodeExists("#image00opened0"));
+        clickOn("#restart");
+        Assertions.assertFalse(nodeExists("#image00opened0"));
     }
 
 }
