@@ -24,7 +24,7 @@ public class HighscoresController {
     private HighscoresView highscoresView;
 
     @FXML
-    private TableView<HighscoreEntry> highscoresList;
+    private TableView<HighscoreEntry> highscores;
     @FXML
     private TableColumn<HighscoreEntry, String> name;
     @FXML
@@ -61,7 +61,7 @@ public class HighscoresController {
     @FXML
     private void initialize() {
         highscoresView = new HighscoresView();
-        highscoresView.setCells(highscoresList, name, score, getHighScores());
+        highscoresView.setCells(highscores, name, score, getHighScores());
     }
 
     /**
@@ -69,12 +69,12 @@ public class HighscoresController {
      * @return the observable list made
      */
     private ObservableList<HighscoreEntry> getHighScores() {
-        ObservableList<HighscoreEntry> highscores =
+        ObservableList<HighscoreEntry> list =
             FXCollections.observableArrayList();
         for (HighscoreEntry entry : highscoreList) {
-            highscores.add(entry);
+            list.add(entry);
         }
-        return highscores;
+        return list;
     }
 
     /**

@@ -61,7 +61,7 @@ public class HighscoresViewTest extends ApplicationTest {
     @SuppressWarnings (value = "unchecked")
     private TableColumn<HighscoreEntry, String> getNames() {
         TableView<HighscoreEntry> list = (TableView<HighscoreEntry>) 
-            getElementById("#highscoresList");
+            getElementById("#highscores");
 
         return (TableColumn<HighscoreEntry, String>) list.getColumns().get(0);
     }
@@ -75,7 +75,7 @@ public class HighscoresViewTest extends ApplicationTest {
     @SuppressWarnings (value = "unchecked")
     private TableColumn<HighscoreEntry, Integer> getScores() {
         TableView<HighscoreEntry> list = (TableView<HighscoreEntry>) 
-            getElementById("#highscoresList");
+            getElementById("#highscores");
 
         return (TableColumn<HighscoreEntry, Integer>) list.getColumns().get(1);
     }
