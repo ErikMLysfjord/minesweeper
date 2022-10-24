@@ -153,8 +153,9 @@ public class MinesweeperController {
                 }
             }
         }
-
+        minefieldView.showLoss();
     }
+
     /**
      * Changes the scene from the minesweeper-game to the highscore-list-page.
      * @param event mouse-click that initializes the function
@@ -177,5 +178,4 @@ public class MinesweeperController {
             alert.show();
         }
     }
-
 }

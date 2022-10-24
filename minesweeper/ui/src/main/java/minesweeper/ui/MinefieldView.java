@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -200,4 +202,17 @@ public class MinefieldView {
         ));
     }
 
+    /**
+     * Displays an alert saying the game is lost.
+     */
+    public void showLoss() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Game over");
+        alert.setHeaderText("You lost");
+        alert.setContentText("You hit a bomb! Try again?");
+        alert.setGraphic(new ImageView(getClass().
+            getResource("sad-face.png").toString())
+        );
+        alert.show();
+    }
 }
