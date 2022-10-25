@@ -4,21 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 import minesweeper.json.FileHandler;
 
 public class HighscoresController {
+    private SceneSwitcher sceneSwitcher;
     private FileHandler fileHandler;
     private HighscoreList highscoreList;
     private HighscoresView highscoresView;
@@ -78,28 +72,20 @@ public class HighscoresController {
     }
 
     /**
+     * Sets the sceneSwitcher that will be used to switch scenes.
+     * @param sceneSwitcher the sceneSwitcher
+     */
+    public void setSceneSwitcher(final SceneSwitcher sceneSwitcher) {
+        this.sceneSwitcher = sceneSwitcher;
+    }
+
+    /**
      * Method for returning from the highscore-page back to the
      * minesweeper-game.
      * @param event
      */
     @FXML
     private void goBack(final ActionEvent event) {
-        try {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().
-                getWindow();
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource(
-                "Minesweeper.fxml"
-            ))));
-            stage.getScene().getStylesheets().add(getClass().getResource(
-                "style.css").
-                toExternalForm()
-            );
-            stage.show();
-
-        } catch (Exception e) {
-            Alert alert = new Alert(AlertType.ERROR, e.getMessage(),
-            ButtonType.OK);
-            alert.show();
-        }
+        sceneSwitcher.setMinesweeper();
     }
 }
