@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -25,10 +24,6 @@ public class MinesweeperController {
 
     private MinefieldView minefieldView;
 
-    @FXML
-    private TextField text;
-    @FXML
-    private TextField score;
     @FXML
     private GridPane minefieldGridPane;
 
@@ -121,16 +116,14 @@ public class MinesweeperController {
 
     /**
      * Writes the user-input highscore list in data.json.
-     * Called when submit-button is pressed.
+     * Called when save-button is pressed.
+     * @param name the name of the user
+     * @param score the score of the user
      */
-    @FXML
-    private void handleSubmit() {
-        String name = text.getText();
-        String scoreTxt = score.getText();
-
+    private void handleSaveScore(final String name, final String score) {
         fileHandler.saveScore(new HighscoreEntry(
             name,
-            Integer.parseInt(scoreTxt)
+            Integer.parseInt(score)
         ));
 
     }
