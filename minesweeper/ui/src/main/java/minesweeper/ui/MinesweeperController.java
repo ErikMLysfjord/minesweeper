@@ -4,6 +4,10 @@ import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
 import minesweeper.json.FileHandler;
+
+import java.util.Optional;
+import java.util.Random;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -25,10 +30,6 @@ public class MinesweeperController {
 
     private MinefieldView minefieldView;
 
-    @FXML
-    private TextField text;
-    @FXML
-    private TextField score;
     @FXML
     private GridPane minefieldGridPane;
 
@@ -124,16 +125,14 @@ public class MinesweeperController {
 
     /**
      * Writes the user-input highscore list in data.json.
-     * Called when submit-button is pressed.
+     * Called when save-button is pressed.
+     * @param name the name of the user
+     * @param score the score of the user
      */
-    @FXML
-    private void handleSubmit() {
-        String name = text.getText();
-        String scoreTxt = score.getText();
-
+    private void handleSaveScore(final String name, final Integer score) {
         fileHandler.saveScore(new HighscoreEntry(
             name,
-            Integer.parseInt(scoreTxt)
+            score
         ));
 
     }
@@ -142,7 +141,48 @@ public class MinesweeperController {
      * Called from minesweeper when the game is won.
      */
     private void handleWin() {
+        Alert winAlert = new Alert(AlertType.INFORMATION);
+        winAlert.setContentText(
+            "You did it, congrats! Do you wish to save your score?"
+        );
+        winAlert.setTitle("Well done!");
+        winAlert.setHeaderText("You won!");
+        winAlert.setGraphic(new ImageView(getClass().
+            getResource("happy-face.png").toString())
+        );
+        ButtonType yes = new ButtonType("Yes");
+        ButtonType no = new ButtonType("No");
+        winAlert.getButtonTypes().setAll(no, yes);
 
+        Optional<ButtonType> answer = winAlert.showAndWait();
+        if (answer.get() == yes) {
+            handleInput();
+        }
+    }
+
+    /**
+     * Method for handling the name-input when a player has won.
+     * The method sends in a random score, as we haven't
+     * implemented a scoring-system yet.
+     */
+    private void handleInput() {
+        TextInputDialog td = new TextInputDialog("Ola Nordmann");
+        td.setContentText("Input your name");
+        td.setHeaderText("Save score");
+        td.setTitle("Save score");
+        td.setGraphic(new ImageView(getClass().
+            getResource("happy-face.png").toString())
+        );
+        Optional<String> name = td.showAndWait();
+        while (name.isPresent() && name.get().length() < 2) {
+            td.setContentText(
+                "Your name must be longer than 2 characters."
+            );
+            name = td.showAndWait();
+        }
+        if (name.isPresent()) {
+            handleSaveScore(name.get(), new Random().nextInt());
+        }
     }
 
     /**
