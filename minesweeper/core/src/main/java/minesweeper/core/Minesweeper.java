@@ -7,6 +7,7 @@ public class Minesweeper {
     private final Minefield minefield;
     private List<Action> onWinActions;
     private List<Action> onLossActions;
+    private List<Action> onStartActions;
     private boolean gameIsStarted;
     private final int mineCount;
 
@@ -24,6 +25,7 @@ public class Minesweeper {
         minefield = new Minefield(width, height);
         onWinActions = new ArrayList<>();
         onLossActions = new ArrayList<>();
+        onStartActions = new ArrayList<>();
         gameIsStarted = false;
         this.mineCount = mineCount;
     }
@@ -74,21 +76,18 @@ public class Minesweeper {
      * Loses the game if it had a mine.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
-     * @return whether the square is the first square clicked or not.
      */
-    public Boolean openSquare(final int x, final int y) {
-        Boolean start = false;
+    public void openSquare(final int x, final int y) {
         if (!gameIsStarted) {
             gameIsStarted = true;
             minefield.initializeMines(mineCount, x, y);
-            start = true;
+            start();
         }
 
         minefield.openSquare(x, y);
         if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
             lose();
         }
-        return start;
     }
 
     /**
@@ -120,6 +119,10 @@ public class Minesweeper {
         onLossActions.add(action);
     }
 
+    public void addOnStart(final Action action) {
+        onStartActions.add(action);
+    }
+
     /**
      * Takes all actions that have been registered
      * to be taken when the game is lost.
@@ -136,6 +139,12 @@ public class Minesweeper {
      */
     private void win() {
         for (Action action : onWinActions) {
+            action.run();
+        }
+    }
+
+    private void start() {
+        for (Action action : onStartActions) {
             action.run();
         }
     }

@@ -45,6 +45,7 @@ public class MinesweeperController {
 
         setupMinesweeper();
         setupMinefieldView();
+        handleTimer();
     }
 
     /**
@@ -79,7 +80,7 @@ public class MinesweeperController {
         timer.addOnSecond(() ->
             timerText.setText(timer.getSeconds() + "")
         );
-        timer.start();
+        minesweeper.addOnStart(() -> timer.start());
     }
 
     /**
@@ -91,6 +92,7 @@ public class MinesweeperController {
         setupMinesweeper();
         setupMinefieldView();
         timer.stop();
+        handleTimer();
     }
 
     /**
@@ -115,9 +117,7 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
-        if (minesweeper.openSquare(x, y)) {
-            handleTimer();
-        }
+        minesweeper.openSquare(x, y);
         if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
             minefieldView.setOpenedSquareImage(x, y, 0);
         }
