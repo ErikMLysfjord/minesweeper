@@ -48,7 +48,7 @@ public class MinesweeperSceneTest extends ApplicationTest {
         clickOn(button, MouseButton.SECONDARY);
         Assertions.assertTrue(nodeExists("#image00flag"));
         clickOn(button, MouseButton.SECONDARY);
-        //Assertions.assertFalse(nodeExists("#image00flag"));
+        Assertions.assertFalse(nodeExists("#image00flag"));
     }
 
     @Test

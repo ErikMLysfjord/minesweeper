@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,15 +32,10 @@ public class HighscoresViewTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-            "Highscores.fxml")
-        );
-        fxmlLoader.setController(new HighscoresController(highscoreList));
-        root = fxmlLoader.load();
-        Scene scene = new Scene(root);
-        this.initialScene = scene;
-        stage.setScene(scene);
-        stage.show();
+        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        sceneSwitcher.setHighscores(highscoreList);
+        initialScene = stage.getScene();
+        root = initialScene.getRoot();
     }
 
     public Parent getRootNode() {

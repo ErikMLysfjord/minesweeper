@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import minesweeper.core.HighscoreList;
 
 public class SceneSwitcher {
     private final Stage stage;
@@ -14,7 +15,7 @@ public class SceneSwitcher {
      * Controller for SceneSwitcher.
      * @param stage the stage where scenes are shown
      */
-    public SceneSwitcher(Stage stage) {
+    public SceneSwitcher(final Stage stage) {
         this.stage = stage;
     }
 
@@ -44,13 +45,15 @@ public class SceneSwitcher {
 
     /**
      * Creates and displays a new highscores scene.
+     * @param highscoreList the highscore list to be displayed in the scene
      */
-    public void setHighscores() {
+    public void setHighscores(final HighscoreList highscoreList) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass()
                 .getResource("Highscores.fxml")
             );
-            HighscoresController controller = new HighscoresController();
+            HighscoresController controller =
+                new HighscoresController(highscoreList);
             controller.setSceneSwitcher(this);
             fxmlLoader.setController(controller);
             stage.setScene(new Scene(fxmlLoader.load()));

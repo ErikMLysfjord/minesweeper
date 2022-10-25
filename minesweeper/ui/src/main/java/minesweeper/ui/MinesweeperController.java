@@ -167,6 +167,6 @@ public class MinesweeperController {
      */
     @FXML
     private void showHighscores(final ActionEvent event) {
-        sceneSwitcher.setHighscores();
+        sceneSwitcher.setHighscores(fileHandler.readHighscoreList());
     }
 }

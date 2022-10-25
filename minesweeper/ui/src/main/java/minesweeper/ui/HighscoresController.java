@@ -9,11 +9,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
-import minesweeper.json.FileHandler;
 
 public class HighscoresController {
     private SceneSwitcher sceneSwitcher;
-    private FileHandler fileHandler;
     private HighscoreList highscoreList;
     private HighscoresView highscoresView;
 
@@ -27,22 +25,12 @@ public class HighscoresController {
     private Button backButton;
 
     /**
-     * Constructs a highscore-controller that reads highscores from file.
-     */
-    public HighscoresController() {
-        fileHandler = new FileHandler();
-        highscoreList = fileHandler.readHighscoreList();
-    }
-
-    /**
      * Constructs a highscore-controller that won't read highscores from file.
      * Copies elements from a pre-made highscorelist into a new Highscore-list,
      * so the highscores cant be mutated externally.
      * @param highscoreList a pre-made highscorelist
      */
     public HighscoresController(final HighscoreList highscoreList) {
-        fileHandler = new FileHandler();
-
         this.highscoreList = new HighscoreList(highscoreList.getMaxSize());
         for (HighscoreEntry entry : highscoreList) {
             this.highscoreList.addEntry(entry);
