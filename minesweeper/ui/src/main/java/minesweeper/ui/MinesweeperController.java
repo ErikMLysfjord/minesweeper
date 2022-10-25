@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -143,6 +144,9 @@ public class MinesweeperController {
         );
         winAlert.setTitle("Well done!");
         winAlert.setHeaderText("You won!");
+        winAlert.setGraphic(new ImageView(getClass().
+            getResource("happy-face.png").toString())
+        );
         ButtonType yes = new ButtonType("Yes");
         ButtonType no = new ButtonType("No");
         winAlert.getButtonTypes().setAll(no, yes);
@@ -162,12 +166,15 @@ public class MinesweeperController {
         TextInputDialog td = new TextInputDialog("Ola Nordmann");
         td.setContentText("Input your name");
         td.setHeaderText("Save score");
+        td.setTitle("Save score");
+        td.setGraphic(new ImageView(getClass().
+            getResource("happy-face.png").toString())
+        );
         Optional<String> name = td.showAndWait();
         while (name.isPresent() && name.get().length() < 2) {
             td.setContentText(
-                "Input your name. \nYour name must be longer than 2 characters."
+                "Your name must be longer than 2 characters."
             );
-            td.setHeaderText("Save score");
             name = td.showAndWait();
         }
         if (name.isPresent()) {
