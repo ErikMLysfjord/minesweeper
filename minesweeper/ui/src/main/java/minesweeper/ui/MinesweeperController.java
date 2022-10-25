@@ -69,11 +69,17 @@ public class MinesweeperController {
         minefieldGridPane.setGridLinesVisible(true);
     };
 
+    /**
+     * Sets the timer to a new timer,
+     * adds the action to be executed on second,
+     * and starts the timer.
+     */
     private void handleTimer() {
         timer = new Timer();
-        timer.addOnSecond(() -> timerText.setText(timer.getSeconds()+""));
+        timer.addOnSecond(() ->
+            timerText.setText(timer.getSeconds() + "")
+        );
         timer.start();
-        
     }
 
     /**

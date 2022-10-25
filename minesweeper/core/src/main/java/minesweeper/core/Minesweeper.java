@@ -74,6 +74,7 @@ public class Minesweeper {
      * Loses the game if it had a mine.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
+     * @return whether the square is the first square clicked or not.
      */
     public Boolean openSquare(final int x, final int y) {
         Boolean start = false;
