@@ -10,7 +10,8 @@
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.ui.MinesweeperController">
    <children>
       <Button fx:id="restart" layoutX="375.0" layoutY="450.0" onAction="#handleRestart" text="Restart" />
-      <Label fx:id="highscore" layoutX="375.0" layoutY="50" text="Highscore" />
+      <Label fx:id="theScore" layoutX="375.0" layoutY="50" text="score" />
+      <Text fx:id="timerText" layoutX="385.0" layoutY="90" />
 
       <GridPane fx:id="minefieldGridPane" alignment="CENTER" layoutX="287.5" layoutY="137.5">
 

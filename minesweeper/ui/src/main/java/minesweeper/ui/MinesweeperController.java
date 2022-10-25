@@ -17,11 +17,13 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MinesweeperController {
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
+    private Timer timer;
 
     private MinefieldView minefieldView;
 
@@ -31,6 +33,8 @@ public class MinesweeperController {
     private TextField score;
     @FXML
     private GridPane minefieldGridPane;
+    @FXML
+    private Text timerText;
 
     /**
      * Initializes the minesweeper model and minefield view.
@@ -65,6 +69,13 @@ public class MinesweeperController {
         minefieldGridPane.setGridLinesVisible(true);
     };
 
+    private void handleTimer() {
+        timer = new Timer();
+        timer.addOnSecond(() -> timerText.setText(timer.getSeconds()+""));
+        timer.start();
+        
+    }
+
     /**
      * Restarts the minesweeper game.
      * Called from restart button.
@@ -73,6 +84,7 @@ public class MinesweeperController {
     private void handleRestart() {
         setupMinesweeper();
         setupMinefieldView();
+        timer.stop();
     }
 
     /**
@@ -97,7 +109,9 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
-        minesweeper.openSquare(x, y);
+        if (minesweeper.openSquare(x, y)) {
+            handleTimer();
+        }
         if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
             minefieldView.setOpenedSquareImage(x, y, 0);
         }
@@ -139,7 +153,7 @@ public class MinesweeperController {
      * Called from minesweeper when the game is won.
      */
     private void handleWin() {
-
+        timer.stop();
     }
 
     /**
@@ -153,6 +167,7 @@ public class MinesweeperController {
                 }
             }
         }
+        timer.stop();
         minefieldView.showLoss();
     }
 

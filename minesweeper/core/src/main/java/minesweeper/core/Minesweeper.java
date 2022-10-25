@@ -75,16 +75,19 @@ public class Minesweeper {
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
      */
-    public void openSquare(final int x, final int y) {
+    public Boolean openSquare(final int x, final int y) {
+        Boolean start = false;
         if (!gameIsStarted) {
             gameIsStarted = true;
             minefield.initializeMines(mineCount, x, y);
+            start = true;
         }
 
         minefield.openSquare(x, y);
         if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
             lose();
         }
+        return start;
     }
 
     /**
