@@ -15,38 +15,18 @@ import minesweeper.json.internal.HighscoreListSerializer;
 
 public class FileHandler {
     private final ObjectMapper mapper;
-    private final File highscoreListFile;
     private final File dir = new File(
         "../core/src/main/resources/minesweeper/json/"
+    );
+    private final File highscoreListFile = new File(
+    "../core/src/main/resources/minesweeper/json/highscoreList.json"
     );
 
     /**
      * Constructor for FileHandler.
      */
     public FileHandler() {
-        highscoreListFile = new File(
-            "../core/src/main/resources/minesweeper/json/highscoreList.json"
-        );
-        mapper = registerModule(new ObjectMapper());
-    }
-
-    /**
-     * Constructor for FileHandler, which takes in an address.
-     * @param address the address for which file to handle
-     */
-    public FileHandler(final String address) {
-        highscoreListFile = new File(address);
-        mapper = registerModule(new ObjectMapper());
         makeFile();
-        setEmptyList();
-    }
-
-    /**
-     * Registers modules to the mapper.
-     * @param objMapper the mapper which will get modules registered
-     * @return the mapper, with modules registered
-     */
-    private ObjectMapper registerModule(final ObjectMapper objMapper) {
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.addDeserializer(
             HighscoreEntry.class,
@@ -64,8 +44,13 @@ public class FileHandler {
             HighscoreList.class,
             new HighscoreListSerializer()
         );
-        objMapper.registerModule(simpleModule);
-        return objMapper;
+
+        mapper = new ObjectMapper();
+        mapper.registerModule(simpleModule);
+
+        if (highscoreListFile.length() == 0) {
+            setEmptyList();
+        }
     }
 
     /**
@@ -87,6 +72,10 @@ public class FileHandler {
      * @return highscore list in data.json
      */
     public HighscoreList readHighscoreList() {
+        makeFile();
+        if (highscoreListFile.length() == 0) {
+            setEmptyList();
+        }
         try {
             return mapper.readValue(
                 highscoreListFile,
@@ -110,9 +99,6 @@ public class FileHandler {
         }
     }
 
-    /**
-     * Creates the directories and the highscore-file.
-     */
     private void makeFile() {
         try {
             dir.mkdirs();
@@ -121,4 +107,5 @@ public class FileHandler {
             e.printStackTrace();
         }
     }
+
 }
