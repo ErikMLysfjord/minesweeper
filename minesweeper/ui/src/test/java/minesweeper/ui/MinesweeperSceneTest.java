@@ -54,8 +54,9 @@ public class MinesweeperSceneTest extends ApplicationTest {
         Assertions.assertFalse(nodeExists("#image01flag"));
         moveTo("#button01");
         press(KeyCode.SPACE);
+        release(KeyCode.SPACE);
         Assertions.assertTrue(nodeExists("#image01flag"));
-        press(KeyCode.SPACE);
+        clickOn("#button01", MouseButton.SECONDARY);
         Assertions.assertFalse(nodeExists("#image01flag"));
     }
 

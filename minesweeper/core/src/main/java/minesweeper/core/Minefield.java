@@ -212,7 +212,7 @@ public class Minefield {
      * @param y the y-coordinate of the square
      * @return whether the mine is opened or not
      */
-    public boolean isSquareOpened(final int x, final int y) {
+    public boolean squareIsOpened(final int x, final int y) {
         return getSquare(x, y).isOpened();
     }
 

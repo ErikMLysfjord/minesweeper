@@ -82,7 +82,7 @@ public class Minesweeper {
         }
 
         minefield.openSquare(x, y);
-        if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
+        if (minefield.squareIsOpened(x, y) && minefield.hasMine(x, y)) {
             lose();
         }
     }
@@ -93,8 +93,8 @@ public class Minesweeper {
      * @param y y-coordinate of the square
      * @return whether the square is opened or not
      */
-    public boolean isSquareOpened(final int x, final int y) {
-        return minefield.isSquareOpened(x, y);
+    public boolean squareIsOpened(final int x, final int y) {
+        return minefield.squareIsOpened(x, y);
     }
 
     /**

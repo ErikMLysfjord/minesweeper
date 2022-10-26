@@ -98,7 +98,7 @@ public class MinesweeperController {
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
-        if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
+        if (minesweeper.squareIsOpened(x, y) && !minesweeper.hasMine(x, y)) {
             minefieldView.setOpenedSquareImage(
                 x, y,
                 minesweeper.getAdjacentMines(x, y)
@@ -113,6 +113,29 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleRightClickedSquare(final Integer x, final Integer y) {
+        toggleFlag(x, y);
+    }
+
+    /**
+     * "Spacebaring" a square either toggles flag on unopened squares,
+     * or it opens each square not flagged around an opened square, as
+     * long as the number on the square is satisfied by the flags.
+     * @param x x-coordinates of "spacebared" square
+     * @param y y-coordinates of "spacebared" square
+     */
+    private void handleSpacebarOnSquare(final Integer x, final Integer y) {
+        if (!minesweeper.squareIsOpened(x, y)) {
+            toggleFlag(x, y);
+            return;
+        }
+    }
+
+    /**
+     * Handles toggling flag on square at (x, y).
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void toggleFlag(final Integer x, final Integer y) {
         minesweeper.toggleFlag(x, y);
 
         if (minesweeper.isFlagged(x, y)) {
@@ -120,17 +143,6 @@ public class MinesweeperController {
         } else {
             minefieldView.setBlankImage(x, y);
         }
-    }
-
-    /**
-     * .
-     * @param x
-     * @param y
-     */
-    public void handleSpacebarOnSquare(final Integer x, final Integer y) {
-        System.out.println(x);
-        System.out.println(y);
-        System.out.println();
     }
 
     /**
