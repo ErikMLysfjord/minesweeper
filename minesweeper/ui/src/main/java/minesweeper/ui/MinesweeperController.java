@@ -97,6 +97,15 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
+        openSquare(x, y);
+    }
+
+    /**
+     * Opens square in model, and updates view accordingly.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void openSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
         if (minesweeper.squareIsOpened(x, y) && !minesweeper.hasMine(x, y)) {
             minefieldView.setOpenedSquareImage(
@@ -127,6 +136,11 @@ public class MinesweeperController {
         if (!minesweeper.squareIsOpened(x, y)) {
             toggleFlag(x, y);
             return;
+        }
+
+        Integer[][] safeSquares = minesweeper.safeSquaresAround(x, y);
+        for (Integer[] coords : safeSquares) {
+            openSquare(coords[0], coords[1]);
         }
     }
 

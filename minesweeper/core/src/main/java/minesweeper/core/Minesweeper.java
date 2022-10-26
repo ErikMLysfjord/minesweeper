@@ -180,4 +180,46 @@ public class Minesweeper {
         return adjacentMines;
     }
 
+    /**
+     * Given a square, its number of adjacent mines, and its number of
+     * adjacent flags: Which squares are safe to open?
+     * They might not actually be safe, since it's based on flags.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     * @return array of {x, y} arrays, containing the safe squares.
+     */
+    public Integer[][] safeSquaresAround(final int x, final int y) {
+        if (!squareIsOpened(x, y)) {
+            return new Integer[0][];
+        }
+        int adjacentMines = getAdjacentMines(x, y);
+        int adjacentFlags = 0;
+        List<Integer[]> safeSquares = new ArrayList<>();
+
+        int[] offsets = {-1, 0, 1};
+        for (int offsetY : offsets) {
+            for (int offsetX : offsets) {
+                if (offsetX == 0 && offsetY == 0) {
+                    continue;
+                }
+                int adjX = x + offsetX;
+                int adjY = y + offsetY;
+                if (minefield.isOutOfBounds(adjX, adjY)) {
+                    continue;
+                }
+                if (minefield.isFlagged(adjX, adjY)) {
+                    adjacentFlags++;
+                } else if (!minefield.squareIsOpened(adjX, adjY)) {
+                    Integer[] coords = {adjX, adjY};
+                    safeSquares.add(coords);
+                }
+            }
+        }
+        if (adjacentFlags != adjacentMines) {
+            return new Integer[0][];
+        }
+        Integer[][] safeSquaresArray = new Integer[safeSquares.size()][];
+        return safeSquares.toArray(safeSquaresArray);
+    }
+
 }
