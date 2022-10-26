@@ -11,7 +11,7 @@ import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
 public class HighscoresController {
-    private SceneSwitcher sceneSwitcher;
+    private SceneManager sceneSwitcher;
     private HighscoreList highscoreList;
     private HighscoresView highscoresView;
 
@@ -63,7 +63,7 @@ public class HighscoresController {
      * Sets the sceneSwitcher that will be used to switch scenes.
      * @param sceneSwitcher the sceneSwitcher
      */
-    public void setSceneSwitcher(final SceneSwitcher sceneSwitcher) {
+    public void setSceneSwitcher(final SceneManager sceneSwitcher) {
         this.sceneSwitcher = sceneSwitcher;
     }
 

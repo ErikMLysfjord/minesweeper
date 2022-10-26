@@ -15,7 +15,7 @@ public class MinesweeperApp extends Application {
      */
     @Override
     public void start(final Stage stage) throws IOException {
-        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        SceneManager sceneSwitcher = new SceneManager(stage);
         sceneSwitcher.setMinesweeper();
     }
 

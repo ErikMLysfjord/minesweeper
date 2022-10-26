@@ -23,7 +23,7 @@ public class MinesweeperSceneTest extends ApplicationTest {
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
-        SceneSwitcher sceneSwitcher = new SceneSwitcher(stage);
+        SceneManager sceneSwitcher = new SceneManager(stage);
         sceneSwitcher.setMinesweeper();
         initialScene = stage.getScene();
         root = initialScene.getRoot();

@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 public class MinesweeperController {
-    private SceneSwitcher sceneSwitcher;
+    private SceneManager sceneSwitcher;
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
 
@@ -157,7 +157,7 @@ public class MinesweeperController {
      * Sets the sceneSwitcher that will be used to switch scenes.
      * @param sceneSwitcher the sceneSwitcher
      */
-    public void setSceneSwitcher(final SceneSwitcher sceneSwitcher) {
+    public void setSceneSwitcher(final SceneManager sceneSwitcher) {
         this.sceneSwitcher = sceneSwitcher;
     }
 
