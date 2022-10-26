@@ -16,6 +16,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -121,6 +123,17 @@ public class MinesweeperController {
     }
 
     /**
+     * .
+     * @param x
+     * @param y
+     */
+    public void handleSpacebarOnSquare(final Integer x, final Integer y) {
+        System.out.println(x);
+        System.out.println(y);
+        System.out.println();
+    }
+
+    /**
      * Writes the user-input highscore list in data.json.
      * Called when save-button is pressed.
      * @param name the name of the user
@@ -212,4 +225,19 @@ public class MinesweeperController {
     private void showHighscores(final ActionEvent event) {
         sceneSwitcher.setHighscores(fileHandler.readHighscoreList());
     }
+
+    /**
+     * Called when a key is released.
+     * Calls handleSpacebarOnSquare(x, y) when the spacebar is released.
+     * @param event the KeyEvent that triggered this method
+     */
+    public void onKeyReleased(final KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
+            Integer[] coords = minefieldView.hoveredSquare();
+            if (coords != null) {
+                handleSpacebarOnSquare(coords[0], coords[1]);
+            }
+        }
+    }
+
 }

@@ -77,6 +77,7 @@ public class MinefieldView {
                 button.setId(String.format(
                     "button%d%d", x, y
                 ));
+                button.setFocusTraversable(false);
                 row.add(button);
             }
             squareButtons.add(row);
@@ -153,6 +154,7 @@ public class MinefieldView {
             }
         }
     }
+
     /**
      * Sets bomb image.
      * @param x x-coordinate of square
@@ -223,4 +225,22 @@ public class MinefieldView {
         );
         alert.show();
     }
+
+    /**
+     * Finds the coordinates of the currently hovered square.
+     * @return the coordinates of the currently hovered square or null
+     * if none are
+     */
+    public Integer[] hoveredSquare() {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (getButton(x, y).isHover()) {
+                    Integer[] coords = {x, y};
+                    return coords;
+                }
+            }
+        }
+        return null;
+    }
+
 }
