@@ -9,6 +9,7 @@ public class Minesweeper {
     private List<Action> onLossActions;
     private boolean gameIsStarted;
     private final int mineCount;
+    private int flagCount;
 
     /**
      * Constructor for Minesweeper.
@@ -26,7 +27,9 @@ public class Minesweeper {
         onLossActions = new ArrayList<>();
         gameIsStarted = false;
         this.mineCount = mineCount;
+        flagCount = 0;
     }
+
     /**
      * Constructor for Minesweeper.
      * @param difficulty the difficulty of minesweeper
@@ -56,6 +59,7 @@ public class Minesweeper {
      */
     public void toggleFlag(final int x, final int y) {
         minefield.toggleFlag(x, y);
+        flagCount += minefield.isFlagged(x, y) ? 1 : -1;
     }
 
     /**
@@ -73,7 +77,7 @@ public class Minesweeper {
      * @return flags left to be placed
      */
     public int flagsLeft() {
-        return 0;
+        return mineCount - flagCount;
     } 
 
     /**
