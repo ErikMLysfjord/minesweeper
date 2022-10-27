@@ -7,12 +7,18 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.ui.MinesweeperController">
    <children>
-      <Button fx:id="restart" layoutX="375.0" layoutY="450.0" onAction="#handleRestart" text="Restart" />
+      <Button fx:id="restart" layoutX="375.0" layoutY="450.0" onAction="#handleRestart" text="Restart" focusTraversable="false" />
       <Label fx:id="highscore" layoutX="375.0" layoutY="50" text="Highscore" />
 
       <GridPane fx:id="minefieldGridPane" alignment="CENTER" layoutX="287.5" layoutY="137.5">
 
       </GridPane>
-      <Button fx:id="checkHighscoresButton" layoutX="681.0" layoutY="450.0" mnemonicParsing="false" onAction="#showHighscores" text="See highscores" />
+      <Button fx:id="checkHighscoresButton"
+              layoutX="681.0"
+              layoutY="450.0"
+              mnemonicParsing="false"
+              onAction="#showHighscores"
+              text="See highscores"
+              focusTraversable="false" />
    </children>
 </AnchorPane>

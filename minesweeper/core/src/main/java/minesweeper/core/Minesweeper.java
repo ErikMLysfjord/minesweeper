@@ -82,7 +82,7 @@ public class Minesweeper {
         }
 
         minefield.openSquare(x, y);
-        if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
+        if (minefield.squareIsOpened(x, y) && minefield.hasMine(x, y)) {
             lose();
         }
     }
@@ -93,8 +93,8 @@ public class Minesweeper {
      * @param y y-coordinate of the square
      * @return whether the square is opened or not
      */
-    public boolean isSquareOpened(final int x, final int y) {
-        return minefield.isSquareOpened(x, y);
+    public boolean squareIsOpened(final int x, final int y) {
+        return minefield.squareIsOpened(x, y);
     }
 
     /**
@@ -178,6 +178,50 @@ public class Minesweeper {
             }
         }
         return adjacentMines;
+    }
+
+    /**
+     * If adjacent flag count is equal to the adjacent mine count,
+     * the rest of the adjacent, unopened squares should be safe (if the flags
+     * are correct). This method returns the coordinates of these safe squares.
+     * If the adjacent mine and flag counts don't match, the array will be
+     * empty.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     * @return array of {x, y} arrays, containing the safe squares.
+     */
+    public Integer[][] safeSquaresAround(final int x, final int y) {
+        if (!squareIsOpened(x, y)) {
+            return new Integer[0][];
+        }
+        int adjacentMines = getAdjacentMines(x, y);
+        int adjacentFlags = 0;
+        List<Integer[]> safeSquares = new ArrayList<>();
+
+        int[] offsets = {-1, 0, 1};
+        for (int offsetY : offsets) {
+            for (int offsetX : offsets) {
+                if (offsetX == 0 && offsetY == 0) {
+                    continue;
+                }
+                int adjX = x + offsetX;
+                int adjY = y + offsetY;
+                if (minefield.isOutOfBounds(adjX, adjY)) {
+                    continue;
+                }
+                if (minefield.isFlagged(adjX, adjY)) {
+                    adjacentFlags++;
+                } else if (!minefield.squareIsOpened(adjX, adjY)) {
+                    Integer[] coords = {adjX, adjY};
+                    safeSquares.add(coords);
+                }
+            }
+        }
+        if (adjacentFlags != adjacentMines) {
+            return new Integer[0][];
+        }
+        Integer[][] safeSquaresArray = new Integer[safeSquares.size()][];
+        return safeSquares.toArray(safeSquaresArray);
     }
 
 }

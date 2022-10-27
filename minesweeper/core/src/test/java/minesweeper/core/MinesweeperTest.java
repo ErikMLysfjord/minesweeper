@@ -72,4 +72,22 @@ public class MinesweeperTest {
         minesweeper.openSquare(2, 2);
         Assertions.assertEquals(5, minesweeper.getAdjacentMines(2, 2));
     }
+
+    @Test
+    public void testSafeSquaresAround() {
+        minesweeper.openSquare(1, 1);
+        minesweeper.openSquare(2, 0);
+        minesweeper.toggleFlag(3, 0);
+        /*
+            [ , ,2,f]
+            [ ,0, , ]
+            [ , , , ]
+            [ , , , ]
+         */
+        Integer[][] empty = {};
+        Assertions.assertArrayEquals(empty, minesweeper.safeSquaresAround(2, 0));
+        minesweeper.toggleFlag(1, 0);
+        Integer[][] expected = {{2, 1}, {3, 1}};
+        Assertions.assertArrayEquals(expected, minesweeper.safeSquaresAround(2, 0));
+    }
 }

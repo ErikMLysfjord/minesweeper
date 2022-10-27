@@ -9,6 +9,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -43,12 +44,20 @@ public class MinesweeperSceneTest extends ApplicationTest {
 
     @Test
     public void testSetFlag() {
-        Node button = getElementById("#button00");
         Assertions.assertFalse(nodeExists("#image00flag"));
-        clickOn(button, MouseButton.SECONDARY);
+        clickOn("#button00", MouseButton.SECONDARY);
         Assertions.assertTrue(nodeExists("#image00flag"));
-        clickOn(button, MouseButton.SECONDARY);
-        //Assertions.assertFalse(nodeExists("#image00flag"));
+
+        /*If this fails it might be because you added a new button without
+          focusTraversable="false"
+        */
+        Assertions.assertFalse(nodeExists("#image01flag"));
+        moveTo("#button01");
+        press(KeyCode.SPACE);
+        release(KeyCode.SPACE);
+        Assertions.assertTrue(nodeExists("#image01flag"));
+        clickOn("#button01", MouseButton.SECONDARY);
+        Assertions.assertFalse(nodeExists("#image01flag"));
     }
 
     @Test

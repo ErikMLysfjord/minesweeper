@@ -16,6 +16,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -95,8 +97,17 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
+        openSquare(x, y);
+    }
+
+    /**
+     * Opens square in model, and updates view accordingly.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void openSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
-        if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
+        if (minesweeper.squareIsOpened(x, y) && !minesweeper.hasMine(x, y)) {
             minefieldView.setOpenedSquareImage(
                 x, y,
                 minesweeper.getAdjacentMines(x, y)
@@ -111,6 +122,34 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleRightClickedSquare(final Integer x, final Integer y) {
+        toggleFlag(x, y);
+    }
+
+    /**
+     * "Spacebaring" a square either toggles flag on unopened squares,
+     * or it opens each square not flagged around an opened square, as
+     * long as the number on the square is satisfied by the flags.
+     * @param x x-coordinates of "spacebared" square
+     * @param y y-coordinates of "spacebared" square
+     */
+    private void handleSpacebarOnSquare(final Integer x, final Integer y) {
+        if (!minesweeper.squareIsOpened(x, y)) {
+            toggleFlag(x, y);
+            return;
+        }
+
+        Integer[][] safeSquares = minesweeper.safeSquaresAround(x, y);
+        for (Integer[] coords : safeSquares) {
+            openSquare(coords[0], coords[1]);
+        }
+    }
+
+    /**
+     * Handles toggling flag on square at (x, y).
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void toggleFlag(final Integer x, final Integer y) {
         minesweeper.toggleFlag(x, y);
 
         if (minesweeper.isFlagged(x, y)) {
@@ -212,4 +251,19 @@ public class MinesweeperController {
     private void showHighscores(final ActionEvent event) {
         sceneSwitcher.setHighscores(fileHandler.readHighscoreList());
     }
+
+    /**
+     * Called when a key is released.
+     * Calls handleSpacebarOnSquare(x, y) when the spacebar is released.
+     * @param event the KeyEvent that triggered this method
+     */
+    public void onKeyReleased(final KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
+            Integer[] coords = minefieldView.hoveredSquare();
+            if (coords != null) {
+                handleSpacebarOnSquare(coords[0], coords[1]);
+            }
+        }
+    }
+
 }
