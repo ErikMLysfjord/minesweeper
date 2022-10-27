@@ -9,6 +9,7 @@ public class Minesweeper {
     private List<Action> onLossActions;
     private boolean gameIsStarted;
     private final int mineCount;
+    private int openedSquares;
 
     /**
      * Constructor for Minesweeper.
@@ -26,7 +27,9 @@ public class Minesweeper {
         onLossActions = new ArrayList<>();
         gameIsStarted = false;
         this.mineCount = mineCount;
+        openedSquares = 0;
     }
+
     /**
      * Constructor for Minesweeper.
      * @param difficulty the difficulty of minesweeper
@@ -72,6 +75,7 @@ public class Minesweeper {
      * Opens the square in the minefield.
      * Starts the game on first open.
      * Loses the game if it had a mine.
+     * Wins the game if all safe squares have been opened.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
      */
@@ -82,9 +86,26 @@ public class Minesweeper {
         }
 
         minefield.openSquare(x, y);
-        if (minefield.squareIsOpened(x, y) && minefield.hasMine(x, y)) {
-            lose();
+        if (minefield.squareIsOpened(x, y)) {
+            if (minefield.hasMine(x, y)) {
+                lose();
+            } else {
+                openedSquares++;
+                if (allSafeSquaresAreOpened()) {
+                    win();
+                }
+            }
         }
+    }
+
+    /**
+     * Checks if openedSquares is equal to the amount of squares that don't
+     * have mines in them.
+     * @return whether or not all safe squares are opened
+     */
+    private boolean allSafeSquaresAreOpened() {
+        int safeSquares = getHeight() * getWidth() - mineCount;
+        return openedSquares == safeSquares;
     }
 
     /**
