@@ -98,6 +98,7 @@ public class MinefieldView {
                 blankImageView.setId(String.format(
                     "image%d%d", x, y
                 ));
+                blankImageView.setMouseTransparent(true);
                 row.add(blankImageView);
             }
             squareImages.add(row);
