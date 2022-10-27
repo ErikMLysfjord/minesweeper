@@ -78,7 +78,7 @@ public class Minesweeper {
      */
     public int flagsLeft() {
         return mineCount - flagCount;
-    } 
+    }
 
     /**
      * Opens the square in the minefield.

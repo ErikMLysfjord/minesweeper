@@ -108,11 +108,12 @@ public class MinesweeperSceneTest extends ApplicationTest {
 
     @Test
     public void testFlagsLeft() {
+        Label flagsLeft = (Label) getElementById("#flagsLeftLabel");
+        Assertions.assertEquals(10, Integer.valueOf(flagsLeft.getText()));
         clickOn("#button00", MouseButton.SECONDARY);
         clickOn("#button01", MouseButton.SECONDARY);
         clickOn("#button10", MouseButton.SECONDARY);
         clickOn("#button01", MouseButton.SECONDARY);
-        Label flagsLeft = (Label) getElementById("#flagsLeft");
         Assertions.assertEquals(
             10-2,
             Integer.valueOf(flagsLeft.getText())

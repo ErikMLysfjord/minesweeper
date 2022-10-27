@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,8 @@ public class MinesweeperController {
     private MinefieldView minefieldView;
 
     @FXML
+    private Label flagsLeftLabel;
+    @FXML
     private GridPane minefieldGridPane;
 
     /**
@@ -41,6 +44,7 @@ public class MinesweeperController {
 
         setupMinesweeper();
         setupMinefieldView();
+        flagsLeftLabel.setText(minesweeper.flagsLeft() + "");
     }
 
     /**
@@ -73,6 +77,7 @@ public class MinesweeperController {
     private void handleRestart() {
         setupMinesweeper();
         setupMinefieldView();
+        flagsLeftLabel.setText(minesweeper.flagsLeft() + "");
     }
 
     /**
@@ -157,6 +162,9 @@ public class MinesweeperController {
         } else {
             minefieldView.setBlankImage(x, y);
         }
+
+        int flagsLeft = minesweeper.flagsLeft();
+        flagsLeftLabel.setText(flagsLeft + "");
     }
 
     /**
