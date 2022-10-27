@@ -69,6 +69,14 @@ public class Minesweeper {
     }
 
     /**
+     * The amount of mines - the amount of flags.
+     * @return flags left to be placed
+     */
+    public int flagsLeft() {
+        return 0;
+    } 
+
+    /**
      * Opens the square in the minefield.
      * Starts the game on first open.
      * Loses the game if it had a mine.
