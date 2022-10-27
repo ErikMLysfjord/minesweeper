@@ -119,6 +119,12 @@ public class Minesweeper {
         onLossActions.add(action);
     }
 
+    /**
+     * Add an action to the list of actions to take
+     * when the game starts.
+     * The game starts, the first time the openSquare methode is used.
+     * @param action ti be taken on start
+     */
     public void addOnStart(final Action action) {
         onStartActions.add(action);
     }
@@ -143,6 +149,10 @@ public class Minesweeper {
         }
     }
 
+    /**
+     * Takes all actions that have been registered
+     * to to be taken when the game starts.
+     */
     private void start() {
         for (Action action : onStartActions) {
             action.run();
