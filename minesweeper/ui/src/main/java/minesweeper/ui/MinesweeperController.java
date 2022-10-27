@@ -26,6 +26,8 @@ public class MinesweeperController {
     private SceneManager sceneSwitcher;
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
+    private Difficulty currentDifficulty = Difficulty.HARD;
+
 
     private MinefieldView minefieldView;
 
@@ -47,7 +49,7 @@ public class MinesweeperController {
      * Set up minesweeper model.
      */
     private void setupMinesweeper() {
-        minesweeper = new Minesweeper(Difficulty.EASY);
+        minesweeper = new Minesweeper(currentDifficulty);
         minesweeper.addOnLoss(() -> handleLoss());
         minesweeper.addOnWin(() -> handleWin());
     }
@@ -56,14 +58,14 @@ public class MinesweeperController {
      * Set up MinefieldView.
      */
     private void setupMinefieldView() {
-        minefieldView = new MinefieldView(Difficulty.EASY);
+        minefieldView = new MinefieldView(currentDifficulty);
         minefieldView.bindGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
             handleClickedSquare(mouseEvent)
         );
         minefieldGridPane.setGridLinesVisible(false); //necessary
         minefieldGridPane.setGridLinesVisible(true);
-    };
+    }
 
     /**
      * Restarts the minesweeper game.
