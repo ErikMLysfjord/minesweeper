@@ -181,9 +181,11 @@ public class Minesweeper {
     }
 
     /**
-     * Given a square, its number of adjacent mines, and its number of
-     * adjacent flags: Which squares are safe to open?
-     * They might not actually be safe, since it's based on flags.
+     * If adjacent flag count is equal to the adjacent mine count,
+     * the rest of the adjacent, unopened squares should be safe (if the flags
+     * are correct). This method returns the coordinates of these safe squares.
+     * If the adjacent mine and flag counts don't match, the array will be
+     * empty.
      * @param x x-coordinates of square
      * @param y y-coordinates of square
      * @return array of {x, y} arrays, containing the safe squares.
