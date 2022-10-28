@@ -105,4 +105,12 @@ public class MinesweeperSceneTest extends ApplicationTest {
         Assertions.assertFalse(nodeExists("#image00opened0"));
     }
 
+    @Test
+    public void testAutoOpenAround0() {
+        clickOn("#button11");
+        Assertions.assertTrue(nodeExists("#image00opened0"));
+        Assertions.assertTrue(nodeExists("#image10opened0"));
+        Assertions.assertTrue(nodeExists("#image01opened0"));
+    }
+
 }

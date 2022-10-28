@@ -108,10 +108,11 @@ public class MinesweeperController {
     private void openSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
         if (minesweeper.squareIsOpened(x, y) && !minesweeper.hasMine(x, y)) {
-            minefieldView.setOpenedSquareImage(
-                x, y,
-                minesweeper.getAdjacentMines(x, y)
-            );
+            int adjacentMines = minesweeper.getAdjacentMines(x, y);
+            minefieldView.setOpenedSquareImage(x, y, adjacentMines);
+            if (adjacentMines == 0) {
+                chord(x, y);
+            }
         }
     }
 
@@ -137,7 +138,16 @@ public class MinesweeperController {
             toggleFlag(x, y);
             return;
         }
+        chord(x, y);
+    }
 
+    /**
+     * Chording opens each square not flagged around an opened square, as
+     * long as the number on the square is satisfied by the flags.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void chord(final Integer x, final Integer y) {
         Integer[][] safeSquares = minesweeper.safeSquaresAround(x, y);
         for (Integer[] coords : safeSquares) {
             openSquare(coords[0], coords[1]);
