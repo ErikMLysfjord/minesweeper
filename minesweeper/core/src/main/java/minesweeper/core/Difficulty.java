@@ -62,14 +62,14 @@ public enum Difficulty {
     }
 
     /**
-     * Gets difficulty that equals to its String input.
-     * Else returns null.
-     * @param chosenDifficulty chosen difficulty as String
-     * @return difficulty that corresponds with String.
+     * Gets difficulty based on name.
+     * @param name name of difficulty
+     * @return difficulty that corresponds with name or null
+     * if none are.
      */
-    public static Difficulty getDifficulty(final String chosenDifficulty) {
+    public static Difficulty getDifficulty(final String name) {
         for (Difficulty difficulty : Difficulty.values()) {
-            if (chosenDifficulty.equals(difficulty.getName())) {
+            if (name.equals(difficulty.getName())) {
                 return difficulty;
             }
         }

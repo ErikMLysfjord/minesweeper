@@ -55,7 +55,7 @@ public class MinesweeperController {
      * and minesweeper model.
      */
     @FXML
-    private void handleDifficultyChoiceBox() {
+    private void changeDifficulty() {
         String chosenDifficulty = difficultyChoiceBox.getValue();
         currentDifficulty = Difficulty.getDifficulty(chosenDifficulty);
 

@@ -11,7 +11,7 @@
       <Button fx:id="restart" layoutX="600.0" layoutY="700.0" onAction="#handleRestart" text="Restart" focusTraversable="false" />
       <Label fx:id="highscore" layoutX="600.0" layoutY="50" text="Highscore" />
 
-      <ChoiceBox fx:id="difficultyChoiceBox" layoutX="250.0" layoutY="50.0" prefWidth="225.0" onAction="#handleDifficultyChoiceBox" focusTraversable="false" value="Choose difficulty (currently easy)"/>
+      <ChoiceBox fx:id="difficultyChoiceBox" layoutX="250.0" layoutY="50.0" prefWidth="225.0" onAction="#changeDifficulty" focusTraversable="false" value="Choose difficulty"/>
 
       <GridPane fx:id="minefieldGridPane" alignment="CENTER" layoutX="287.5" layoutY="137.5">
 
