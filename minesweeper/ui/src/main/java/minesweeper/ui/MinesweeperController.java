@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
@@ -26,13 +27,14 @@ public class MinesweeperController {
     private SceneManager sceneSwitcher;
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
-    private Difficulty currentDifficulty = Difficulty.HARD;
-
+    private Difficulty currentDifficulty = Difficulty.EASY;
 
     private MinefieldView minefieldView;
 
     @FXML
     private GridPane minefieldGridPane;
+    @FXML
+    private ChoiceBox<String> difficultyChoiceBox;
 
     /**
      * Initializes the minesweeper model and minefield view.
@@ -43,6 +45,22 @@ public class MinesweeperController {
 
         setupMinesweeper();
         setupMinefieldView();
+        for (Difficulty difficulty : Difficulty.values()) {
+            difficultyChoiceBox.getItems().add(difficulty.getName());
+        }
+    }
+
+    /**
+     * Changes currentDifficulty and updates Minefieldview
+     * and minesweeper model.
+     */
+    @FXML
+    private void handleDifficultyChoiceBox() {
+        String chosenDifficulty = difficultyChoiceBox.getValue();
+        currentDifficulty = Difficulty.getDifficulty(chosenDifficulty);
+
+        setupMinefieldView();
+        setupMinesweeper();
     }
 
     /**
