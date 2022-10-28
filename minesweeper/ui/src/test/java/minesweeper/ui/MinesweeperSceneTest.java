@@ -113,4 +113,15 @@ public class MinesweeperSceneTest extends ApplicationTest {
         Assertions.assertTrue(nodeExists("#image01opened0"));
     }
 
+    @Test
+    public void testDifficultyChoiceBox() {
+        Assertions.assertFalse(nodeExists("#button1010"));
+        clickOn("#difficultyChoiceBox");
+        clickOn("Medium");
+        Assertions.assertTrue(nodeExists("#button1010"));
+        clickOn("#difficultyChoiceBox");
+        clickOn("Easy");
+        Assertions.assertFalse(nodeExists("#button1010"));
+    }
+
 }
