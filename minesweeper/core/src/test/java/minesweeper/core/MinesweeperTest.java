@@ -39,7 +39,11 @@ public class MinesweeperTest {
         minesweeper.addOnWin(() -> {
             isWon = true;
         });
-        //Open all safeCoords
+
+        for (Integer[] coord : safeCoords) {
+            minesweeper.openSquare(coord[0], coord[1]);
+        }
+        Assertions.assertTrue(isWon);
     }
 
     @Test
@@ -47,7 +51,6 @@ public class MinesweeperTest {
         minesweeper.addOnLoss(() -> {
             isLost = true;
         });
-
         
         for (Integer[] coord : safeCoords) {
             minesweeper.openSquare(coord[0], coord[1]);
