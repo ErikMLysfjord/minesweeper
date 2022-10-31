@@ -12,8 +12,6 @@
       <Label fx:id="highscore" layoutX="600.0" layoutY="50" text="Highscore" />
 
       <ChoiceBox fx:id="difficultyChoiceBox" layoutX="250.0" layoutY="50.0" prefWidth="225.0" onAction="#changeDifficulty" focusTraversable="false" value="Choose difficulty"/>
-      <Label fx:id="theScore" layoutX="375.0" layoutY="50" text="score" />
-      <Text fx:id="timerText" layoutX="385.0" layoutY="90" />
 
       <GridPane fx:id="minefieldGridPane" alignment="CENTER" layoutX="287.5" layoutY="137.5">
 

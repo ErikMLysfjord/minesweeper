@@ -7,7 +7,6 @@ public class Minesweeper {
     private final Minefield minefield;
     private List<Action> onWinActions;
     private List<Action> onLossActions;
-    private List<Action> onStartActions;
     private boolean gameIsStarted;
     private final int mineCount;
     private int openedSquares;
@@ -26,7 +25,6 @@ public class Minesweeper {
         minefield = new Minefield(width, height);
         onWinActions = new ArrayList<>();
         onLossActions = new ArrayList<>();
-        onStartActions = new ArrayList<>();
         gameIsStarted = false;
         this.mineCount = mineCount;
         openedSquares = 0;
@@ -85,7 +83,6 @@ public class Minesweeper {
         if (!gameIsStarted) {
             gameIsStarted = true;
             minefield.initializeMines(mineCount, x, y);
-            start();
         }
 
         minefield.openSquare(x, y);
@@ -141,16 +138,6 @@ public class Minesweeper {
     }
 
     /**
-     * Add an action to the list of actions to take
-     * when the game starts.
-     * The game starts, the first time the openSquare methode is used.
-     * @param action ti be taken on start
-     */
-    public void addOnStart(final Action action) {
-        onStartActions.add(action);
-    }
-
-    /**
      * Takes all actions that have been registered
      * to be taken when the game is lost.
      */
@@ -166,16 +153,6 @@ public class Minesweeper {
      */
     private void win() {
         for (Action action : onWinActions) {
-            action.run();
-        }
-    }
-
-    /**
-     * Takes all actions that have been registered
-     * to to be taken when the game starts.
-     */
-    private void start() {
-        for (Action action : onStartActions) {
             action.run();
         }
     }
