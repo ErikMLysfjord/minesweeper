@@ -7,9 +7,9 @@ public class Minesweeper {
     private final Minefield minefield;
     private List<Action> onWinActions;
     private List<Action> onLossActions;
-    private List<Action> onStartActions;
     private boolean gameIsStarted;
     private final int mineCount;
+    private int openedSquares;
 
     /**
      * Constructor for Minesweeper.
@@ -25,10 +25,11 @@ public class Minesweeper {
         minefield = new Minefield(width, height);
         onWinActions = new ArrayList<>();
         onLossActions = new ArrayList<>();
-        onStartActions = new ArrayList<>();
         gameIsStarted = false;
         this.mineCount = mineCount;
+        openedSquares = 0;
     }
+
     /**
      * Constructor for Minesweeper.
      * @param difficulty the difficulty of minesweeper
@@ -74,6 +75,7 @@ public class Minesweeper {
      * Opens the square in the minefield.
      * Starts the game on first open.
      * Loses the game if it had a mine.
+     * Wins the game if all safe squares have been opened.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
      */
@@ -81,13 +83,29 @@ public class Minesweeper {
         if (!gameIsStarted) {
             gameIsStarted = true;
             minefield.initializeMines(mineCount, x, y);
-            start();
         }
 
         minefield.openSquare(x, y);
-        if (minefield.isSquareOpened(x, y) && minefield.hasMine(x, y)) {
-            lose();
+        if (minefield.squareIsOpened(x, y)) {
+            if (minefield.hasMine(x, y)) {
+                lose();
+            } else {
+                openedSquares++;
+                if (allSafeSquaresAreOpened()) {
+                    win();
+                }
+            }
         }
+    }
+
+    /**
+     * Checks if openedSquares is equal to the amount of squares that don't
+     * have mines in them.
+     * @return whether or not all safe squares are opened
+     */
+    private boolean allSafeSquaresAreOpened() {
+        int safeSquares = getHeight() * getWidth() - mineCount;
+        return openedSquares == safeSquares;
     }
 
     /**
@@ -96,8 +114,8 @@ public class Minesweeper {
      * @param y y-coordinate of the square
      * @return whether the square is opened or not
      */
-    public boolean isSquareOpened(final int x, final int y) {
-        return minefield.isSquareOpened(x, y);
+    public boolean squareIsOpened(final int x, final int y) {
+        return minefield.squareIsOpened(x, y);
     }
 
     /**
@@ -120,16 +138,6 @@ public class Minesweeper {
     }
 
     /**
-     * Add an action to the list of actions to take
-     * when the game starts.
-     * The game starts, the first time the openSquare methode is used.
-     * @param action ti be taken on start
-     */
-    public void addOnStart(final Action action) {
-        onStartActions.add(action);
-    }
-
-    /**
      * Takes all actions that have been registered
      * to be taken when the game is lost.
      */
@@ -145,16 +153,6 @@ public class Minesweeper {
      */
     private void win() {
         for (Action action : onWinActions) {
-            action.run();
-        }
-    }
-
-    /**
-     * Takes all actions that have been registered
-     * to to be taken when the game starts.
-     */
-    private void start() {
-        for (Action action : onStartActions) {
             action.run();
         }
     }
@@ -201,6 +199,50 @@ public class Minesweeper {
             }
         }
         return adjacentMines;
+    }
+
+    /**
+     * If adjacent flag count is equal to the adjacent mine count,
+     * the rest of the adjacent, unopened squares should be safe (if the flags
+     * are correct). This method returns the coordinates of these safe squares.
+     * If the adjacent mine and flag counts don't match, the array will be
+     * empty.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     * @return array of {x, y} arrays, containing the safe squares.
+     */
+    public Integer[][] safeSquaresAround(final int x, final int y) {
+        if (!squareIsOpened(x, y)) {
+            return new Integer[0][];
+        }
+        int adjacentMines = getAdjacentMines(x, y);
+        int adjacentFlags = 0;
+        List<Integer[]> safeSquares = new ArrayList<>();
+
+        int[] offsets = {-1, 0, 1};
+        for (int offsetY : offsets) {
+            for (int offsetX : offsets) {
+                if (offsetX == 0 && offsetY == 0) {
+                    continue;
+                }
+                int adjX = x + offsetX;
+                int adjY = y + offsetY;
+                if (minefield.isOutOfBounds(adjX, adjY)) {
+                    continue;
+                }
+                if (minefield.isFlagged(adjX, adjY)) {
+                    adjacentFlags++;
+                } else if (!minefield.squareIsOpened(adjX, adjY)) {
+                    Integer[] coords = {adjX, adjY};
+                    safeSquares.add(coords);
+                }
+            }
+        }
+        if (adjacentFlags != adjacentMines) {
+            return new Integer[0][];
+        }
+        Integer[][] safeSquaresArray = new Integer[safeSquares.size()][];
+        return safeSquares.toArray(safeSquaresArray);
     }
 
 }

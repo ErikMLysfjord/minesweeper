@@ -13,27 +13,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class MinesweeperController {
     private SceneManager sceneSwitcher;
     private FileHandler fileHandler;
     private Minesweeper minesweeper;
-    private Timer timer;
+    private Difficulty currentDifficulty = Difficulty.EASY;
 
     private MinefieldView minefieldView;
 
     @FXML
     private GridPane minefieldGridPane;
     @FXML
-    private Text timerText;
+    private ChoiceBox<String> difficultyChoiceBox;
 
     /**
      * Initializes the minesweeper model and minefield view.
@@ -44,14 +45,29 @@ public class MinesweeperController {
 
         setupMinesweeper();
         setupMinefieldView();
-        handleTimer();
+        for (Difficulty difficulty : Difficulty.values()) {
+            difficultyChoiceBox.getItems().add(difficulty.getName());
+        }
+    }
+
+    /**
+     * Changes currentDifficulty and updates Minefieldview
+     * and minesweeper model.
+     */
+    @FXML
+    private void changeDifficulty() {
+        String chosenDifficulty = difficultyChoiceBox.getValue();
+        currentDifficulty = Difficulty.getDifficulty(chosenDifficulty);
+
+        setupMinefieldView();
+        setupMinesweeper();
     }
 
     /**
      * Set up minesweeper model.
      */
     private void setupMinesweeper() {
-        minesweeper = new Minesweeper(Difficulty.EASY);
+        minesweeper = new Minesweeper(currentDifficulty);
         minesweeper.addOnLoss(() -> handleLoss());
         minesweeper.addOnWin(() -> handleWin());
     }
@@ -60,26 +76,13 @@ public class MinesweeperController {
      * Set up MinefieldView.
      */
     private void setupMinefieldView() {
-        minefieldView = new MinefieldView(Difficulty.EASY);
+        minefieldView = new MinefieldView(currentDifficulty);
         minefieldView.bindGridPane(minefieldGridPane);
         minefieldView.setOnMouseRelease((mouseEvent) ->
             handleClickedSquare(mouseEvent)
         );
         minefieldGridPane.setGridLinesVisible(false); //necessary
         minefieldGridPane.setGridLinesVisible(true);
-    };
-
-    /**
-     * Sets the timer to a new timer,
-     * adds the action to be executed on second,
-     * and starts the timer.
-     */
-    private void handleTimer() {
-        timer = new Timer();
-        timer.addOnSecond(() ->
-            timerText.setText(timer.getSeconds() + "")
-        );
-        minesweeper.addOnStart(() -> timer.start());
     }
 
     /**
@@ -90,8 +93,6 @@ public class MinesweeperController {
     private void handleRestart() {
         setupMinesweeper();
         setupMinefieldView();
-        timer.stop();
-        handleTimer();
     }
 
     /**
@@ -116,12 +117,22 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleLeftClickedSquare(final Integer x, final Integer y) {
+        openSquare(x, y);
+    }
+
+    /**
+     * Opens square in model, and updates view accordingly.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void openSquare(final Integer x, final Integer y) {
         minesweeper.openSquare(x, y);
-        if (minesweeper.isSquareOpened(x, y) && !minesweeper.hasMine(x, y)) {
-            minefieldView.setOpenedSquareImage(
-                x, y,
-                minesweeper.getAdjacentMines(x, y)
-            );
+        if (minesweeper.squareIsOpened(x, y) && !minesweeper.hasMine(x, y)) {
+            int adjacentMines = minesweeper.getAdjacentMines(x, y);
+            minefieldView.setOpenedSquareImage(x, y, adjacentMines);
+            if (adjacentMines == 0) {
+                chord(x, y);
+            }
         }
     }
 
@@ -132,6 +143,43 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleRightClickedSquare(final Integer x, final Integer y) {
+        toggleFlag(x, y);
+    }
+
+    /**
+     * "Spacebaring" a square either toggles flag on unopened squares,
+     * or it opens each square not flagged around an opened square, as
+     * long as the number on the square is satisfied by the flags.
+     * @param x x-coordinates of "spacebared" square
+     * @param y y-coordinates of "spacebared" square
+     */
+    private void handleSpacebarOnSquare(final Integer x, final Integer y) {
+        if (!minesweeper.squareIsOpened(x, y)) {
+            toggleFlag(x, y);
+            return;
+        }
+        chord(x, y);
+    }
+
+    /**
+     * Chording opens each square not flagged around an opened square, as
+     * long as the number on the square is satisfied by the flags.
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void chord(final Integer x, final Integer y) {
+        Integer[][] safeSquares = minesweeper.safeSquaresAround(x, y);
+        for (Integer[] coords : safeSquares) {
+            openSquare(coords[0], coords[1]);
+        }
+    }
+
+    /**
+     * Handles toggling flag on square at (x, y).
+     * @param x x-coordinates of square
+     * @param y y-coordinates of square
+     */
+    private void toggleFlag(final Integer x, final Integer y) {
         minesweeper.toggleFlag(x, y);
 
         if (minesweeper.isFlagged(x, y)) {
@@ -159,7 +207,6 @@ public class MinesweeperController {
      * Called from minesweeper when the game is won.
      */
     private void handleWin() {
-        timer.stop();
         Alert winAlert = new Alert(AlertType.INFORMATION);
         winAlert.setContentText(
             "You did it, congrats! Do you wish to save your score?"
@@ -215,7 +262,6 @@ public class MinesweeperController {
                 }
             }
         }
-        timer.stop();
         minefieldView.showLoss();
     }
 
@@ -235,4 +281,19 @@ public class MinesweeperController {
     private void showHighscores(final ActionEvent event) {
         sceneSwitcher.setHighscores(fileHandler.readHighscoreList());
     }
+
+    /**
+     * Called when a key is released.
+     * Calls handleSpacebarOnSquare(x, y) when the spacebar is released.
+     * @param event the KeyEvent that triggered this method
+     */
+    public void onKeyReleased(final KeyEvent event) {
+        if (event.getCode() == KeyCode.SPACE) {
+            Integer[] coords = minefieldView.hoveredSquare();
+            if (coords != null) {
+                handleSpacebarOnSquare(coords[0], coords[1]);
+            }
+        }
+    }
+
 }

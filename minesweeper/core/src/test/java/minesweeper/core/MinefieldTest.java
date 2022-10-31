@@ -124,16 +124,16 @@ public class MinefieldTest {
 
     @Test
     public void testOpen() {
-        Assertions.assertFalse(minefield.isSquareOpened(0, 0));
+        Assertions.assertFalse(minefield.squareIsOpened(0, 0));
         minefield.toggleFlag(0, 0);
         minefield.openSquare(0, 0);
-        Assertions.assertFalse(minefield.isSquareOpened(0, 0));
+        Assertions.assertFalse(minefield.squareIsOpened(0, 0));
 
         minefield.toggleFlag(0, 0);
         minefield.openSquare(0, 0);
-        Assertions.assertTrue(minefield.isSquareOpened(0, 0));
+        Assertions.assertTrue(minefield.squareIsOpened(0, 0));
         minefield.openSquare(0, 0);
-        Assertions.assertTrue(minefield.isSquareOpened(0, 0));
+        Assertions.assertTrue(minefield.squareIsOpened(0, 0));
     }
     
 }

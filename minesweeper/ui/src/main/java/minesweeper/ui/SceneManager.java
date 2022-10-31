@@ -31,7 +31,11 @@ public class SceneManager {
             scene.getStylesheets().add(getClass().getResource("style.css")
                 .toExternalForm()
             );
+
             MinesweeperController controller = fxmlLoader.getController();
+            scene.setOnKeyReleased(event ->
+                controller.onKeyReleased(event)
+            );
             controller.setSceneSwitcher(this);
             stage.setScene(scene);
             stage.show();
