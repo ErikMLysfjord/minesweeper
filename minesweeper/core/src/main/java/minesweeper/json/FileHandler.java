@@ -1,6 +1,8 @@
 package minesweeper.json;
 
 import java.io.File;
+import java.io.IOException;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
@@ -104,6 +106,15 @@ public class FileHandler {
         try {
             mapper.writeValue(highscoreListFile, highscoreList);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void makeFile() {
+        try {
+            dir.mkdirs();
+            highscoreListFile.createNewFile();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
