@@ -13,14 +13,38 @@ import minesweeper.json.internal.HighscoreListSerializer;
 
 public class FileHandler {
     private final ObjectMapper mapper;
-    private final File highscoreListFile = new File(
-        "../core/src/main/resources/minesweeper/json/highscoreList.json"
+    private final File highscoreListFile;
+    private final File dir = new File(
+        "../core/src/main/resources/minesweeper/json/"
     );
 
     /**
      * Constructor for FileHandler.
      */
     public FileHandler() {
+        highscoreListFile = new File(
+            "../core/src/main/resources/minesweeper/json/highscoreList.json"
+        );
+        mapper = registerModule(new ObjectMapper());
+    }
+
+    /**
+     * Constructor for FileHandler, which takes in an address.
+     * @param address the address for which file to handle
+     */
+    public FileHandler(final String address) {
+        highscoreListFile = new File(address);
+        mapper = registerModule(new ObjectMapper());
+        makeFile();
+        setEmptyList();
+    }
+
+    /**
+     * Registers modules to the mapper.
+     * @param objMapper the mapper which will get modules registered
+     * @return the mapper, with modules registered
+     */
+    private ObjectMapper registerModule(final ObjectMapper objMapper) {
         SimpleModule simpleModule = new SimpleModule();
         simpleModule.addDeserializer(
             HighscoreEntry.class,
@@ -38,9 +62,8 @@ public class FileHandler {
             HighscoreList.class,
             new HighscoreListSerializer()
         );
-
-        mapper = new ObjectMapper();
-        mapper.registerModule(simpleModule);
+        objMapper.registerModule(simpleModule);
+        return objMapper;
     }
 
     /**
