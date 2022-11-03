@@ -28,6 +28,10 @@ public class FileHandler {
             "../core/src/main/resources/minesweeper/json/highscoreList.json"
         );
         mapper = registerModule(new ObjectMapper());
+        makeFile();
+        if (highscoreListFile.length() == 0) {
+            setEmptyList();
+        }
     }
 
     /**
@@ -38,7 +42,9 @@ public class FileHandler {
         highscoreListFile = new File(address);
         mapper = registerModule(new ObjectMapper());
         makeFile();
-        setEmptyList();
+        if (highscoreListFile.length() == 0) {
+            setEmptyList();
+        }
     }
 
     /**
@@ -87,6 +93,10 @@ public class FileHandler {
      * @return highscore list in data.json
      */
     public HighscoreList readHighscoreList() {
+        makeFile();
+        if (highscoreListFile.length() == 0) {
+            setEmptyList();
+        }
         try {
             return mapper.readValue(
                 highscoreListFile,
@@ -110,9 +120,6 @@ public class FileHandler {
         }
     }
 
-    /**
-     * Creates the directories and the highscore-file.
-     */
     private void makeFile() {
         try {
             dir.mkdirs();

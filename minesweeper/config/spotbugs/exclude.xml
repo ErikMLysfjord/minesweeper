@@ -6,9 +6,15 @@
         <Bug pattern="EQ_COMPARETO_USE_OBJECT_EQUALS"/>
     </Match>
     <Match>
+    <Bug pattern="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"/>
+    </Match>
+    <Match>
         <Bug pattern="EI_EXPOSE_REP2"/>
     </Match>
     <Match>
         <Bug pattern="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"/>
+    </Match>
+    <Match>
+        <bug pattern="SA_LOCAL_SELF_COMPARISON"/>
     </Match>
 </FindBugsFilter>
