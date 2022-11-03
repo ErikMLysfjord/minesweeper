@@ -23,7 +23,6 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class MinesweeperController {
     private SceneManager sceneSwitcher;
@@ -38,6 +37,7 @@ public class MinesweeperController {
     private GridPane minefieldGridPane;
     @FXML
     private ChoiceBox<String> difficultyChoiceBox;
+    @FXML
     private Text timerText;
 
     /**
@@ -47,8 +47,7 @@ public class MinesweeperController {
     private void initialize() {
         fileHandler = new FileHandler();
 
-        setupMinesweeper();
-        setupMinefieldView();
+        restart();
         for (Difficulty difficulty : Difficulty.values()) {
             difficultyChoiceBox.getItems().add(difficulty.getName());
         }
@@ -63,9 +62,7 @@ public class MinesweeperController {
         String chosenDifficulty = difficultyChoiceBox.getValue();
         currentDifficulty = Difficulty.getDifficulty(chosenDifficulty);
 
-        setupMinefieldView();
-        setupMinesweeper();
-        handleTimer();
+        restart();
     }
 
     /**
@@ -95,24 +92,33 @@ public class MinesweeperController {
      * adds the action to be executed on second,
      * and starts the timer.
      */
-    private void handleTimer() {
+    private void setupTimer() {
         timer = new Timer();
         timer.addOnSecond(() ->
             timerText.setText(timer.getSeconds() + "")
         );
         minesweeper.addOnStart(() -> timer.start());
     }
-
+    /**
+     * Setup minefield.
+     * Setup minesweeper.
+     * Setup timer.
+     */
+    public void restart() {
+        setupMinefieldView();
+        setupMinesweeper();
+        setupTimer();
+    }
     /**
      * Restarts the minesweeper game.
      * Called from restart button.
      */
     @FXML
     private void handleRestart() {
-        setupMinesweeper();
-        setupMinefieldView();
-        timer.stop();
-        handleTimer();
+        if (timer != null) {
+            timer.stop();
+        }
+        restart();
     }
 
     /**
@@ -227,7 +233,9 @@ public class MinesweeperController {
      * Called from minesweeper when the game is won.
      */
     private void handleWin() {
-        timer.stop();
+        if (timer != null) {
+            timer.stop();
+        }
         Alert winAlert = new Alert(AlertType.INFORMATION);
         winAlert.setContentText(
             "You did it, congrats! Do you wish to save your score?"

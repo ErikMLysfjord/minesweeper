@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -10,10 +11,10 @@
    <children>
       <Button fx:id="restart" layoutX="600.0" layoutY="700.0" onAction="#handleRestart" text="Restart" focusTraversable="false" />
       <Label fx:id="highscore" layoutX="600.0" layoutY="50" text="Highscore" />
-
+      <Text fx:id="timerText" layoutX="600.0" layoutY="90" />
       <ChoiceBox fx:id="difficultyChoiceBox" layoutX="250.0" layoutY="50.0" prefWidth="225.0" onAction="#changeDifficulty" focusTraversable="false" value="Choose difficulty"/>
       <Label fx:id="theScore" layoutX="375.0" layoutY="50" text="score" />
-      <Text fx:id="timerText" layoutX="385.0" layoutY="90" />
+      
 
       <GridPane fx:id="minefieldGridPane" alignment="CENTER" layoutX="287.5" layoutY="137.5">
 
