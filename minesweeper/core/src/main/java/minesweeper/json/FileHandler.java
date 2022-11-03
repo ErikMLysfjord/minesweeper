@@ -73,9 +73,12 @@ public class FileHandler {
      */
     public HighscoreList readHighscoreList() {
         makeFile();
+<<<<<<< HEAD
         if (highscoreListFile.length() == 0) {
             setEmptyList();
         }
+=======
+>>>>>>> 1685cf1 (fix: add maker to reade methode)
         try {
             return mapper.readValue(
                 highscoreListFile,
