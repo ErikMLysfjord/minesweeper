@@ -38,6 +38,7 @@ public class MinesweeperController {
     private GridPane minefieldGridPane;
     @FXML
     private ChoiceBox<String> difficultyChoiceBox;
+    @FXML
     private Text timerText;
 
     /**
