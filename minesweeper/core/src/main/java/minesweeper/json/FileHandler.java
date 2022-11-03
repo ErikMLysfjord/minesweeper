@@ -110,6 +110,9 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Creates the directories and the highscore-file.
+     */
     private void makeFile() {
         try {
             dir.mkdirs();
