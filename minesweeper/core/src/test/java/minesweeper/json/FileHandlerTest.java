@@ -1,9 +1,8 @@
 package minesweeper.json;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.io.File;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,34 +10,54 @@ import minesweeper.core.HighscoreEntry;
 
 public class FileHandlerTest {
 
-    private List<HighscoreEntry> entries = new ArrayList<HighscoreEntry>();
-    /* private String[] names;
-    private Integer[] scores; */
-    private String rPath;
-    private Random rand = new Random();
-    private Integer scoreRoof;
-    private List<Integer> scores;
-    
-    /*
+    private FileHandler fileHandler;
+    private String rPath = "../core/src/main/resources/minesweeper/json/testPersistence.json";
+
     @BeforeEach
     public void setUp() {
-        scoreRoof = 1000;
-        rPath = "../core/src/main/resources/minesweeper/json/data.json";
-        String[] names = {"Ole", "Dole", "Toern", "Erik", "Vebjørn","David", "Marie", "Sofie", "Mathilde", "Andreas"};
-        Integer i;
-        for (String name : names) {
-            i = rand.nextInt(scoreRoof);
-            HighscoreEntry entry = new HighscoreEntry(name, i);
-            entries.add(entry);
-            scores.add(i);
-        }
-        
+        fileHandler = new FileHandler(rPath);
     }
-    */
 
     @Test
-    public void testSaveScore(){   
+    public void testGetList() {
+        // Asserts that there exists a highscorelist in the file
+        Assertions.assertEquals(5, fileHandler.readHighscoreList().
+            getMaxSize()
+        );
+        // Asserts that the initial highscorelist is empty
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> {
+            fileHandler.readHighscoreList().getHighscoreEntry(0);
+        });
     }
 
+    @Test
+    public void testAddHighscores() {
+        HighscoreEntry entry1 = new HighscoreEntry("First-test", 1000);
+        HighscoreEntry entry2 = new HighscoreEntry("Second-test", 10);
+        fileHandler.saveScore(entry1);
+        // Asserts that the entry in the file is equal to the highscore-entry,
+        // although they are two different  objects.
+        Assertions.assertEquals(0, fileHandler.readHighscoreList().
+            getHighscoreEntry(0).compareTo(entry1)
+        );
+        // Further asserts that the highscore-entries are the same,
+        // by comparing names.
+        Assertions.assertEquals(entry1.getName(), fileHandler.
+            readHighscoreList().getHighscoreEntry(0).getName()
+        );
+        // The same assertions as before, just with a new highscore-entry.
+        fileHandler.saveScore(entry2);
+        Assertions.assertEquals(0, fileHandler.readHighscoreList().
+            getHighscoreEntry(1).compareTo(entry2)
+        );
+        Assertions.assertEquals(entry2.getName(), fileHandler.
+            readHighscoreList().getHighscoreEntry(1).getName()
+        );
+    }
+
+    @AfterEach
+    public void tearDown() {
+        new File(rPath).delete();
+    }
 
 }
