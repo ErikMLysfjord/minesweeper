@@ -88,6 +88,10 @@ public class Minesweeper {
             start();
         }
 
+        if (minefield.squareIsOpened(x, y)) {
+            return;
+        }
+
         minefield.openSquare(x, y);
         if (minefield.squareIsOpened(x, y)) {
             if (minefield.hasMine(x, y)) {
