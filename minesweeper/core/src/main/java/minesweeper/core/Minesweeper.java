@@ -11,6 +11,7 @@ public class Minesweeper {
     private boolean gameIsStarted;
     private final int mineCount;
     private int openedSquares;
+    private int flagCount;
 
     /**
      * Constructor for Minesweeper.
@@ -30,6 +31,7 @@ public class Minesweeper {
         gameIsStarted = false;
         this.mineCount = mineCount;
         openedSquares = 0;
+        flagCount = 0;
     }
 
     /**
@@ -61,6 +63,7 @@ public class Minesweeper {
      */
     public void toggleFlag(final int x, final int y) {
         minefield.toggleFlag(x, y);
+        flagCount += minefield.isFlagged(x, y) ? 1 : -1;
     }
 
     /**
@@ -71,6 +74,14 @@ public class Minesweeper {
      */
     public boolean isFlagged(final int x, final int y) {
         return minefield.isFlagged(x, y);
+    }
+
+    /**
+     * The amount of mines - the amount of flags.
+     * @return flags left to be placed
+     */
+    public int flagsLeft() {
+        return mineCount - flagCount;
     }
 
     /**

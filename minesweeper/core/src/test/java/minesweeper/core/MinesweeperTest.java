@@ -93,4 +93,17 @@ public class MinesweeperTest {
         Integer[][] expected = {{2, 1}, {3, 1}};
         Assertions.assertArrayEquals(expected, minesweeper.safeSquaresAround(2, 0));
     }
+
+    @Test
+    public void testFlagsLeft() {
+        minesweeper.toggleFlag(0, 0);
+        minesweeper.toggleFlag(1, 0);
+        minesweeper.toggleFlag(1, 1);
+        minesweeper.toggleFlag(1, 0);
+        Assertions.assertEquals(
+            7 - 2,
+            minesweeper.flagsLeft()
+        );
+    }
+
 }

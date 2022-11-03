@@ -9,6 +9,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.GridPane;
@@ -124,4 +125,16 @@ public class MinesweeperSceneTest extends ApplicationTest {
         Assertions.assertFalse(nodeExists("#button1010"));
     }
 
+    public void testFlagsLeft() {
+        Label flagsLeft = (Label) getElementById("#flagsLeftLabel");
+        Assertions.assertEquals(10, Integer.valueOf(flagsLeft.getText()));
+        clickOn("#button00", MouseButton.SECONDARY);
+        clickOn("#button01", MouseButton.SECONDARY);
+        clickOn("#button10", MouseButton.SECONDARY);
+        clickOn("#button01", MouseButton.SECONDARY);
+        Assertions.assertEquals(
+            10-2,
+            Integer.valueOf(flagsLeft.getText())
+        );
+    }
 }
