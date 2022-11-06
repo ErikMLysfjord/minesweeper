@@ -5,7 +5,7 @@ variables:
   MAVEN_CLI_OPTS: "-DskipUItests=true"
 
 stages:
-  - test
+  - verify
   - build
 
 cache:
@@ -13,11 +13,11 @@ cache:
     - .m2/repository
   key: "$CI_BUILD_REF_NAME"
 
-test:
-  stage: test
+verify:
+  stage: verify
   script:
     - "cd minesweeper"
-    - "mvn clean test $MAVEN_CLI_OPTS"
+    - "mvn clean verify $MAVEN_CLI_OPTS"
 
 build:
   stage: build
