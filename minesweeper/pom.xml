@@ -179,5 +179,6 @@
     <modules>
         <module>core</module>
         <module>ui</module>
+        <module>server</module>
     </modules>
 </project>
