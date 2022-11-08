@@ -2,4 +2,18 @@
 .square {
     -fx-pref-width: 25.0;
     -fx-pref-height: 25.0;
+    -fx-background-color: #ececec;
+    background-color: #ececec;
+}
+
+.root {
+    -fx-background-color: #fff7e8;
+    background-color: #fff7e8;
+}
+
+#timerText, #flagsLeftLabel {
+    -fx-font-size: 20px;
+    font-size: 20px;
+    -fx-font-weight: bold;
+    font-weight: bold;
 }

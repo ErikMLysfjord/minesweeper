@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.ui.MinesweeperController">
+<AnchorPane prefHeight="750.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="minesweeper.ui.MinesweeperController">
    <children>
-      <Button fx:id="restart" layoutX="600.0" layoutY="700.0" onAction="#handleRestart" text="Restart" focusTraversable="false" />
-      <Label fx:id="highscore" layoutX="600.0" layoutY="50" text="Highscore" />
-      <Text fx:id="timerText" layoutX="600.0" layoutY="90" />
-      <ChoiceBox fx:id="difficultyChoiceBox" layoutX="250.0" layoutY="50.0" prefWidth="225.0" onAction="#changeDifficulty" focusTraversable="false" value="Choose difficulty"/>
-      <Label fx:id="theScore" layoutX="375.0" layoutY="50" text="score" />
-      <Label fx:id="flagsLeftLabel" layoutX="200.0" layoutY="50" />
+      <VBox layoutX="150.0" layoutY="75.0" alignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="75.0">
+         <children>
+            <Button fx:id="restart" focusTraversable="false" onAction="#handleRestart" prefWidth="75.0" text="Restart" />
+         </children>
+      </VBox>
+      <Text fx:id="timerText" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="75.0" text="0" />
+      <ChoiceBox fx:id="difficultyChoiceBox" focusTraversable="false" onAction="#changeDifficulty" prefWidth="225.0" value="Choose difficulty" AnchorPane.leftAnchor="50" AnchorPane.topAnchor="25.0" />
+      <Label fx:id="flagsLeftLabel" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="75.0" />
 
-      <GridPane fx:id="minefieldGridPane" alignment="CENTER" layoutX="287.5" layoutY="137.5">
-
+      <GridPane fx:id="minefieldGridPane" alignment="CENTER" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="175.0">
       </GridPane>
-      <Button fx:id="checkHighscoresButton"
-              layoutX="1000.0"
-              layoutY="700.0"
-              mnemonicParsing="false"
-              onAction="#showHighscores"
-              text="See highscores"
-              focusTraversable="false" />
+      <Button fx:id="checkHighscoresButton" focusTraversable="false" mnemonicParsing="false" onAction="#showHighscores" text="See highscores" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="50.0" />
    </children>
 </AnchorPane>
