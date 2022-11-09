@@ -35,6 +35,14 @@ public class FileHandler {
     }
 
     /**
+     * Get-method for the objectmapper.
+     * @return the objectmapper
+     */
+    public ObjectMapper getMapper() {
+        return mapper;
+    }
+
+    /**
      * Constructor for FileHandler, which takes in an address.
      * @param address the address for which file to handle
      */
