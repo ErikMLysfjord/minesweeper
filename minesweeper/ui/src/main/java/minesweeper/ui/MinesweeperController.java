@@ -5,6 +5,7 @@ import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
 import minesweeper.json.FileHandler;
 
+import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.Random;
 
@@ -28,6 +29,7 @@ import javafx.scene.text.Text;
 public class MinesweeperController {
     private SceneManager sceneSwitcher;
     private FileHandler fileHandler;
+    private HighscoresAccess access;
     private Minesweeper minesweeper;
     private Difficulty currentDifficulty = Difficulty.EASY;
     private Timer timer;
@@ -45,10 +47,12 @@ public class MinesweeperController {
 
     /**
      * Initializes the minesweeper model and minefield view.
+     * @throws URISyntaxException if URI is not found
      */
     @FXML
-    private void initialize() {
+    private void initialize() throws URISyntaxException {
         fileHandler = new FileHandler();
+        access = new HighscoresAccess("http://localhost:8080/minesweeper");
 
         restart();
         for (Difficulty difficulty : Difficulty.values()) {
@@ -313,10 +317,12 @@ public class MinesweeperController {
     /**
      * Changes the scene from the minesweeper to the highscore list scene.
      * @param event mouse-click that initializes the function
+     * @throws URISyntaxException if URI is not found
      */
     @FXML
-    private void showHighscores(final ActionEvent event) {
-        sceneSwitcher.setHighscores(fileHandler.readHighscoreList());
+    private void showHighscores(final ActionEvent event)
+        throws URISyntaxException {
+        sceneSwitcher.setHighscores(access.getHighscoreList());
     }
 
     /**
