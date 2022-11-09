@@ -3,6 +3,7 @@ module minesweeper.core {
 
     exports minesweeper.core;
     exports minesweeper.json;
+    exports minesweeper.json.internal;
 
     opens minesweeper.core to com.fasterxml.jackson.databind;
 }
