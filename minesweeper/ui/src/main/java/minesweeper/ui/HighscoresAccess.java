@@ -15,7 +15,6 @@ public class HighscoresAccess {
 
     private final URI uri;
     private ObjectMapper mapper;
-    private HighscoreList highscoreList;
 
     /**
      * Constructor for HighscoresAccess.
@@ -27,27 +26,32 @@ public class HighscoresAccess {
     }
 
     /**
-     * Get the highscorelist with a HTTP-request.
-     * @return the highscorelist
+     * Gets the highscore list with an HTTP-request from server.
+     * @return the highscore list
      * @throws URISyntaxException if the URI is not found
      */
     public HighscoreList getHighscoreList() throws URISyntaxException {
-        HttpRequest request = HttpRequest.newBuilder(uri
-            .resolve("highscorelist"))
+        HttpRequest request = HttpRequest
+            .newBuilder(uri.resolve("highscorelist"))
             .header("accept", "application/json")
             .GET()
             .build();
+
+        HighscoreList highscoreList;
         try {
             final HttpResponse<String> response =
-            HttpClient.newHttpClient().send(request, HttpResponse
-                .BodyHandlers.ofString()
-            );
-            this.highscoreList = mapper.
-                readValue(response.body(), HighscoreList.class
+                HttpClient.newHttpClient().send(
+                    request,
+                    HttpResponse.BodyHandlers.ofString()
+                );
+
+            highscoreList = mapper.readValue(
+                response.body(),
+                HighscoreList.class
             );
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return this.highscoreList;
+        return highscoreList;
     }
 }
