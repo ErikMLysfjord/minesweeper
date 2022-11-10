@@ -11,7 +11,11 @@
     </parent>
 
     <dependencies>
-
+        <dependency>
+            <groupId>gr2243.minesweeper</groupId>
+            <artifactId>modules-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!-- junit testing with jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
