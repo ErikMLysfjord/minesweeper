@@ -5,6 +5,7 @@ import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
 import minesweeper.json.FileHandler;
 
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 import java.util.Random;
@@ -44,6 +45,8 @@ public class MinesweeperController {
     private ChoiceBox<String> difficultyChoiceBox;
     @FXML
     private Text timerText;
+    @FXML
+    private String uri;
 
     /**
      * Initializes the minesweeper model and minefield view.
@@ -52,7 +55,7 @@ public class MinesweeperController {
     @FXML
     private void initialize() throws URISyntaxException {
         fileHandler = new FileHandler();
-        access = new HighscoresAccess("http://localhost:8080/minesweeper");
+        access = new HighscoresAccess(new URI(uri));
 
         restart();
         for (Difficulty difficulty : Difficulty.values()) {

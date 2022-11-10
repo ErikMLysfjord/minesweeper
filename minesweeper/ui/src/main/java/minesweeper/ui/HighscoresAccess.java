@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HighscoresAccess {
 
-    private final String uri;
+    private final URI uri;
     private ObjectMapper mapper;
     private HighscoreList highscoreList;
 
@@ -21,7 +21,7 @@ public class HighscoresAccess {
      * Constructor for the HighscoresAccess.
      * @param uri the address
      */
-    public HighscoresAccess(final String uri) {
+    public HighscoresAccess(final URI uri) {
         this.uri = uri;
         mapper = new FileHandler().getMapper();
     }
@@ -32,8 +32,8 @@ public class HighscoresAccess {
      * @throws URISyntaxException if the URI is not found
      */
     public HighscoreList getHighscoreList() throws URISyntaxException {
-        HttpRequest request = HttpRequest.newBuilder(URI
-            .create(uri + "/highscorelist"))
+        HttpRequest request = HttpRequest.newBuilder(uri
+            .resolve("highscorelist"))
             .header("accept", "application/json")
             .GET()
             .build();
