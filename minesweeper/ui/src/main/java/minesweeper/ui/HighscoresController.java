@@ -25,10 +25,10 @@ public class HighscoresController {
     private Button backButton;
 
     /**
-     * Constructs a highscore-controller that won't read highscores from file.
-     * Copies elements from a pre-made highscorelist into a new Highscore-list,
-     * so the highscores cant be mutated externally.
-     * @param highscoreList a pre-made highscorelist
+     * Constructor for HighscoresController.
+     * Creates and sets a copy of the provided highscore list,
+     * so that the object can't be mutated externally.
+     * @param highscoreList the highscore list to be displayed on the scene
      */
     public HighscoresController(final HighscoreList highscoreList) {
         this.highscoreList = new HighscoreList(highscoreList.getMaxSize());

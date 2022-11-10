@@ -1,11 +1,13 @@
 package minesweeper.ui;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpRequest.BodyPublisher;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpClient;
 
+import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 import minesweeper.json.FileHandler;
 
@@ -15,7 +17,6 @@ public class HighscoresAccess {
 
     private final URI uri;
     private ObjectMapper mapper;
-    private HighscoreList highscoreList;
 
     /**
      * Constructor for HighscoresAccess.
@@ -27,27 +28,58 @@ public class HighscoresAccess {
     }
 
     /**
-     * Get the highscorelist with a HTTP-request.
-     * @return the highscorelist
-     * @throws URISyntaxException if the URI is not found
+     * Gets the highscore list with an HTTP-request from server.
+     * @return the highscore list
      */
-    public HighscoreList getHighscoreList() throws URISyntaxException {
-        HttpRequest request = HttpRequest.newBuilder(uri
-            .resolve("highscorelist"))
+    public HighscoreList getHighscoreList() {
+        HttpRequest request = HttpRequest
+            .newBuilder(uri.resolve("highscorelist"))
             .header("accept", "application/json")
             .GET()
             .build();
+
+        HighscoreList highscoreList;
         try {
             final HttpResponse<String> response =
-            HttpClient.newHttpClient().send(request, HttpResponse
-                .BodyHandlers.ofString()
-            );
-            this.highscoreList = mapper.
-                readValue(response.body(), HighscoreList.class
+                HttpClient.newHttpClient().send(
+                    request,
+                    HttpResponse.BodyHandlers.ofString()
+                );
+
+            highscoreList = mapper.readValue(
+                response.body(),
+                HighscoreList.class
             );
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return this.highscoreList;
+        return highscoreList;
     }
+
+    /**
+     * Posts highscore entry to server with an HTTP-request.
+     * @param entry to be saved to server
+     */
+    public void saveScore(final HighscoreEntry entry) {
+        try {
+            BodyPublisher bodyPublisher = BodyPublishers.ofString(
+                mapper.writeValueAsString(entry)
+            );
+            HttpRequest request = HttpRequest
+                .newBuilder(uri.resolve("highscorelist"))
+                .header("Content-Type", "application/json")
+                .POST(bodyPublisher)
+                .build();
+
+            //We don't need the response.
+            HttpClient
+                .newBuilder()
+                .build()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package minesweeper.server;
 
+import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 import minesweeper.json.FileHandler;
 
@@ -16,6 +17,14 @@ public class HighscoreService {
      */
     public HighscoreList getHighscoreList() {
         return fileHandler.readHighscoreList();
+    }
+
+    /**
+     * Adds entry to the highscore list in file.
+     * @param entry to be added
+     */
+    public void addHighscoreEntry(final HighscoreEntry entry) {
+        fileHandler.saveScore(entry);
     }
 
 }
