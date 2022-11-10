@@ -1,7 +1,6 @@
 package minesweeper.ui;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublisher;
@@ -31,9 +30,8 @@ public class HighscoresAccess {
     /**
      * Gets the highscore list with an HTTP-request from server.
      * @return the highscore list
-     * @throws URISyntaxException if the URI is not found
      */
-    public HighscoreList getHighscoreList() throws URISyntaxException {
+    public HighscoreList getHighscoreList() {
         HttpRequest request = HttpRequest
             .newBuilder(uri.resolve("highscorelist"))
             .header("accept", "application/json")

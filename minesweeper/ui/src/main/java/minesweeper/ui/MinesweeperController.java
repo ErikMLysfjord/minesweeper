@@ -316,11 +316,9 @@ public class MinesweeperController {
     /**
      * Changes the scene from the minesweeper to the highscore list scene.
      * @param event mouse-click that initializes the function
-     * @throws URISyntaxException if URI is not found
      */
     @FXML
-    private void showHighscores(final ActionEvent event)
-        throws URISyntaxException {
+    private void showHighscores(final ActionEvent event) {
         sceneSwitcher.setHighscores(access.getHighscoreList());
     }
 
