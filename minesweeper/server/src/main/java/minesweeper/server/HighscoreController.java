@@ -29,10 +29,12 @@ public class HighscoreController {
     /**
      * Saves highscore entry in the server's highscore list.
      * @param entry to be saved
+     * @return true to indicate success
      */
     @PostMapping("/highscorelist")
-    public void addHighscoreEntry(final @RequestBody HighscoreEntry entry) {
+    public boolean addHighscoreEntry(final @RequestBody HighscoreEntry entry) {
         service.addHighscoreEntry(entry);
+        return true;
     }
 
 }

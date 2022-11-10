@@ -4,8 +4,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.net.http.HttpRequest.BodyPublisher;
+import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpClient;
 
+import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 import minesweeper.json.FileHandler;
 
@@ -54,4 +57,31 @@ public class HighscoresAccess {
         }
         return highscoreList;
     }
+
+    /**
+     * Posts highscore entry to server with an HTTP-request.
+     * @param entry to be saved to server
+     */
+    public void saveScore(final HighscoreEntry entry) {
+        try {
+            BodyPublisher bodyPublisher = BodyPublishers.ofString(
+                mapper.writeValueAsString(entry)
+            );
+            HttpRequest request = HttpRequest
+                .newBuilder(uri.resolve("highscorelist"))
+                .header("Content-Type", "application/json")
+                .POST(bodyPublisher)
+                .build();
+
+            //We don't need the response.
+            HttpClient
+                .newBuilder()
+                .build()
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -3,7 +3,6 @@ package minesweeper.ui;
 import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.Minesweeper;
-import minesweeper.json.FileHandler;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,7 +28,6 @@ import javafx.scene.text.Text;
 
 public class MinesweeperController {
     private SceneManager sceneSwitcher;
-    private FileHandler fileHandler;
     private HighscoresAccess access;
     private Minesweeper minesweeper;
     private Difficulty currentDifficulty = Difficulty.EASY;
@@ -54,7 +52,6 @@ public class MinesweeperController {
      */
     @FXML
     private void initialize() throws URISyntaxException {
-        fileHandler = new FileHandler();
         access = new HighscoresAccess(new URI(uri));
 
         restart();
@@ -236,11 +233,10 @@ public class MinesweeperController {
      * @param score the score of the user
      */
     private void handleSaveScore(final String name, final Integer score) {
-        fileHandler.saveScore(new HighscoreEntry(
+        access.saveScore(new HighscoreEntry(
             name,
             score
         ));
-
     }
 
     /**
