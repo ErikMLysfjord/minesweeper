@@ -18,8 +18,8 @@ public class HighscoresAccess {
     private HighscoreList highscoreList;
 
     /**
-     * Constructor for the HighscoresAccess.
-     * @param uri the address
+     * Constructor for HighscoresAccess.
+     * @param uri the URI-address
      */
     public HighscoresAccess(final URI uri) {
         this.uri = uri;
@@ -39,10 +39,6 @@ public class HighscoresAccess {
             .build();
         try {
             final HttpResponse<String> response =
-            // another way of doing it
-            /* HttpClient.newBuilder().build().send(request, HttpResponse
-                .BodyHandlers.ofString()
-            ); */
             HttpClient.newHttpClient().send(request, HttpResponse
                 .BodyHandlers.ofString()
             );
