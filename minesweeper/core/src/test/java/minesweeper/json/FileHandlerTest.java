@@ -32,8 +32,8 @@ public class FileHandlerTest {
 
     @Test
     public void testAddHighscores() {
-        HighscoreEntry entry1 = new HighscoreEntry("First-test", 1000);
-        HighscoreEntry entry2 = new HighscoreEntry("Second-test", 10);
+        HighscoreEntry entry1 = new HighscoreEntry("First-test", 10);
+        HighscoreEntry entry2 = new HighscoreEntry("Second-test", 1000);
         fileHandler.saveScore(entry1);
         // Asserts that the entry in the file is equal to the highscore-entry,
         // although they are two different  objects.
