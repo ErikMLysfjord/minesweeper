@@ -83,7 +83,7 @@ public class FileHandler {
     }
 
     /**
-     * Saves serialized score object to highscore list in data.json.
+     * Saves serialized score object to highscore list in highscoreList.json.
      * @param score the score to be saved
      */
     public void saveScore(final HighscoreEntry score) {
@@ -97,8 +97,8 @@ public class FileHandler {
     }
 
     /**
-     * Reads highscore list from data.json.
-     * @return highscore list in data.json
+     * Reads highscore list from highscoreList.json.
+     * @return highscore list in highscoreList.json
      */
     public HighscoreList readHighscoreList() {
         makeFile();
