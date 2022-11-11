@@ -29,11 +29,13 @@ public class HighscoresAccess {
 
     /**
      * Gets the highscore list with an HTTP-request from server.
+     * @param difficulty the chosen difficulty
      * @return the highscore list
      */
-    public HighscoreList getHighscoreList() {
+    public HighscoreList getHighscoreList(final String difficulty) {
         HttpRequest request = HttpRequest
-            .newBuilder(uri.resolve("highscorelist"))
+            .newBuilder(uri.resolve(
+                String.format("highscorelist/%s", difficulty)))
             .header("accept", "application/json")
             .GET()
             .build();
@@ -66,7 +68,7 @@ public class HighscoresAccess {
                 mapper.writeValueAsString(entry)
             );
             HttpRequest request = HttpRequest
-                .newBuilder(uri.resolve("highscorelist"))
+                .newBuilder(uri.resolve("highscorelist/easy/save"))
                 .header("Content-Type", "application/json")
                 .POST(bodyPublisher)
                 .build();
@@ -76,7 +78,6 @@ public class HighscoresAccess {
                 .newBuilder()
                 .build()
                 .send(request, HttpResponse.BodyHandlers.ofString());
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

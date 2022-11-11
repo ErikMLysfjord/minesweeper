@@ -316,7 +316,8 @@ public class MinesweeperController {
      */
     @FXML
     private void showHighscores(final ActionEvent event) {
-        sceneSwitcher.setHighscores(access.getHighscoreList());
+        String difficulty = currentDifficulty.getName().toLowerCase();
+        sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));
     }
 
     /**
