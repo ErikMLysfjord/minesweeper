@@ -231,10 +231,12 @@ public class MinesweeperController {
      * @param score the score of the user
      */
     private void saveScore(final String name, final Integer score) {
+        String difficulty = currentDifficulty.getName().toLowerCase();
+        System.out.println(difficulty);
         access.saveScore(new HighscoreEntry(
             name,
             score
-        ));
+        ), difficulty);
     }
 
     /**

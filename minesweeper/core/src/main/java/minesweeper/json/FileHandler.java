@@ -98,22 +98,17 @@ public class FileHandler {
         try {
             switch (difficulty) {
                 case "easy":
-                    mapper.writeValue(
-                        EASYFILE,
-                        highscoreList
-                    );
+                    mapper.writeValue(EASYFILE, highscoreList);
+                    break;
                 case "medium":
-                mapper.writeValue(
-                        MEDIUMFILE,
-                        highscoreList
-                );
+                    mapper.writeValue(MEDIUMFILE, highscoreList);
+                    break;
                 case "hard":
-                mapper.writeValue(
-                        HARDFILE,
-                        highscoreList
-                    );
+                    mapper.writeValue(HARDFILE, highscoreList);
+                        break;
                 default:
                     mapper.writeValue(EASYFILE, highscoreList);
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();

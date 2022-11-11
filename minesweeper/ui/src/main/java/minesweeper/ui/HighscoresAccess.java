@@ -60,15 +60,20 @@ public class HighscoresAccess {
 
     /**
      * Posts highscore entry to server with an HTTP-request.
+     * @param difficulty the chosen difficulty
      * @param entry to be saved to server
      */
-    public void saveScore(final HighscoreEntry entry) {
+    public void saveScore(final HighscoreEntry entry,
+            final String difficulty) {
         try {
             BodyPublisher bodyPublisher = BodyPublishers.ofString(
                 mapper.writeValueAsString(entry)
             );
             HttpRequest request = HttpRequest
-                .newBuilder(uri.resolve("highscorelist/easy/save"))
+                .newBuilder(uri.resolve(
+                    String.format("highscorelist/%s/save",
+                    difficulty))
+                )
                 .header("Content-Type", "application/json")
                 .POST(bodyPublisher)
                 .build();
