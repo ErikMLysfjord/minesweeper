@@ -25,9 +25,11 @@ public class HighscoreService {
      * @param entry to be added
      * @param difficulty difficulty chosen
      */
-    public void addHighscoreEntry(final HighscoreEntry entry,
-            final String difficulty) {
-        fileHandler.saveScore(entry, difficulty);
+    public void addHighscoreEntry(
+        final HighscoreEntry entry,
+        final String difficulty
+    ) {
+        fileHandler.saveScore(entry, Difficulty.getDifficulty(difficulty));
     }
 
 }

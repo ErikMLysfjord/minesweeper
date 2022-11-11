@@ -26,7 +26,7 @@ public class HighscoreController {
     @GetMapping("/highscorelist/{difficulty}")
     public HighscoreList getHighscoreList(
         final @PathVariable("difficulty") String difficulty
-        ) {
+    ) {
         return service.getHighscoreList(difficulty);
     }
 
@@ -37,9 +37,10 @@ public class HighscoreController {
      * @return true to indicate success
      */
     @PostMapping("/highscorelist/{difficulty}/save")
-    public boolean addHighscoreEntry(final @RequestBody HighscoreEntry entry,
-        final @PathVariable("difficulty") String difficulty) {
-
+    public boolean addHighscoreEntry(
+        final @RequestBody HighscoreEntry entry,
+        final @PathVariable("difficulty") String difficulty
+    ) {
         service.addHighscoreEntry(entry, difficulty);
         return true;
     }
