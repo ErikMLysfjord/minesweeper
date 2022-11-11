@@ -1,5 +1,6 @@
 package minesweeper.server;
 
+import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 import minesweeper.json.HighscoresFileHandler;
@@ -17,7 +18,9 @@ public class HighscoreService {
      * @return the highscorelist
      */
     public HighscoreList getHighscoreList(final String difficulty) {
-        return fileHandler.readHighscoreList(difficulty);
+        return fileHandler.readHighscoreList(
+            Difficulty.getDifficulty(difficulty)
+        );
     }
 
     /**
