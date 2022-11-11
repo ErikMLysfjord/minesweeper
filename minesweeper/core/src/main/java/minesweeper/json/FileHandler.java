@@ -16,22 +16,26 @@ import minesweeper.json.internal.HighscoreListSerializer;
 public class FileHandler {
     private final ObjectMapper mapper;
     private final File highscoreListFile;
-    private final File dir = new File(
+    private static final File DIR = new File(
         "../core/src/main/resources/minesweeper/json/"
+    );
+    private static final File EASYFILE = new File(
+        "../core/src/main/resources/minesweeper/json/easyHighscoreList.json"
+    );
+    private static final File MEDIUMFILE = new File(
+        "../core/src/main/resources/minesweeper/json/mediumHighscoreList.json"
+    );
+    private static final File HARDFILE = new File(
+        "../core/src/main/resources/minesweeper/json/hardHighscoreList.json"
     );
 
     /**
      * Constructor for FileHandler.
      */
     public FileHandler() {
-        highscoreListFile = new File(
-            "../core/src/main/resources/minesweeper/json/highscoreList.json"
-        );
+        highscoreListFile = null;
         mapper = registerModule(new ObjectMapper());
-        makeFile();
-        if (highscoreListFile.length() == 0) {
-            setEmptyList();
-        }
+        makeFiles();
     }
 
     /**
@@ -49,10 +53,7 @@ public class FileHandler {
     public FileHandler(final String address) {
         highscoreListFile = new File(address);
         mapper = registerModule(new ObjectMapper());
-        makeFile();
-        if (highscoreListFile.length() == 0) {
-            setEmptyList();
-        }
+        makeFiles();
     }
 
     /**
@@ -83,6 +84,42 @@ public class FileHandler {
     }
 
     /**
+     * Saves serialized score object to highscore list in the file
+     * corresponding to the difficulty.
+     * @param score the score to be saved
+     * @param difficulty the difficulty file to be saved to
+     */
+    public void saveScore(
+            final HighscoreEntry score,
+            final String difficulty) {
+
+        HighscoreList highscoreList = readHighscoreList(difficulty);
+        highscoreList.addEntry(score);
+        try {
+            switch (difficulty) {
+                case "easy":
+                    mapper.writeValue(
+                        EASYFILE,
+                        highscoreList
+                    );
+                case "medium":
+                mapper.writeValue(
+                        MEDIUMFILE,
+                        highscoreList
+                );
+                case "hard":
+                mapper.writeValue(
+                        HARDFILE,
+                        highscoreList
+                    );
+                default:
+                    mapper.writeValue(EASYFILE, highscoreList);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /**
      * Saves serialized score object to highscore list in data.json.
      * @param score the score to be saved
      */
@@ -97,19 +134,49 @@ public class FileHandler {
     }
 
     /**
-     * Reads highscore list from data.json.
-     * @return highscore list in data.json
+     * Reads highscore list from the file corresponding to the difficulty.
+     * @param difficulty difficulty chosen
+     * @return highscorelist in the file
+     */
+    public HighscoreList readHighscoreList(final String difficulty) {
+        makeFiles();
+        try {
+            switch (difficulty) {
+                case "easy":
+                    return mapper.readValue(
+                        EASYFILE,
+                        HighscoreList.class
+                    );
+                case "medium":
+                    return mapper.readValue(
+                        MEDIUMFILE,
+                        HighscoreList.class
+                    );
+                case "hard":
+                    return mapper.readValue(
+                        HARDFILE,
+                        HighscoreList.class
+                    );
+
+                default:
+                    return mapper.readValue(
+                        EASYFILE,
+                        HighscoreList.class
+                    );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    /**
+     * Reads highscore list from highscorelistFile.
+     * @return highscore list in highscorelistFile
      */
     public HighscoreList readHighscoreList() {
-        makeFile();
-        if (highscoreListFile.length() == 0) {
-            setEmptyList();
-        }
+        makeFiles();
         try {
-            return mapper.readValue(
-                highscoreListFile,
-                HighscoreList.class
-            );
+            return mapper.readValue(highscoreListFile, HighscoreList.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,18 +189,36 @@ public class FileHandler {
     public void setEmptyList() {
         HighscoreList highscoreList = new HighscoreList();
         try {
-            mapper.writeValue(highscoreListFile, highscoreList);
+            if (highscoreListFile != null && highscoreListFile.length() == 0) {
+                mapper.writeValue(highscoreListFile, highscoreList);
+            }
+            if (EASYFILE.length() == 0) {
+                mapper.writeValue(EASYFILE, highscoreList);
+            }
+            if (MEDIUMFILE.length() == 0) {
+                mapper.writeValue(MEDIUMFILE, highscoreList);
+            }
+            if (HARDFILE.length() == 0) {
+                mapper.writeValue(HARDFILE, highscoreList);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void makeFile() {
+    private void makeFiles() {
         try {
-            dir.mkdirs();
-            highscoreListFile.createNewFile();
+            DIR.mkdirs();
+            if (highscoreListFile != null) {
+                highscoreListFile.createNewFile();
+            }
+            EASYFILE.createNewFile();
+            MEDIUMFILE.createNewFile();
+            HARDFILE.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setEmptyList();
     }
 }
+
