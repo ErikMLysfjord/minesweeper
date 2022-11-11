@@ -9,7 +9,7 @@ import java.net.http.HttpClient;
 
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
-import minesweeper.json.FileHandler;
+import minesweeper.json.HighscoresFileHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,7 +24,7 @@ public class HighscoresAccess {
      */
     public HighscoresAccess(final URI uri) {
         this.uri = uri;
-        mapper = new FileHandler().getMapper();
+        mapper = new HighscoresFileHandler().getMapper();
     }
 
     /**

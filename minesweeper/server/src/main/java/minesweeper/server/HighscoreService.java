@@ -2,14 +2,14 @@ package minesweeper.server;
 
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
-import minesweeper.json.FileHandler;
+import minesweeper.json.HighscoresFileHandler;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class HighscoreService {
 
-    private FileHandler fileHandler = new FileHandler();
+    private HighscoresFileHandler fileHandler = new HighscoresFileHandler();
 
     /**
      * Gets the highscore read from the json-file.
