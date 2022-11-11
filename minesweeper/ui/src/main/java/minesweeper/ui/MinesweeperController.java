@@ -7,7 +7,6 @@ import minesweeper.core.Minesweeper;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
-import java.util.Random;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -228,11 +227,10 @@ public class MinesweeperController {
 
     /**
      * Writes the user-input highscore list in data.json.
-     * Called when save-button is pressed.
      * @param name the name of the user
      * @param score the score of the user
      */
-    private void handleSaveScore(final String name, final Integer score) {
+    private void saveScore(final String name, final Integer score) {
         access.saveScore(new HighscoreEntry(
             name,
             score
@@ -267,8 +265,7 @@ public class MinesweeperController {
 
     /**
      * Method for handling the name-input when a player has won.
-     * The method sends in a random score, as we haven't
-     * implemented a scoring-system yet.
+     * The method sends in the score.
      */
     private void handleInput() {
         TextInputDialog td = new TextInputDialog("Ola Nordmann");
@@ -286,7 +283,7 @@ public class MinesweeperController {
             name = td.showAndWait();
         }
         if (name.isPresent()) {
-            handleSaveScore(name.get(), new Random().nextInt());
+            saveScore(name.get(), timer.getSeconds());
         }
     }
 
