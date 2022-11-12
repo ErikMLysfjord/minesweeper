@@ -5,8 +5,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
@@ -23,6 +25,9 @@ public class HighscoresController {
     private TableColumn<HighscoreEntry, Integer> score;
     @FXML
     private Button backButton;
+    @FXML
+    private ChoiceBox<String> difficultyScoreChoiceBox;
+
 
     /**
      * Constructor for HighscoresController.
@@ -44,6 +49,9 @@ public class HighscoresController {
     private void initialize() {
         highscoresView = new HighscoresView();
         highscoresView.setCells(highscores, name, score, getHighScores());
+        for (Difficulty difficulty : Difficulty.values()) {
+            difficultyScoreChoiceBox.getItems().add(difficulty.getName());
+        }
     }
 
     /**
