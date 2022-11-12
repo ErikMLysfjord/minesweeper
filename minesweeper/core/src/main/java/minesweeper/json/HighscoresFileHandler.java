@@ -38,11 +38,14 @@ public class HighscoresFileHandler {
      * Sets the files for the different difficulties.
      */
     private void setFiles() {
-        Arrays.asList(Difficulty.values()).forEach(value ->
-            FILES.put(value, new File(String.format(
+        Arrays.asList(Difficulty.values()).forEach(difficulty -> {
+            String difficultyName = difficulty.getName().toLowerCase();
+            File difficultyFile = new File(String.format(
             "../core/src/main/resources/minesweeper/json/%sHighscoreList.json",
-            value.getName().toLowerCase())))
-        );
+                difficultyName
+            ));
+            FILES.put(difficulty, difficultyFile);
+        });
     }
 
     /**
@@ -131,7 +134,8 @@ public class HighscoresFileHandler {
     public HighscoreList readHighscoreList(final Difficulty difficulty) {
         makeFiles();
         try {
-            return mapper.readValue(FILES.get(difficulty),
+            return mapper.readValue(
+                FILES.get(difficulty),
                 HighscoreList.class
             );
         } catch (Exception e) {
