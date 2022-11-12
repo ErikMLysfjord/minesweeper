@@ -9,7 +9,7 @@ import java.net.http.HttpClient;
 
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
-import minesweeper.json.FileHandler;
+import minesweeper.json.HighscoresFileHandler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,16 +24,18 @@ public class HighscoresAccess {
      */
     public HighscoresAccess(final URI uri) {
         this.uri = uri;
-        mapper = new FileHandler().getMapper();
+        mapper = new HighscoresFileHandler().getMapper();
     }
 
     /**
      * Gets the highscore list with an HTTP-request from server.
+     * @param difficulty the chosen difficulty
      * @return the highscore list
      */
-    public HighscoreList getHighscoreList() {
+    public HighscoreList getHighscoreList(final String difficulty) {
         HttpRequest request = HttpRequest
-            .newBuilder(uri.resolve("highscorelist"))
+            .newBuilder(uri.resolve(
+                String.format("highscorelist/%s", difficulty)))
             .header("accept", "application/json")
             .GET()
             .build();
@@ -58,15 +60,20 @@ public class HighscoresAccess {
 
     /**
      * Posts highscore entry to server with an HTTP-request.
+     * @param difficulty the chosen difficulty
      * @param entry to be saved to server
      */
-    public void saveScore(final HighscoreEntry entry) {
+    public void saveScore(final HighscoreEntry entry,
+            final String difficulty) {
         try {
             BodyPublisher bodyPublisher = BodyPublishers.ofString(
                 mapper.writeValueAsString(entry)
             );
             HttpRequest request = HttpRequest
-                .newBuilder(uri.resolve("highscorelist"))
+                .newBuilder(uri.resolve(
+                    String.format("highscorelist/%s/save",
+                    difficulty))
+                )
                 .header("Content-Type", "application/json")
                 .POST(bodyPublisher)
                 .build();
@@ -76,7 +83,6 @@ public class HighscoresAccess {
                 .newBuilder()
                 .build()
                 .send(request, HttpResponse.BodyHandlers.ofString());
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

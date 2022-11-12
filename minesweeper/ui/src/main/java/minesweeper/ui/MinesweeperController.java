@@ -231,10 +231,11 @@ public class MinesweeperController {
      * @param score the score of the user
      */
     private void saveScore(final String name, final Integer score) {
+        String difficulty = currentDifficulty.getName();
         access.saveScore(new HighscoreEntry(
             name,
             score
-        ));
+        ), difficulty);
     }
 
     /**
@@ -316,7 +317,8 @@ public class MinesweeperController {
      */
     @FXML
     private void showHighscores(final ActionEvent event) {
-        sceneSwitcher.setHighscores(access.getHighscoreList());
+        String difficulty = currentDifficulty.getName();
+        sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));
     }
 
     /**

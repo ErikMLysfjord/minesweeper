@@ -1,6 +1,6 @@
 package minesweeper.server;
 
-import minesweeper.json.FileHandler;
+import minesweeper.json.HighscoresFileHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class HighscoreApplication {
      */
     @Bean
     public ObjectMapper getMapper() {
-        return new FileHandler().getMapper();
+        return new HighscoresFileHandler().getMapper();
     }
 
 }

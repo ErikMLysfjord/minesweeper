@@ -10,12 +10,12 @@ import minesweeper.core.HighscoreEntry;
 
 public class FileHandlerTest {
 
-    private FileHandler fileHandler;
+    private HighscoresFileHandler fileHandler;
     private String rPath = "../core/src/main/resources/minesweeper/json/testPersistence.json";
 
     @BeforeEach
     public void setUp() {
-        fileHandler = new FileHandler(rPath);
+        fileHandler = new HighscoresFileHandler(rPath);
     }
 
     @Test
