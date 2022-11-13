@@ -1,5 +1,8 @@
 package minesweeper.ui;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +19,7 @@ public class HighscoresController {
     private SceneManager sceneSwitcher;
     private HighscoreList highscoreList;
     private HighscoresView highscoresView;
+    private HighscoresAccess access;
 
     @FXML
     private TableView<HighscoreEntry> highscores;
@@ -26,7 +30,9 @@ public class HighscoresController {
     @FXML
     private Button backButton;
     @FXML
-    private ChoiceBox<String> difficultyScoreChoiceBox;
+    private ChoiceBox<String> highscoreDifficultyChoiceBox;
+    @FXML
+    private String uri;
 
 
     /**
@@ -46,12 +52,25 @@ public class HighscoresController {
      * Initializes the highscoresview and updates the highscore-list.
      */
     @FXML
-    private void initialize() {
+    private void initialize() throws URISyntaxException {
+        access = new HighscoresAccess(new URI(uri));
+
+        for (Difficulty difficulty : Difficulty.values()) {
+            highscoreDifficultyChoiceBox.getItems().add(difficulty.getName());
+        }
+
         highscoresView = new HighscoresView();
         highscoresView.setCells(highscores, name, score, getHighScores());
-        for (Difficulty difficulty : Difficulty.values()) {
-            difficultyScoreChoiceBox.getItems().add(difficulty.getName());
-        }
+    }
+
+    /**
+     * Updates highscore list scene.
+     */
+    @FXML
+    private void changeHighscoreScene() {
+        String chosenDifficulty = highscoreDifficultyChoiceBox.getValue();
+        highscoreDifficultyChoiceBox.setValue(chosenDifficulty);
+        sceneSwitcher.setHighscores(access.getHighscoreList(chosenDifficulty));
     }
 
     /**

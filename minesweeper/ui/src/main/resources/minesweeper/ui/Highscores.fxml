@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+  <fx:define>
+      <String fx:id="uri" fx:value="http://localhost:8080/minesweeper/" />
+  </fx:define>
   <children>
-      <ChoiceBox fx:id="difficultyScoreChoiceBox" focusTraversable="false" layoutX="300.0" layoutY="15.0" prefWidth="200.0" value="Easy" />
       <TableView fx:id="highscores" focusTraversable="false" layoutX="300.0" layoutY="150.0" prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: black;">
         <columns>
           <TableColumn fx:id="name" prefWidth="97.0" text="Name" />
           <TableColumn fx:id="score" prefWidth="97.0" text="Score" />
         </columns>
       </TableView>
+      <ChoiceBox fx:id="highscoreDifficultyChoiceBox" focusTraversable="false" onAction="#changeHighscoreScene" layoutX="300.0" layoutY="15.0" prefWidth="200.0" value="Choose difficulty"/>
       <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#goBack" text="&lt;- Back" AnchorPane.LeftAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>
