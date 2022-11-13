@@ -18,7 +18,7 @@
           <TableColumn fx:id="score" prefWidth="97.0" text="Score" />
         </columns>
       </TableView>
-      <ChoiceBox fx:id="difficultyChoiceBox" focusTraversable="false" onAction="#changeHighscoreDifficultyScene" layoutX="300.0" layoutY="15.0" prefWidth="200.0" value="Choose difficulty"/>
+      <ChoiceBox fx:id="difficultyChoiceBox" focusTraversable="false" onAction="#changeDifficulty" layoutX="300.0" layoutY="15.0" prefWidth="200.0" value="Choose difficulty"/>
       <Button fx:id="backButton" focusTraversable="false" mnemonicParsing="false" onAction="#goBack" text="&lt;- Back" AnchorPane.LeftAnchor="15.0" AnchorPane.topAnchor="15.0" />
    </children>
 </AnchorPane>

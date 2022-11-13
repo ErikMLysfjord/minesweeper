@@ -61,10 +61,11 @@ public class HighscoresController {
     }
 
     /**
-     * Updates highscore list scene that corresponds with difficulty chosen.
+     * Changes highscore difficulty list.
+     * Called when new difficulty gets chosen in ChoiceBox.
      */
     @FXML
-    private void changeHighscoreDifficultyScene() throws URISyntaxException {
+    private void changeDifficulty() throws URISyntaxException {
         HighscoresAccess access = new HighscoresAccess(new URI(uri));
 
         String chosenDifficulty = difficultyChoiceBox.getValue();
