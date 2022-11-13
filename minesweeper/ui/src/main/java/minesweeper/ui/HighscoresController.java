@@ -19,7 +19,6 @@ public class HighscoresController {
     private SceneManager sceneSwitcher;
     private HighscoreList highscoreList;
     private HighscoresView highscoresView;
-    private HighscoresAccess access;
 
     @FXML
     private TableView<HighscoreEntry> highscores;
@@ -30,7 +29,7 @@ public class HighscoresController {
     @FXML
     private Button backButton;
     @FXML
-    private ChoiceBox<String> highscoreDifficultyChoiceBox;
+    private ChoiceBox<String> difficultyChoiceBox;
     @FXML
     private String uri;
 
@@ -52,11 +51,9 @@ public class HighscoresController {
      * Initializes the highscoresview and updates the highscore-list.
      */
     @FXML
-    private void initialize() throws URISyntaxException {
-        access = new HighscoresAccess(new URI(uri));
-
+    private void initialize() {
         for (Difficulty difficulty : Difficulty.values()) {
-            highscoreDifficultyChoiceBox.getItems().add(difficulty.getName());
+            difficultyChoiceBox.getItems().add(difficulty.getName());
         }
 
         highscoresView = new HighscoresView();
@@ -64,12 +61,13 @@ public class HighscoresController {
     }
 
     /**
-     * Updates highscore list scene.
+     * Updates highscore list scene that corresponds with difficulty chosen.
      */
     @FXML
-    private void changeHighscoreScene() {
-        String chosenDifficulty = highscoreDifficultyChoiceBox.getValue();
-        highscoreDifficultyChoiceBox.setValue(chosenDifficulty);
+    private void changeHighscoreDifficultyScene() throws URISyntaxException {
+        HighscoresAccess access = new HighscoresAccess(new URI(uri));
+
+        String chosenDifficulty = difficultyChoiceBox.getValue();
         sceneSwitcher.setHighscores(access.getHighscoreList(chosenDifficulty));
     }
 
