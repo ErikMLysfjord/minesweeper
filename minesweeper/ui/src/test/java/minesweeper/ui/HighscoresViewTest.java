@@ -102,4 +102,13 @@ public class HighscoresViewTest extends ApplicationTest {
 
         Assertions.assertNotEquals(initialScene, currentScene);
     }
+
+    @Test
+    public void testDifficultyChoiceBox() {
+        clickOn("#difficultyChoiceBox");
+        clickOn("Medium");
+        Scene currentScene = stage.getScene();
+
+        Assertions.assertNotEquals(initialScene, currentScene);
+    }
 }
