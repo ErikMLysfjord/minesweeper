@@ -26,7 +26,7 @@ De to HTTP-metodene man trenger for å benytte seg av REST-API-et vårt er:
 
   
 
-Her er `{difficulty}` en variabel, som kan være enten `Easy`, `Medium` eller `Hard`.
+Her er `{difficulty}` en variabel, som kan være enten `Easy`, `Medium` eller `Hard`. Dersom variabelen er noe annet, vil det oppstå en feilkode, 404.
 
   
 
@@ -59,9 +59,9 @@ Eksempel på returnert data:
 
 ### POST
 
-Sender man en POST-forespørsel til adressen over, med en HighscoreEntry som body, så skal det (forsøke) å lagre HighscoreEntry-en i Highscorelisten på den gitte vanskelighetsgraden.
+Sender man en POST-forespørsel til adressen over, med en HighscoreEntry som body, så skal det (forsøke å) lagre HighscoreEntry-en i Highscorelisten på den gitte vanskelighetsgraden.
 
-HighscoreFileHandler vil aller først lese highscorelisten, for så å kalle på saveScore-metoden inni Highscoreliste-objektet. Intern logikk vil deretter bestemme om dataen lagres i Highscorelisten.
+HighscoreFileHandler vil aller først lese highscorelisten, for så å kalle på addEntry-metoden inni Highscoreliste-objektet. Intern logikk vil deretter bestemme om dataen lagres i Highscorelisten.
 
 Uansett hva Highscorelisten gjør, vil den eventuelt oppdaterte Highscorelisten bli lagret til JSON-filen som tilhører den bestemte vanskelighetsgraden.
 
