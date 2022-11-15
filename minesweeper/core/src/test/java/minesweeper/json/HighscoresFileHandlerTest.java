@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import minesweeper.core.HighscoreEntry;
 
-public class FileHandlerTest {
+public class HighscoresFileHandlerTest {
 
     private HighscoresFileHandler fileHandler;
     private String rPath = "../core/src/main/resources/minesweeper/json/testPersistence.json";
