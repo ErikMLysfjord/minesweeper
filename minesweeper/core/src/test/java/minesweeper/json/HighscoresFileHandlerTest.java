@@ -11,11 +11,11 @@ import minesweeper.core.HighscoreEntry;
 public class HighscoresFileHandlerTest {
 
     private HighscoresFileHandler fileHandler;
-    private String rPath = "../core/src/main/resources/minesweeper/json/testPersistence.json";
+    private String testFileName = "/test.json";
 
     @BeforeEach
     public void setUp() {
-        fileHandler = new HighscoresFileHandler(rPath);
+        fileHandler = new HighscoresFileHandler(testFileName);
     }
 
     @Test
@@ -57,7 +57,11 @@ public class HighscoresFileHandlerTest {
 
     @AfterEach
     public void tearDown() {
-        new File(rPath).delete();
+        File testFile = new File(
+            HighscoresFileHandler.MINESWEEPER_DIR.toString(),
+            testFileName
+        );
+        testFile.delete();
     }
 
 }
