@@ -39,7 +39,7 @@ public class MinesweeperApplicationTest {
     @Autowired
     private MockMvc mockMvc;
     
-    private ObjectMapper mapper;
+    private ObjectMapper mapper = new HighscoresFileHandler().getMapper();
     private HighscoreList tempList;
     private File easyFile = new File(
         "../core/src/main/resources/minesweeper/json/easyHighscoreList.json"
@@ -47,7 +47,6 @@ public class MinesweeperApplicationTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        mapper = new HighscoresFileHandler().getMapper();
         tempList = mapper.readValue(easyFile, HighscoreList.class);
     }
 

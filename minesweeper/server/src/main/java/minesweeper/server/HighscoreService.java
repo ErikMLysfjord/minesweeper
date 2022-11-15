@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class HighscoreService {
 
+    private HighscoresFileHandler fileHandler = new HighscoresFileHandler();
+
     /**
      * Gets the highscore read from the json-file.
      * @param difficulty difficulty chosen
      * @return the highscorelist
      */
     public HighscoreList getHighscoreList(final String difficulty) {
-        HighscoresFileHandler fileHandler = new HighscoresFileHandler();
         return fileHandler.readHighscoreList(
             Difficulty.getDifficulty(difficulty)
         );
@@ -31,7 +32,6 @@ public class HighscoreService {
         final HighscoreEntry entry,
         final String difficulty
     ) {
-        HighscoresFileHandler fileHandler = new HighscoresFileHandler();
         fileHandler.saveScore(entry, Difficulty.getDifficulty(difficulty));
     }
 
