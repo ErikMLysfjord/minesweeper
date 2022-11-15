@@ -35,5 +35,14 @@ public class HighscoreService {
         fileHandler.saveScore(entry, Difficulty.getDifficulty(difficulty));
     }
 
+    /**
+     * Checks whether the given difficulty is valid.
+     * @param difficulty difficulty given
+     * @return whether it is valid
+     */
+    public boolean difficultyIsValid(final String difficulty) {
+        return Difficulty.getDifficulty(difficulty) != null;
+    }
+
 }
 
