@@ -25,10 +25,21 @@ public class HighscoresFileHandler {
     );
 
     /**
-     * Constructor for FileHandler.
+     * Constructor for HighscoresFileHandler.
      */
     public HighscoresFileHandler() {
         highscoreListFile = null;
+        setFiles();
+        mapper = registerModule(new ObjectMapper());
+        makeFiles();
+    }
+
+    /**
+     * Constructor for HighscoresFileHandler, which takes in an address.
+     * @param address the address for which file to handle
+     */
+    public HighscoresFileHandler(final String address) {
+        highscoreListFile = new File(address);
         setFiles();
         mapper = registerModule(new ObjectMapper());
         makeFiles();
@@ -54,17 +65,6 @@ public class HighscoresFileHandler {
      */
     public ObjectMapper getMapper() {
         return mapper;
-    }
-
-    /**
-     * Constructor for FileHandler, which takes in an address.
-     * @param address the address for which file to handle
-     */
-    public HighscoresFileHandler(final String address) {
-        highscoreListFile = new File(address);
-        setFiles();
-        mapper = registerModule(new ObjectMapper());
-        makeFiles();
     }
 
     /**
