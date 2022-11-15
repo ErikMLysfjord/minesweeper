@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 import minesweeper.json.HighscoresFileHandler;
 
@@ -45,14 +46,50 @@ public class MinesweeperApplicationTest {
 
     @Test
     public void testGet() throws Exception {
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/minesweeper/highscorelist/Test")
-        .accept(MediaType.APPLICATION_JSON))
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(
+            "/minesweeper/highscorelist/Test"
+            ).accept(MediaType.APPLICATION_JSON))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andReturn();
+        try {
+            HighscoreList list = mapper.readValue(
+                result.getResponse()
+                .getContentAsString(),
+                HighscoreList.class
+            );
+            assertEquals(5, list.getMaxSize());
+            assertThrows(IndexOutOfBoundsException.class, () -> {
+                list.getHighscoreEntry(0);
+            });
+        } catch (Exception e) {
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testPost() throws Exception {
+        HighscoreEntry entry = new HighscoreEntry("Name", 100);
+        String url = "/minesweeper/highscorelist/Test/save";
+        mockMvc.perform(
+            MockMvcRequestBuilders.post(url).contentType(
+                MediaType.APPLICATION_JSON
+            ).content(mapper.writeValueAsString(entry)))
+            .andExpect(MockMvcResultMatchers.status().isOk()
+        );
+        // Get-method to check if the correct data was sent
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(
+            "/minesweeper/highscorelist/Test"
+        ).accept(MediaType.APPLICATION_JSON))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andReturn();
         try {
-            HighscoreList list = mapper.readValue(result.getResponse().getContentAsString(), HighscoreList.class);
-            assertEquals(5, list.getMaxSize());
-            assertThrows(IndexOutOfBoundsException.class, () -> {list.getHighscoreEntry(0);});
+            HighscoreList list = mapper.readValue(
+                result.getResponse()
+                .getContentAsString(),
+                HighscoreList.class
+            );
+            assertEquals("Name", list.getHighscoreEntry(0).getName());
+            assertEquals(100, list.getHighscoreEntry(0).getScore());
         } catch (Exception e) {
             fail(e.getMessage());
         }

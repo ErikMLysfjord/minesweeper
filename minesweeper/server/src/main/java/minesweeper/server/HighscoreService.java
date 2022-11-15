@@ -38,9 +38,9 @@ public class HighscoreService {
         final HighscoreEntry entry,
         final String difficulty
     ) {
-        if (difficulty == "Test") {
+        if (difficulty.equals("Test")) {
             HighscoresFileHandler fileHandler = new HighscoresFileHandler(
-                difficulty
+            "../core/src/main/resources/minesweeper/json/testPersistence.json"
             );
             fileHandler.saveScore(entry);
         } else {
@@ -55,7 +55,6 @@ public class HighscoreService {
      * @return whether it is valid
      */
     public boolean difficultyIsValid(final String difficulty) {
-        System.out.println(difficulty.equals("Test"));
         return difficulty.equals("Test")
         || Difficulty.getDifficulty(difficulty) != null;
     }
