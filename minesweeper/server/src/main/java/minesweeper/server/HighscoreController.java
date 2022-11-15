@@ -25,9 +25,9 @@ public class HighscoreController {
     /**
      * Get the highscore list.
      * @param difficulty difficulty chosen
-     * @return the highscore list
      * @param response Http response
-     * @throws IOException
+     * @throws IOException if an error occurs
+     * @return the highscore list
      */
     @GetMapping("/highscorelist/{difficulty}")
     public HighscoreList getHighscoreList(
@@ -46,7 +46,8 @@ public class HighscoreController {
      * @param entry to be saved
      * @param difficulty difficulty chosen
      * @param response Http response
-     * @return true to indicate success
+     * @throws IOException if an error occurs
+     * @return true or false, indicating if the request was successful
      */
     @PostMapping("/highscorelist/{difficulty}/save")
     public boolean addHighscoreEntry(
