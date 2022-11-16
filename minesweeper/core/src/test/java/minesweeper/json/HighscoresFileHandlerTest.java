@@ -11,7 +11,11 @@ import minesweeper.core.HighscoreEntry;
 public class HighscoresFileHandlerTest {
 
     private HighscoresFileHandler fileHandler;
+<<<<<<< HEAD
     private String testFileName = "test.json";
+=======
+    private String testFileName = "/test.json";
+>>>>>>> dad80a65490b9ac0bdbe5684ffed537808c63e47
 
     @BeforeEach
     public void setUp() {
