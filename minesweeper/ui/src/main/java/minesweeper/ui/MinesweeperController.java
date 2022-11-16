@@ -276,7 +276,7 @@ public class MinesweeperController {
         td.setGraphic(new ImageView(getClass().
             getResource("happy-face.png").toString())
         );
-        
+
         try {
             Optional<String> name = td.showAndWait();
             while (name.isPresent() && name.get().length() < 2) {
@@ -287,11 +287,10 @@ public class MinesweeperController {
             }
             if (name.isPresent()) {
                 saveScore(name.get(), timer.getSeconds());
-            }    
+            }
         } catch (RuntimeException e) {
             displayNoInternet();
         }
-        
     }
 
     /**
@@ -325,11 +324,10 @@ public class MinesweeperController {
     private void showHighscores(final ActionEvent event) {
         String difficulty = currentDifficulty.getName();
         try {
-            sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));    
+            sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));
         } catch (RuntimeException e) {
             displayNoInternet();
         }
-        
     }
 
     /**
