@@ -98,6 +98,7 @@
                     <!-- syntax: module-name/full-app-class-name -->
                     <mainClass>minesweeper.ui/minesweeper.ui.MinesweeperApp</mainClass>
                     <!-- rest of options are for jlink -->
+                    <!-- Usage: mvn javafx:jlink. Generates ui/target/minesweeper.zip -->
                     <compress>2</compress>
                     <noHeaderFiles>true</noHeaderFiles>
                     <stripDebug>true</stripDebug>
@@ -109,6 +110,7 @@
             </plugin>
             <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
             <plugin>
+                <!-- Usage: mvn jpackage:jpackage. Installer is ui/target/dist/Minesweeper-1.0.0.exe -->
                 <groupId>org.panteleyev</groupId>
                 <artifactId>jpackage-maven-plugin</artifactId>
                 <version>1.4.0</version>
