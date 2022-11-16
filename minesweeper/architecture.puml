@@ -2,14 +2,30 @@
 
 component core {
 	package minesweeper.core
-  	package minesweeper.json
+	package minesweeper.json {
+	  package minesweeper.json.internal
+	}
 }
 
 minesweeper.core ..> minesweeper.json
+minesweeper.json ..> minesweeper.json.internal
+
 component jackson {
 }
-
 minesweeper.json ..> jackson
+minesweeper.json.internal ..> jackson
+
+
+component server {
+  package minesweeper.server
+}
+
+minesweeper.server ..> minesweeper.core
+minesweeper.server ..> minesweeper.json
+
+component spring_boot {
+}
+server ..> spring_boot
 
 
 component ui {
@@ -17,12 +33,12 @@ component ui {
 }
 
 minesweeper.ui ..> minesweeper.core
+minesweeper.ui ..> minesweeper.server
 
 component javafx {
 	component fxml {
 	}
 }
-
 ui ..> javafx
 ui ..> fxml
 
