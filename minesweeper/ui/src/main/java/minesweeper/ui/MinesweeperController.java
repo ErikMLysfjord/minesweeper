@@ -276,16 +276,22 @@ public class MinesweeperController {
         td.setGraphic(new ImageView(getClass().
             getResource("happy-face.png").toString())
         );
-        Optional<String> name = td.showAndWait();
-        while (name.isPresent() && name.get().length() < 2) {
-            td.setContentText(
-                "Your name must be longer than 2 characters."
-            );
-            name = td.showAndWait();
+        
+        try {
+            Optional<String> name = td.showAndWait();
+            while (name.isPresent() && name.get().length() < 2) {
+                td.setContentText(
+                    "Your name must be longer than 2 characters."
+                );
+                name = td.showAndWait();
+            }
+            if (name.isPresent()) {
+                saveScore(name.get(), timer.getSeconds());
+            }    
+        } catch (RuntimeException e) {
+            displayNoInternet();
         }
-        if (name.isPresent()) {
-            saveScore(name.get(), timer.getSeconds());
-        }
+        
     }
 
     /**
@@ -318,7 +324,12 @@ public class MinesweeperController {
     @FXML
     private void showHighscores(final ActionEvent event) {
         String difficulty = currentDifficulty.getName();
-        sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));
+        try {
+            sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));    
+        } catch (RuntimeException e) {
+            displayNoInternet();
+        }
+        
     }
 
     /**
@@ -333,6 +344,17 @@ public class MinesweeperController {
                 handleSpacebarOnSquare(coords[0], coords[1]);
             }
         }
+    }
+
+    /**
+     * Displays an alertbox, informing the user that there is no internet
+     * connection.
+     */
+    private void displayNoInternet() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setHeaderText("No internet");
+        alert.setContentText("You're not connected to the internet :(");
+        alert.show();
     }
 
 }
