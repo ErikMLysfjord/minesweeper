@@ -2,7 +2,8 @@ package minesweeper.json;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,13 +20,12 @@ import minesweeper.json.internal.HighscoreListSerializer;
 public class HighscoresFileHandler {
     private final ObjectMapper mapper;
     private final File highscoreListFile;
-    private static final HashMap<Difficulty, File> FILES = new HashMap<>();
-    private static final File DIR = new File(
-        "../core/src/main/resources/minesweeper/json/"
-    );
+    private final HashMap<Difficulty, File> files = new HashMap<>();
+    public static final Path MINESWEEPER_DIR =
+        Paths.get(System.getProperty("user.home"), "minesweeper");
 
     /**
-     * Constructor for FileHandler.
+     * Constructor for HighscoresFileHandler.
      */
     public HighscoresFileHandler() {
         highscoreListFile = null;
@@ -35,17 +35,27 @@ public class HighscoresFileHandler {
     }
 
     /**
+     * Constructor for HighscoresFileHandler used when saving to a custom file.
+     * The path is MINESWEEPER_DIR/fileName.
+     * @param fileName the fileName in the minesweeper directory
+     */
+    public HighscoresFileHandler(final String fileName) {
+        highscoreListFile = new File(MINESWEEPER_DIR.toString(), fileName);
+        setFiles();
+        mapper = registerModule(new ObjectMapper());
+        makeFiles();
+    }
+
+    /**
      * Sets the files for the different difficulties.
      */
     private void setFiles() {
-        Arrays.asList(Difficulty.values()).forEach(difficulty -> {
+        for (Difficulty difficulty : Difficulty.values()) {
             String difficultyName = difficulty.getName().toLowerCase();
-            File difficultyFile = new File(String.format(
-            "../core/src/main/resources/minesweeper/json/%sHighscoreList.json",
-                difficultyName
-            ));
-            FILES.put(difficulty, difficultyFile);
-        });
+            String fileName = difficultyName + "HighscoreList.json";
+            File file = new File(MINESWEEPER_DIR.toString(), fileName);
+            files.put(difficulty, file);
+        }
     }
 
     /**
@@ -54,17 +64,6 @@ public class HighscoresFileHandler {
      */
     public ObjectMapper getMapper() {
         return mapper;
-    }
-
-    /**
-     * Constructor for FileHandler, which takes in an address.
-     * @param address the address for which file to handle
-     */
-    public HighscoresFileHandler(final String address) {
-        highscoreListFile = new File(address);
-        setFiles();
-        mapper = registerModule(new ObjectMapper());
-        makeFiles();
     }
 
     /**
@@ -107,7 +106,7 @@ public class HighscoresFileHandler {
         HighscoreList highscoreList = readHighscoreList(difficulty);
         highscoreList.addEntry(score);
         try {
-            mapper.writeValue(FILES.get(difficulty), highscoreList);
+            mapper.writeValue(files.get(difficulty), highscoreList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -135,7 +134,7 @@ public class HighscoresFileHandler {
         makeFiles();
         try {
             return mapper.readValue(
-                FILES.get(difficulty),
+                files.get(difficulty),
                 HighscoreList.class
             );
         } catch (Exception e) {
@@ -166,7 +165,7 @@ public class HighscoresFileHandler {
             if (highscoreListFile != null && highscoreListFile.length() == 0) {
                 mapper.writeValue(highscoreListFile, highscoreList);
             }
-            for (File file : FILES.values()) {
+            for (File file : files.values()) {
                 if (file.length() == 0) {
                     mapper.writeValue(file, highscoreList);
                 }
@@ -178,11 +177,11 @@ public class HighscoresFileHandler {
 
     private void makeFiles() {
         try {
-            DIR.mkdirs();
+            MINESWEEPER_DIR.toFile().mkdirs();
             if (highscoreListFile != null) {
                 highscoreListFile.createNewFile();
             }
-            for (File file : FILES.values()) {
+            for (File file : files.values()) {
                 file.createNewFile();
             }
         } catch (IOException e) {
