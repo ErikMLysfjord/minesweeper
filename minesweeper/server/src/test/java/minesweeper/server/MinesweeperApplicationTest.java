@@ -42,7 +42,8 @@ public class MinesweeperApplicationTest {
     private ObjectMapper mapper = new HighscoresFileHandler().getMapper();
     private HighscoreList tempList;
     private File easyFile = new File(
-        "../core/src/main/resources/minesweeper/json/easyHighscoreList.json"
+        HighscoresFileHandler.MINESWEEPER_DIR.toString(),
+        "easyHighscoreList.json"
     );
 
     @BeforeEach
