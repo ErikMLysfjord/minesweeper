@@ -50,7 +50,7 @@ public class Minesweeper {
      * Checks whether the square has a mine or not.
      * @param x x-coordinate of the square
      * @param y y-coordinate of the square
-     * @return wether or not the square has a mine
+     * @return whether or not the square has a mine
      */
     public Boolean hasMine(final int x, final int y) {
         return minefield.hasMine(x, y);
@@ -62,6 +62,10 @@ public class Minesweeper {
      * @param y y-coordinates of the square
      */
     public void toggleFlag(final int x, final int y) {
+        if (minefield.squareIsOpened(x, y)) {
+            return;
+        }
+
         minefield.toggleFlag(x, y);
         flagCount += minefield.isFlagged(x, y) ? 1 : -1;
     }
