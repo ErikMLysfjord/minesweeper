@@ -176,7 +176,9 @@ public class MinesweeperController {
      * @param y y-coordinates of clicked square
      */
     private void handleRightClickedSquare(final Integer x, final Integer y) {
-        toggleFlag(x, y);
+        if (!minesweeper.squareIsOpened(x, y)) {
+            toggleFlag(x, y);
+        }
     }
 
     /**
