@@ -18,6 +18,7 @@ public class Minesweeper {
     private final int mineCount;
     private int openedSquares;
     private int flagCount;
+    private boolean isLost = false;
 
     /**
      * Constructor for Minesweeper using a preset difficulty.
@@ -68,7 +69,7 @@ public class Minesweeper {
      * @param y y-coordinates of the square
      */
     public void toggleFlag(final int x, final int y) {
-        if (minefield.squareIsOpened(x, y)) {
+        if (minefield.squareIsOpened(x, y) || isLost) {
             return;
         }
 
@@ -109,7 +110,7 @@ public class Minesweeper {
             start();
         }
 
-        if (minefield.squareIsOpened(x, y)) {
+        if (minefield.squareIsOpened(x, y) || isLost) {
             return;
         }
 
@@ -181,6 +182,7 @@ public class Minesweeper {
      * to be taken when the game is lost.
      */
     private void lose() {
+        isLost = true;
         for (Action action : onLossActions) {
             action.run();
         }

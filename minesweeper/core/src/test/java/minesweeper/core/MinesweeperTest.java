@@ -32,6 +32,12 @@ public class MinesweeperTest {
         minesweeper.openSquare(3, 3);
 
         Assertions.assertTrue(isLost);
+
+        //Test that you can't continue
+        minesweeper.openSquare(0, 0);
+        Assertions.assertFalse(minesweeper.squareIsOpened(0, 0));
+        minesweeper.toggleFlag(1, 0);
+        Assertions.assertFalse(minesweeper.isFlagged(1, 0));
     }
 
     @Test
