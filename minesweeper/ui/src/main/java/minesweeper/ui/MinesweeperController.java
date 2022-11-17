@@ -353,7 +353,7 @@ public class MinesweeperController {
     private void alertCouldNotReachServer() {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setHeaderText("Could not reach server.");
-        alert.setContentText("Highscores are therefore unavailable :(");
+        alert.setContentText("Highscores are unavailable :(");
         alert.show();
     }
 
