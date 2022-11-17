@@ -130,3 +130,12 @@ Ellers kan de bli kjørt for seg selv slik:
 - [Checkstyle](https://checkstyle.sourceforge.io) -> `mvn checkstyle:check`
 - [Spotbugs](https://spotbugs.github.io) -> `mvn spotbugs:check`
 - [Jacoco](https://www.jacoco.org) -> `mvn jacoco:report`
+
+## JLink og JPackage
+Begge kommandoene kjøres fra minesweeper/ui/. Altså må kommandoen `cd minesweeper/ui` skrives. 
+### JLink
+For å lage en zip-fil med prosjektet må kommandoen `mvn javafx:jlink` kjøres.
+Zip filen kommer her: minesweeper/ui/target/minesweeeper.zip.
+### JPackage
+For å laste ned applikasjonen som en app, må kommandoen `mvn jpackage:jpackage` kjøres.
+Da kommer en installer i minesweeper/ui/target/dist/
