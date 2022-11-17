@@ -6,6 +6,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import com.github.tomakehurst.wiremock.WireMockServer;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import com.github.tomakehurst.wiremock.core.WireMockConfiguration;
+import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
+import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
+import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
+import static com.github.tomakehurst.wiremock.client.WireMock.get;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,6 +31,9 @@ public class MinesweeperSceneTest extends ApplicationTest {
     private Stage stage;
     private Scene initialScene;
 
+    private WireMockConfiguration config;
+    private WireMockServer wireMockServer;
+
     @Override
     public void start(Stage stage) throws IOException {
         this.stage = stage;
@@ -29,6 +41,13 @@ public class MinesweeperSceneTest extends ApplicationTest {
         sceneSwitcher.setMinesweeper();
         initialScene = stage.getScene();
         root = initialScene.getRoot();
+    }
+
+    public void setUpServer() {
+        config = WireMockConfiguration.wireMockConfig().port(8080);
+        wireMockServer = new WireMockServer(config.portNumber());
+        wireMockServer.start();
+        WireMock.configureFor("localhost", config.portNumber());
     }
 
     public Parent getRootNode() {
@@ -91,11 +110,23 @@ public class MinesweeperSceneTest extends ApplicationTest {
      */
     @Test
     public void testCheckHighscores() {
+        // Sets up the wiremock-server, so the application can switch scenes
+        setUpServer();
+        stubFor(get(urlEqualTo("/minesweeper/highscorelist/Easy"))
+            .withHeader("accept", equalTo("application/json"))
+            .willReturn(aResponse()
+            .withStatus(200)
+            .withHeader("Content-Type", "application/json")
+            .withBody("{\"maxSize\":5,\"entries\":[]}"))
+        );
+
         Node button = getElementById("#checkHighscoresButton");
         clickOn(button, MouseButton.PRIMARY);
 
         Scene currentScene = stage.getScene();
         Assertions.assertNotEquals(initialScene, currentScene);
+
+        tearDown();
     }
 
     @Test
@@ -136,5 +167,9 @@ public class MinesweeperSceneTest extends ApplicationTest {
             10-2,
             Integer.valueOf(flagsLeft.getText())
         );
+    }
+
+    public void tearDown() {
+        wireMockServer.stop();
     }
 }
