@@ -17,6 +17,11 @@ import minesweeper.json.internal.HighscoreEntrySerializer;
 import minesweeper.json.internal.HighscoreListDeserializer;
 import minesweeper.json.internal.HighscoreListSerializer;
 
+/**
+ * Takes care of saving and retrieving HighscoreLists from files.
+ * Files are stored in minesweeeper directory in the user's home directory.
+ * Each difficulty has its own file containing a highscore list.
+ */
 public class HighscoresFileHandler {
     private final ObjectMapper mapper;
     private final File highscoreListFile;
@@ -111,6 +116,7 @@ public class HighscoresFileHandler {
             e.printStackTrace();
         }
     }
+
     /**
      * Saves serialized score object to highscore list in data.json.
      * @param score the score to be saved
@@ -142,6 +148,7 @@ public class HighscoresFileHandler {
         }
         return null;
     }
+
     /**
      * Reads highscore list from highscorelistFile.
      * @return highscore list in highscorelistFile
@@ -190,4 +197,3 @@ public class HighscoresFileHandler {
         setEmptyLists();
     }
 }
-

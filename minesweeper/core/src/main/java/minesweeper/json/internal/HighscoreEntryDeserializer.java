@@ -11,6 +11,9 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import minesweeper.core.HighscoreEntry;
 
+/**
+ * Can create HighscoreEntry-object from a json representation.
+ */
 public class HighscoreEntryDeserializer
        extends JsonDeserializer<HighscoreEntry> {
 
