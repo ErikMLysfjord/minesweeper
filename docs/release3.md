@@ -14,7 +14,11 @@ Hele logikken til minesweeper er nå lagt til. Dette inkluderer alle kravene fra
 ### Arkitektur
 En ny server modul er lagt til og projektet er nå delt i tre moduler: core, server og ui. 
 
-### REST-API
+### REST API
+Vi valgte å lage en server som har highscore listene. Én for hver vanskelighetsgrad. Vi tok ikke hele minesweeper spillet over på server. Det hadde blitt veldig komplisert. Da kunne vi ikke brukt det action systemet vi har heller, hvor Minesweeper sier i fra når spillet f.eks. er vunnet.  
+Vi brukte Spring Boot for REST APIet.  
+
+Se i [REST.md](docs/REST.md) for dokumentasjon av hvordan det brukes.
 
 ## Valg vi har tatt
 
