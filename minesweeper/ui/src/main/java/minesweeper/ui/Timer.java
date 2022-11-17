@@ -6,12 +6,15 @@ import java.util.List;
 import javafx.animation.AnimationTimer;
 import minesweeper.core.Action;
 
+/**
+ * Timer starts at 0, and counts up until stopped with stop().
+ * Must be started with start(). Can be set up to take actions on each second.
+ */
 public class Timer extends AnimationTimer {
     private List<Action> onSecondActions;
     private boolean startTimeIsSet = false;
     private long startTime;
     private static final double NANO_SECONDS_IN_SECOND = 1e9;
-
     private int seconds = 0;
 
     /**

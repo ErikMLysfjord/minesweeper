@@ -1,5 +1,9 @@
 package minesweeper.core;
 
+/**
+ * Difficulty contains the minesweeper settings for each difficulty:
+ * height, width and mine count.
+ */
 public enum Difficulty {
     EASY(9, 9, 10, "Easy"),
     MEDIUM(16, 16, 40, "Medium"),

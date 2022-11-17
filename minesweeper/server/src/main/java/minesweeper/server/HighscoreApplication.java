@@ -8,6 +8,9 @@ import org.springframework.context.annotation.Bean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+/**
+ * The application class that starts the server.
+ */
 @SpringBootApplication
 public class HighscoreApplication {
 
@@ -27,5 +30,4 @@ public class HighscoreApplication {
     public ObjectMapper getMapper() {
         return new HighscoresFileHandler().getMapper();
     }
-
 }

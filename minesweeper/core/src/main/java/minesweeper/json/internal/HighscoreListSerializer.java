@@ -9,6 +9,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
+/**
+ * Can create a json representation of HighscoreList-objects.
+ */
 public class HighscoreListSerializer extends JsonSerializer<HighscoreList> {
     private HighscoreEntrySerializer highscoreEntrySerializer =
         new HighscoreEntrySerializer();
@@ -34,5 +37,4 @@ public class HighscoreListSerializer extends JsonSerializer<HighscoreList> {
 
         gen.writeEndObject();
     }
-
 }

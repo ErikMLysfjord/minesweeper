@@ -1,9 +1,12 @@
 package minesweeper.core;
 
+/**
+ * Actions to be taken when events occcur.
+ */
 @FunctionalInterface
 public interface Action {
     /**
-     * Used for passing actions to be taken when events occcur.
+     * Takes the action.
      */
     void run();
 }

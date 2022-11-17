@@ -17,8 +17,11 @@ import minesweeper.core.Difficulty;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
+/**
+ * Controller for the Highscores scene. It displays the provided HighscoreList.
+ */
 public class HighscoresController {
-    private SceneManager sceneSwitcher;
+    private SceneManager sceneManager;
     private HighscoreList highscoreList;
     private HighscoresView highscoresView;
 
@@ -35,7 +38,6 @@ public class HighscoresController {
     @FXML
     private String uri;
 
-
     /**
      * Constructor for HighscoresController.
      * Creates and sets a copy of the provided highscore list,
@@ -50,7 +52,8 @@ public class HighscoresController {
     }
 
     /**
-     * Initializes the highscoresview and updates the highscore-list.
+     * Initializes highscoresView and updates the highscore list.
+     * Also adds difficulties to difficultyChoiceBox.
      */
     @FXML
     private void initialize() {
@@ -59,11 +62,11 @@ public class HighscoresController {
         }
 
         highscoresView = new HighscoresView();
-        highscoresView.setCells(highscores, name, score, getHighScores());
+        highscoresView.setCells(highscores, name, score, getHighscores());
     }
 
     /**
-     * Changes highscore difficulty list.
+     * Changes to the highscore list of another difficulty.
      * Called when new difficulty gets chosen in ChoiceBox.
      */
     @FXML
@@ -72,12 +75,13 @@ public class HighscoresController {
 
         try {
             String chosenDifficulty = difficultyChoiceBox.getValue();
-            sceneSwitcher.setHighscores(
+            sceneManager.setHighscores(
                 access.getHighscoreList(chosenDifficulty)
             );
         } catch (Exception e) {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setContentText("You're not connected to the internet :(");
+            alert.setHeaderText("Could not reach server.");
+            alert.setContentText("Highscores are unavailable :(");
             alert.show();
         }
     }
@@ -86,7 +90,7 @@ public class HighscoresController {
      * Creates an observable list of the highscores.
      * @return the observable list made
      */
-    private ObservableList<HighscoreEntry> getHighScores() {
+    private ObservableList<HighscoreEntry> getHighscores() {
         ObservableList<HighscoreEntry> list =
             FXCollections.observableArrayList();
         for (HighscoreEntry entry : highscoreList) {
@@ -96,20 +100,20 @@ public class HighscoresController {
     }
 
     /**
-     * Sets the sceneSwitcher that will be used to switch scenes.
-     * @param sceneSwitcher the sceneSwitcher
+     * Sets the sceneManager that will be used to switch scenes.
+     * @param sceneManager the sceneManager
      */
-    public void setSceneSwitcher(final SceneManager sceneSwitcher) {
-        this.sceneSwitcher = sceneSwitcher;
+    public void setSceneManager(final SceneManager sceneManager) {
+        this.sceneManager = sceneManager;
     }
 
     /**
-     * Method for returning from the highscore-page back to the
-     * minesweeper-game.
-     * @param event
+     * Method for returning from highscores back to the
+     * minesweeper-scene.
+     * @param event the event from the button press
      */
     @FXML
     private void goBack(final ActionEvent event) {
-        sceneSwitcher.setMinesweeper();
+        sceneManager.setMinesweeper();
     }
 }

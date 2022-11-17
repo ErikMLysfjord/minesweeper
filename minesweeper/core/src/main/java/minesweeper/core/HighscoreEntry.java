@@ -1,5 +1,10 @@
 package minesweeper.core;
 
+/**
+ * Highscore entries are contained in highscore lists. This is a data class
+ * with the player name and his/her score. The score is supposed to be the time
+ * it took to win.
+ */
 public class HighscoreEntry implements Comparable<HighscoreEntry> {
     private final String name;
     private final Integer score;
@@ -15,16 +20,16 @@ public class HighscoreEntry implements Comparable<HighscoreEntry> {
     }
 
     /**
-     * Get-method for the name.
-     * @return the name set
+     * Gets the name.
+     * @return the name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Get-method for the score.
-     * @return the score set
+     * Gets the score.
+     * @return the score
      */
     public Integer getScore() {
         return score;
@@ -49,5 +54,4 @@ public class HighscoreEntry implements Comparable<HighscoreEntry> {
             score
         );
     }
-
 }

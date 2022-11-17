@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * JavaFX App.
+ * Minesweeper JavaFX App.
  */
 public class MinesweeperApp extends Application {
 
@@ -23,8 +23,8 @@ public class MinesweeperApp extends Application {
     }
 
     /**
-     * The function that launches the fxml-application.
-     * @param args arguments that could affect the launch
+     * The method that launches the application.
+     * @param args command-line arguments
      */
     public static void main(final String[] args) {
         launch();

@@ -25,13 +25,16 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+/**
+ * Controller for the Minesweeper scene. Manages a game of Minesweeper and
+ * choosing difficulty.
+ */
 public class MinesweeperController {
     private SceneManager sceneSwitcher;
     private HighscoresAccess access;
     private Minesweeper minesweeper;
     private Difficulty currentDifficulty = Difficulty.EASY;
     private Timer timer;
-
     private MinefieldView minefieldView;
 
     @FXML
@@ -60,7 +63,7 @@ public class MinesweeperController {
     }
 
     /**
-     * Changes currentDifficulty and updates Minefieldview
+     * Changes currentDifficulty and updates MinefieldView
      * and minesweeper model.
      */
     @FXML
@@ -72,7 +75,7 @@ public class MinesweeperController {
     }
 
     /**
-     * Set up minesweeper model.
+     * Sets up minesweeper model.
      */
     private void setupMinesweeper() {
         minesweeper = new Minesweeper(currentDifficulty);
@@ -81,7 +84,7 @@ public class MinesweeperController {
     }
 
     /**
-     * Set up MinefieldView.
+     * Sets up minefieldView.
      */
     private void setupMinefieldView() {
         minefieldView = new MinefieldView(currentDifficulty);
@@ -94,9 +97,8 @@ public class MinesweeperController {
     }
 
     /**
-     * Sets the timer to a new timer,
-     * adds the action to be executed on second,
-     * and starts the timer.
+     * Sets up a new timer.
+     * This timer set to start when the minesweeper game starts.
      */
     private void setupTimer() {
         timer = new Timer();
@@ -105,10 +107,9 @@ public class MinesweeperController {
         );
         minesweeper.addOnStart(() -> timer.start());
     }
+
     /**
-     * Setup minefield.
-     * Setup minesweeper.
-     * Setup timer.
+     * (Re)starts everything to do with the minesweeper game.
      */
     public void restart() {
         setupMinefieldView();
@@ -116,6 +117,7 @@ public class MinesweeperController {
         setupTimer();
         flagsLeftLabel.setText(minesweeper.flagsLeft() + "");
     }
+
     /**
      * Restarts the minesweeper game.
      * Called from restart button.
@@ -170,7 +172,7 @@ public class MinesweeperController {
     }
 
     /**
-     * Toggles flag on or off in model and view.
+     * Toggles flag in model and view.
      * Called when square is right-clicked.
      * @param x x-coordinates of clicked square
      * @param y y-coordinates of clicked square
@@ -228,7 +230,7 @@ public class MinesweeperController {
     }
 
     /**
-     * Writes the user-input highscore list in data.json.
+     * Tries to save score to server.
      * @param name the name of the user
      * @param score the score of the user
      */
@@ -242,6 +244,7 @@ public class MinesweeperController {
 
     /**
      * Called from minesweeper when the game is won.
+     * Allows the user to save an entry to the server.
      */
     private void handleWin() {
         if (timer != null) {
@@ -356,5 +359,4 @@ public class MinesweeperController {
         alert.setContentText("Highscores are unavailable :(");
         alert.show();
     }
-
 }
