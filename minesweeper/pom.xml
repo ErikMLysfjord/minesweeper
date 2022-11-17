@@ -98,8 +98,6 @@
 		        <version>3.0.0-M5</version>
 	        </plugin>
 
-            
-
             <!-- Configure jacoco code coverage -->
             <plugin>
                 <!-- Usage: mvn jacoco:report -->
@@ -173,7 +171,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
     <modules>
