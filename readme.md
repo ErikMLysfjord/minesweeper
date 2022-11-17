@@ -5,7 +5,7 @@
 Kodeprosjektet er i minesweeper-mappen. Her finner man pom.xml-filen, men man finner også de tre hovedmodulene core, server og ui. 
 
 ### Core
-Core inneholder kjerneklassene som styrer logikken og lagringen i prosjektet. I src finner man en main mappe som inneholder kjerneklassene og fillagringsklassen, i tillegg finner man resources som inneholder lagringsfilen data.json, og i test finner man tester for lagring og logikk.
+Core inneholder kjerneklassene som styrer logikken og lagringen i prosjektet. I src finner man en main mappe som inneholder kjerneklassene og fillagringsklassen, og i test mappen finner man tester for lagring og logikk.
 
 ### Server
 Server inneholder rest-APIet for appen, og er mellomleddet mellom lagringen og applikasjonen. i src finner man en main- og en test-mappe. I main finner man minesweeper.server pakken som inneholder APIet. I test-mappa finner man tester for minesweeper.server pakken.
