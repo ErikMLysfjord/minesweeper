@@ -291,7 +291,7 @@ public class MinesweeperController {
                 saveScore(name.get(), timer.getSeconds());
             }
         } catch (RuntimeException e) {
-            displayNoInternet();
+            alertCouldNotReachServer();
         }
     }
 
@@ -328,7 +328,7 @@ public class MinesweeperController {
         try {
             sceneSwitcher.setHighscores(access.getHighscoreList(difficulty));
         } catch (RuntimeException e) {
-            displayNoInternet();
+            alertCouldNotReachServer();
         }
     }
 
@@ -347,13 +347,13 @@ public class MinesweeperController {
     }
 
     /**
-     * Displays an alertbox, informing the user that there is no internet
-     * connection.
+     * Displays an alertbox, informing the user that the server could not be
+     * reached.
      */
-    private void displayNoInternet() {
+    private void alertCouldNotReachServer() {
         Alert alert = new Alert(AlertType.ERROR);
-        alert.setHeaderText("No internet");
-        alert.setContentText("You're not connected to the internet :(");
+        alert.setHeaderText("Could not reach server.");
+        alert.setContentText("Highscores are unavailable :(");
         alert.show();
     }
 
