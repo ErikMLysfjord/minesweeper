@@ -14,6 +14,7 @@ class Timer {
     - boolean: startTimeIsSet
     - long: startTime
     - double: NANO_SECONDS_IN_SECOND
+    - int: seconds
     + void: handle()
     + void: addOnSecond()
     - void: onSecond()
@@ -38,7 +39,7 @@ class MinesweeperController{
     - HighscoresAccess: access
     - Difficulty: difficulty
     - Timer: timer
-    - MinesweeperView: minesweeperView
+    - MinefieldView: minefieldView
     - void: changeDifficulty()
     - void: setUpMinesweeper()
     - void: setUpMinefieldView()
@@ -57,13 +58,13 @@ class MinesweeperController{
     - void: handleLoss()
     - void: handleInput()
     - void: handleLoss()
-    + void: setSceneSwitcher()
+    + void: setSceneManager()
     - void: showHighscores()
     + void: onKeyReleased()
     - void: alertCouldNotReachServer()
 }
 
-class MinesweeperView {
+class MinefieldView {
     - int: width
     - int: height
     - List<List<ImageView>>: squareImages
