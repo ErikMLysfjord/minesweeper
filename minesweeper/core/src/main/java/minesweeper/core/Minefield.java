@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * The Minefield represents the minefield, containing squares, but without
+ * the Minesweeper game logic. Squares at a certain coordinates can
+ * only be accessed indirectly. (0, 0) is top left.
+ */
 public class Minefield {
     private final List<List<Square>> minefield;
     private final int width;
@@ -106,10 +111,10 @@ public class Minefield {
      * @param x the x coordinate where the mine is placed
      * @param y the y coordinate where the mine is placed
      */
-
     public void placeMine(final int x, final int y) {
         getSquare(x, y).placeMine();
     }
+
     /**
      * Checks for mine at the given coordinates.
      * @param x the x coordinate to check for mine
@@ -231,5 +236,4 @@ public class Minefield {
     public int getHeight() {
         return height;
     }
-
 }

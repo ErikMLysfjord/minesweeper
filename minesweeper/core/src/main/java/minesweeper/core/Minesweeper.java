@@ -3,6 +3,12 @@ package minesweeper.core;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Minesweeeper wraps around Minefield, and takes care of game logic such as:
+ * winning/losing, figuring out coordinates for chording (safeSquaresAround),
+ * and keeping track of flags left to place. Minesweeper has the events:
+ * win, lose, and start. You can set up actions to be taken when these happen.
+ */
 public class Minesweeper {
     private final Minefield minefield;
     private List<Action> onWinActions;
@@ -14,7 +20,19 @@ public class Minesweeper {
     private int flagCount;
 
     /**
-     * Constructor for Minesweeper.
+     * Constructor for Minesweeper using a preset difficulty.
+     * @param difficulty the difficulty of minesweeper
+     */
+    public Minesweeper(final Difficulty difficulty) {
+        this(
+            difficulty.getWidth(),
+            difficulty.getHeight(),
+            difficulty.getMineCount()
+        );
+    }
+
+    /**
+     * Constructor for Minesweeper with custom difficulty.
      * @param width the width of minefield
      * @param height the height of minefield
      * @param mineCount the amount of mines to be added to the minefield
@@ -32,18 +50,6 @@ public class Minesweeper {
         this.mineCount = mineCount;
         openedSquares = 0;
         flagCount = 0;
-    }
-
-    /**
-     * Constructor for Minesweeper.
-     * @param difficulty the difficulty of minesweeper
-     */
-    public Minesweeper(final Difficulty difficulty) {
-        this(
-            difficulty.getWidth(),
-            difficulty.getHeight(),
-            difficulty.getMineCount()
-        );
     }
 
     /**
@@ -142,8 +148,9 @@ public class Minesweeper {
 
     /**
      * Add an action to the list of actions to take
-     * when minesweeper game is won.
-     * @param action to be taken on win
+     * when the game is won.
+     * The game is won when all safe squares have been opened.
+     * @param action the action to be taken on win
      */
     public void addOnWin(final Action action) {
         onWinActions.add(action);
@@ -151,9 +158,9 @@ public class Minesweeper {
 
     /**
      * Add an action to the list of actions to take
-     * when minesweeper game is lost.
+     * when the game is lost.
      * The game is lost when a mine is opened by the openSquare method.
-     * @param action to be taken on loss
+     * @param action the action to be taken on loss
      */
     public void addOnLoss(final Action action) {
         onLossActions.add(action);
@@ -162,8 +169,8 @@ public class Minesweeper {
     /**
      * Add an action to the list of actions to take
      * when the game starts.
-     * The game starts, the first time the openSquare methode is used.
-     * @param action ti be taken on start
+     * The game starts the first time the openSquare method is used.
+     * @param action the action to be taken on start
      */
     public void addOnStart(final Action action) {
         onStartActions.add(action);
@@ -286,5 +293,4 @@ public class Minesweeper {
         Integer[][] safeSquaresArray = new Integer[safeSquares.size()][];
         return safeSquares.toArray(safeSquaresArray);
     }
-
 }

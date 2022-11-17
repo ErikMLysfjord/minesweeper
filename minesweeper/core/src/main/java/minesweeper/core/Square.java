@@ -1,12 +1,17 @@
 package minesweeper.core;
 
+/**
+ * Representation of the squares or cells in a minesweeper minefield. It's a
+ * dataclass containing the square's current status: Whether or not it's
+ * flagged, opened or if it has a mine.
+ */
 public class Square {
     private boolean isFlagged = false;
     private boolean hasMine = false;
     private boolean isOpened = false;
 
     /**
-     * Toggles flag if the square isn't opened.
+     * Toggles flag as long as the square is unopened.
      */
     public void toggleFlag() {
         if (!isOpened) {
@@ -15,29 +20,30 @@ public class Square {
     }
 
     /**
-     * Checks whether the square is toggled or not.
-     * @return whether the square is toggled or not
+     * Checks whether the square is flagged or not.
+     * @return whether the square is flagged or not
      */
     public boolean isFlagged() {
         return isFlagged;
     }
+
     /**
-     * Make hasMine true.
+     * Places a mine in this square.
      */
     public void placeMine() {
         hasMine = true;
     }
 
     /**
-     * Returns value of hasMine.
-     * @return value of hasMine
+     * Checks whether the square has a mine or not.
+     * @return whether the square has a mine or not.
      */
     public boolean hasMine() {
         return hasMine;
     }
 
     /**
-     * Set isOpened true if square is not flagged.
+     * Opens the square unless it is flagged.
      */
     public void open() {
         if (!isFlagged) {
@@ -47,7 +53,7 @@ public class Square {
 
     /**
      * Checks whether the square is opened or not.
-     * @return the isOpened-value
+     * @return whether the square is opened or not.
      */
     public boolean isOpened() {
         return isOpened;
