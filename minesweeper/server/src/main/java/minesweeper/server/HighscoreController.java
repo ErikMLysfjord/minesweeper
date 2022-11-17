@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import minesweeper.core.HighscoreEntry;
 import minesweeper.core.HighscoreList;
 
+/**
+ * Has mappings for the REST API. See docs/REST.md for REST API documentation.
+ */
 @RestController
 @RequestMapping("minesweeper")
 public class HighscoreController {
@@ -23,10 +26,10 @@ public class HighscoreController {
     private HighscoreService service;
 
     /**
-     * Get the highscore list.
-     * @param difficulty difficulty chosen
-     * @param response Http response
-     * @throws IOException if an error occurs
+     * GET mappping for getting the highscore list of a difficulty.
+     * Responds with an error if difficulty is not Easy, Medium or Hard.
+     * @param difficulty difficulty of highscore list
+     * @param response HTTP-response
      * @return the highscore list
      */
     @GetMapping("/highscorelist/{difficulty}")
@@ -42,12 +45,12 @@ public class HighscoreController {
     }
 
     /**
-     * Saves highscore entry in the server's highscore list.
-     * @param entry to be saved
-     * @param difficulty difficulty chosen
-     * @param response Http response
-     * @throws IOException if an error occurs
-     * @return true or false, indicating if the request was successful
+     * POST mapping for saving highscore entry in the server's highscore list.
+     * Responds with an error if difficulty is not Easy, Medium or Hard.
+     * @param entry the entry to save
+     * @param difficulty difficulty of highscore list to save to
+     * @param response HTTP response
+     * @return whether or not the request was successful
      */
     @PostMapping("/highscorelist/{difficulty}/save")
     public boolean addHighscoreEntry(
@@ -62,5 +65,4 @@ public class HighscoreController {
         response.sendError(HttpServletResponse.SC_NOT_FOUND);
         return false;
     }
-
 }
