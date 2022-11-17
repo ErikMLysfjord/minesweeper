@@ -8,6 +8,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import minesweeper.core.HighscoreList;
 
+/**
+ * Class for creating new scenes, and displaying them on the stage.
+ */
 public class SceneManager {
     private final Stage stage;
 
@@ -58,7 +61,7 @@ public class SceneManager {
             );
             HighscoresController controller =
                 new HighscoresController(highscoreList);
-            controller.setSceneSwitcher(this);
+            controller.setSceneManager(this);
             fxmlLoader.setController(controller);
             stage.setScene(new Scene(fxmlLoader.load()));
             stage.show();

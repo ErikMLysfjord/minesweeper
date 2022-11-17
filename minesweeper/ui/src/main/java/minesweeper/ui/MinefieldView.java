@@ -13,11 +13,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import minesweeper.core.Difficulty;
 
+/**
+ * Class representing the UI of Minefield. It contains one button and image for
+ * each square. To use: bind an object of this class to a GridPane. Images can
+ * then be set to bombs, opened squares and flags.
+ */
 public class MinefieldView {
-
     private final int width;
     private final int height;
-
     private List<List<ImageView>> squareImages;
     private List<List<Button>> squareButtons;
 
@@ -44,7 +47,6 @@ public class MinefieldView {
      * Constructor for the minefield view.
      * @param width the width of the minefield
      * @param height the height of the minefield
-     * represents the minefield
      */
     public MinefieldView(final int width, final int height) {
         this.width = width;
@@ -243,5 +245,4 @@ public class MinefieldView {
         }
         return null;
     }
-
 }
